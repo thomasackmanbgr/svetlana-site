@@ -156,11 +156,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 .appt .eyebrow{color:#bfe3da}
 .appt .lead{color:#d6ece6}
 .appt-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:3.5rem;align-items:start}
+.appt-grid>*{min-width:0}
 .call-box{margin-top:2rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:1.6rem}
 .call-box small{color:#bfe3da;font-weight:600}
 .call-box a.num{display:block;font-family:"Playfair Display",serif;font-size:2.1rem;margin:.2rem 0 1rem}
 .call-box .row{display:flex;gap:.7rem;flex-wrap:wrap}
-form{background:#fff;color:var(--ink);border-radius:28px;padding:2.2rem;box-shadow:0 30px 60px -25px rgba(0,0,0,.4)}
+
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.1rem}
 .full{grid-column:1/-1}
 label{display:block;font-size:.82rem;font-weight:700;margin-bottom:.4rem;color:var(--ink-2)}
@@ -172,7 +173,7 @@ textarea{resize:vertical;min-height:90px}
 .pets input{display:none}
 .pets span{display:inline-block;padding:.6rem 1rem;border-radius:999px;border:1.5px solid #e1e7e5;font-weight:700;font-size:.88rem;transition:.2s;background:var(--cream)}
 .pets input:checked+span{background:var(--teal);border-color:var(--teal);color:#fff}
-form .btn{width:100%;justify-content:center;margin-top:1.4rem;padding:1.05rem}
+
 .err{color:var(--coral-d);font-size:.85rem;font-weight:600;margin-top:.8rem;display:none}
 .done{display:none;text-align:center;padding:1rem 0}
 .done .check{width:70px;height:70px;border-radius:50%;background:var(--teal-l);color:var(--teal);display:grid;place-items:center;margin:0 auto 1rem}
@@ -185,6 +186,52 @@ form .btn{width:100%;justify-content:center;margin-top:1.4rem;padding:1.05rem}
 .wa{background:#25d366;color:#fff}
 .wa:hover{background:#1eb257}
 .link-btn{background:none;border:0;color:var(--teal);font:700 .9rem Manrope,sans-serif;cursor:pointer;margin-top:1rem;text-decoration:underline}
+
+
+/* booking wizard */
+.bk{background:#fff;color:var(--ink);border-radius:28px;padding:2rem 2.2rem 2.2rem;box-shadow:0 30px 60px -25px rgba(0,0,0,.4);min-height:420px}
+.bk h3{font-size:1.55rem;margin-bottom:1.1rem}
+.bk-bar{display:flex;gap:.4rem;margin-bottom:1.4rem}
+.bk-bar i{flex:1;height:5px;border-radius:5px;background:#e6ece9;transition:.3s}
+.bk-bar i.on{background:var(--coral)}
+.bk-step{display:none;animation:fadeUp .35s ease}
+.bk-step.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bk-back{background:none;border:0;font:700 .85rem Manrope,sans-serif;color:var(--muted);cursor:pointer;margin-bottom:.6rem;padding:0}
+.bk-back:hover{color:var(--teal)}
+.svc-list{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.svc{display:flex;align-items:center;gap:.7rem;text-align:left;padding:.8rem .9rem;border-radius:16px;border:1.5px solid #e4eae7;background:var(--cream);cursor:pointer;font:inherit;color:inherit;transition:.2s}
+.svc:hover{border-color:var(--teal);background:#fff;transform:translateY(-2px)}
+.svc .si{width:36px;height:36px;border-radius:11px;background:var(--teal);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.svc .si svg{width:19px;height:19px}
+.svc b{display:block;font-size:.88rem;line-height:1.25}
+.svc small{color:var(--muted);font-weight:600;font-size:.76rem}
+.svc.call{cursor:pointer;opacity:.75}
+.svc.call .si{background:#c9d4d0}
+.svc.call small{color:var(--coral-d)}
+.bk-chip{display:inline-flex;flex-wrap:wrap;gap:.35rem .8rem;align-items:center;background:var(--teal-l);color:var(--teal-d);font-weight:700;font-size:.85rem;padding:.55rem .9rem;border-radius:12px;margin-bottom:1.1rem}
+.bk-chip.big{font-size:.95rem;padding:.8rem 1.1rem;margin:1rem 0 .4rem}
+.days{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem .1rem .8rem;scrollbar-width:thin;scroll-snap-type:x mandatory}
+.day{flex:0 0 auto;width:68px;padding:.6rem 0;border-radius:16px;border:1.5px solid #e4eae7;background:var(--cream);text-align:center;cursor:pointer;font:inherit;color:inherit;scroll-snap-align:start;transition:.2s}
+.day small{display:block;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:capitalize}
+.day b{display:block;font-size:1.25rem;font-family:"Playfair Display",serif;line-height:1.2}
+.day span{display:block;font-size:.72rem;font-weight:600;color:var(--muted);text-transform:capitalize}
+.day:hover{border-color:var(--teal)}
+.day.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.day.on small,.day.on span{color:#cdeae3}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.6rem;min-height:60px}
+.slot{padding:.7rem 0;border-radius:12px;border:1.5px solid #e4eae7;background:#fff;font:700 .95rem Manrope,sans-serif;color:var(--ink);cursor:pointer;transition:.2s}
+.slot:hover{border-color:var(--coral);color:var(--coral-d)}
+.slots .msg{grid-column:1/-1;color:var(--muted);font-weight:600;font-size:.92rem;padding:.8rem 0}
+.slots .sk{height:44px;border-radius:12px;background:linear-gradient(90deg,#eef2f0 25%,#f7f9f8 50%,#eef2f0 75%);background-size:200% 100%;animation:sk 1.1s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.bk .btn[type=submit]{width:100%;justify-content:center;margin-top:1.4rem;padding:1.05rem}
+.bk .btn[disabled]{opacity:.6;pointer-events:none}
+.bk .done{text-align:center}
+.bk .done.on{display:block}
+#msgOut:empty{display:none}
+@media (max-width:640px){.bk{padding:1.4rem 1rem 1.6rem}.svc-list{gap:.45rem}.svc{flex-direction:column;align-items:flex-start;gap:.45rem;padding:.7rem .75rem}.svc .si{width:30px;height:30px;border-radius:9px}.svc .si svg{width:16px;height:16px}.svc b{font-size:.82rem}.slots{grid-template-columns:repeat(3,1fr)}}
 
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
@@ -228,7 +275,6 @@ footer .langs{background:transparent;border-color:#33504a}
   .nav-call{display:none}
   .grid4,.grid3,.contact-grid,.values{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr}
-  form{padding:1.5rem}
   .gal{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
   .mbar{display:flex}
   footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
@@ -429,33 +475,53 @@ footer .langs{background:transparent;border-color:#33504a}
     </div>
    </div>
    <div class="reveal">
-    <form id="form" novalidate>
-     <div id="fields">
+    <div class="bk" id="bk">
+     <div class="bk-bar"><i data-n="1"></i><i data-n="2"></i><i data-n="3"></i></div>
+
+     <div class="bk-step" data-step="1">
+      <h3 data-i="bk1">Nə üçün gəlirsiniz?</h3>
+      <label data-i="fPet">Heyvanın növü</label>
+      <div class="pets" id="pets"></div>
+      <label style="margin-top:1.1rem" data-i="fService">Xidmət</label>
+      <div class="svc-list" id="svcList"></div>
+     </div>
+
+     <div class="bk-step" data-step="2">
+      <button type="button" class="bk-back" data-go="1">← <span data-i="bkBack">Geri</span></button>
+      <h3 data-i="bk2">Gün və saat seçin</h3>
+      <div class="bk-chip" id="chip2"></div>
+      <div class="days" id="days"></div>
+      <div class="slots" id="slots"></div>
+     </div>
+
+     <form class="bk-step" data-step="3" id="bkForm" novalidate>
+      <button type="button" class="bk-back" data-go="2">← <span data-i="bkBack">Geri</span></button>
+      <h3 data-i="bk3">Əlaqə məlumatları</h3>
+      <div class="bk-chip" id="chip3"></div>
       <div class="fgrid">
        <div><label data-i="fName">Adınız</label><input id="fName" autocomplete="name" required></div>
-       <div><label data-i="fPhone">Telefon nömrəniz</label><input id="fPhone" type="tel" autocomplete="tel" placeholder="050 000 00 00" required></div>
-       <div class="full"><label data-i="fPet">Heyvanın növü</label><div class="pets" id="pets"></div></div>
-       <div><label data-i="fPetName">Heyvanın adı</label><input id="fPetName"></div>
-       <div><label data-i="fService">Xidmət</label><select id="fService"></select></div>
-       <div><label data-i="fDate">Tarix</label><input id="fDate" type="date"></div>
-       <div><label data-i="fTime">Saat</label><select id="fTime"></select></div>
+       <div><label data-i="fPhone">Telefon nömrəniz</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050 000 00 00" required></div>
+       <div class="full"><label data-i="fPetName">Heyvanın adı</label><input id="fPetName"></div>
        <div class="full"><label data-i="fNote">Qeyd (şikayət, simptomlar)</label><textarea id="fNote"></textarea></div>
+       <input id="fWeb" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       </div>
-      <button class="btn btn-primary" type="submit"><svg><use href="#i-cal"/></svg><span data-i="fSubmit">Müraciəti hazırla</span></button>
-      <p class="err" id="err" data-i="fErr">Zəhmət olmasa adınızı və telefon nömrənizi yazın.</p>
-     </div>
-     <div class="done" id="done">
+      <button class="btn btn-primary" type="submit" id="bkSubmit"><svg><use href="#i-check"/></svg><span data-i="bkConfirm">Rezervi təsdiqlə</span></button>
+      <p class="err" id="err"></p>
+     </form>
+
+     <div class="bk-step done" data-step="4">
       <div class="check"><svg><use href="#i-check"/></svg></div>
-      <h3 data-i="dTitle">Müraciətiniz hazırdır!</h3>
-      <p data-i="dText">Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.</p>
+      <h3 id="doneTitle"></h3>
+      <p id="doneText"></p>
+      <div class="bk-chip big" id="chip4"></div>
       <pre id="msgOut"></pre>
       <div class="row">
        <a class="btn wa" id="waSend" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span data-i="dWa">WhatsApp ilə göndər</span></a>
        <button type="button" class="btn btn-ghost" id="copyBtn"><span data-i="dCopy">Mətni kopyala</span></button>
       </div>
-      <button type="button" class="link-btn" id="backBtn" data-i="dBack">← Formaya qayıt</button>
+      <button type="button" class="link-btn" id="newBtn" data-i="bkNew">+ Yeni rezerv</button>
      </div>
-    </form>
+    </div>
    </div>
   </div>
  </section>
@@ -517,22 +583,26 @@ const CONFIG = {
     ru: "Врач: ср–сб, 11:00–16:00\nМагазин: 11:00–19:00\nОбед: 14:00–15:00\nПн и вт — выходные",
     en: "Vet: Wed–Sat, 11:00–16:00\nShop: 11:00–19:00\nLunch break: 14:00–15:00\nClosed Mondays and Tuesdays"
   },
-  timeSlots: ["11:00","11:30","12:00","12:30","13:00","13:30","15:00","15:30"]   // vet hours, lunch 14–15 skipped
+  // Online booking. Paste the Google Apps Script web-app URL here (see booking/Code.gs).
+  // Empty = booking still works, but the request is sent to the clinic via WhatsApp instead of the calendar.
+  bookingApi: "",
+  // Used only while bookingApi is empty (the Apps Script has its own copy of these rules)
+  clinic: { days:[3,4,5,6], open:"11:00", close:"16:00", breaks:[["14:00","15:00"]], step:15, noticeMin:120, daysAhead:21 }
 };
 
 const SERVICES = [
-  {ic:"steth",  az:["Müayinə və konsultasiya","Tam müayinə, diaqnoz və fərdi müalicə planı."], ru:["Осмотр и консультация","Полный осмотр, диагностика и индивидуальный план лечения."], en:["Check-ups & consultation","Full examination, diagnosis and a personal treatment plan."]},
-  {ic:"syringe",az:["Peyvəndləmə","Pişik və itlər üçün illik peyvəndlər və peyvənd cədvəli."], ru:["Вакцинация","Ежегодные прививки и график вакцинации для кошек и собак."], en:["Vaccination","Annual vaccines and vaccination schedules for cats and dogs."]},
-  {ic:"usg",    az:["UZİ diaqnostika","İt və pişiklər üçün ultrasəs müayinəsi."], ru:["УЗИ-диагностика","Ультразвуковое исследование для собак и кошек."], en:["Ultrasound","Ultrasound diagnostics for dogs and cats."]},
-  {ic:"lab",    az:["Analizlər","Qanın biokimyəvi analizi və digər laborator müayinələr."], ru:["Анализы","Биохимический анализ крови и другие лабораторные исследования."], en:["Lab tests","Blood biochemistry and other laboratory tests."]},
-  {ic:"micro",  az:["Mikroskopik müayinə","Qulaq gənəsi (otodektoz), tükyeyənlər və digər parazitlərin aşkarlanması."], ru:["Микроскопия","Выявление ушного клеща, власоедов и других паразитов под микроскопом."], en:["Microscopy","Detecting ear mites, lice and other parasites under the microscope."]},
-  {ic:"skin",   az:["Dəri xəstəlikləri","Qaşınma və dermatitin müayinəsi, Vud lampası ilə yoxlama."], ru:["Дерматология","Диагностика зуда и дерматитов, осмотр под лампой Вуда."], en:["Skin problems","Itch and dermatitis diagnosis, including a Wood's lamp check."]},
-  {ic:"cut",    az:["Sterilizasiya və kastrasiya","Pişik və itlər üçün, kriptorxların kastrasiyası daxil olmaqla."], ru:["Стерилизация и кастрация","Для кошек и собак, включая кастрацию крипторхов."], en:["Spaying & neutering","For cats and dogs, including cryptorchid neutering."]},
-  {ic:"heart",  az:["Cərrahiyyə","Yad cismin çıxarılması, şişlərin və hematomaların əməliyyatı."], ru:["Хирургия","Удаление инородных тел, новообразований и гематом."], en:["Surgery","Removal of foreign bodies, tumours and haematomas."]},
-  {ic:"tooth",  az:["Diş baxımı","Ultrasəs skaleri ilə diş daşlarının təmizlənməsi."], ru:["Стоматология","Чистка зубного камня ультразвуковым скалером."], en:["Dental care","Ultrasonic scaling to remove tartar."]},
-  {ic:"bug",    az:["Parazitlərə qarşı müalicə","Birə, gənə və qurdlara qarşı müalicə və profilaktika."], ru:["Лечение от паразитов","Лечение и профилактика блох, клещей и глистов."], en:["Parasite treatment","Treatment and prevention of fleas, ticks and worms."]},
-  {ic:"drip",   az:["İynə və sistem","Həkim təyinatı ilə iynələr və sistem (damcı) köçürülməsi."], ru:["Уколы и капельницы","Инъекции и капельницы по назначению врача."], en:["Injections & IV drips","Injections and IV therapy as prescribed."]},
-  {ic:"comb",   az:["Gigiyenik qulluq","Tükün qırxılması, dırnaqların kəsilməsi, paranal vəzilərin təmizlənməsi."], ru:["Гигиенический уход","Стрижка шерсти и когтей, чистка параанальных желёз."], en:["Grooming & hygiene","Clipping, nail trims and anal gland cleaning."]}
+  {id:"consult", min:30, ic:"steth",  az:["Müayinə və konsultasiya","Tam müayinə, diaqnoz və fərdi müalicə planı."], ru:["Осмотр и консультация","Полный осмотр, диагностика и индивидуальный план лечения."], en:["Check-ups & consultation","Full examination, diagnosis and a personal treatment plan."]},
+  {id:"vaccine", min:20, ic:"syringe",az:["Peyvəndləmə","Pişik və itlər üçün illik peyvəndlər və peyvənd cədvəli."], ru:["Вакцинация","Ежегодные прививки и график вакцинации для кошек и собак."], en:["Vaccination","Annual vaccines and vaccination schedules for cats and dogs."]},
+  {id:"usg", min:30, ic:"usg",    az:["UZİ diaqnostika","İt və pişiklər üçün ultrasəs müayinəsi."], ru:["УЗИ-диагностика","Ультразвуковое исследование для собак и кошек."], en:["Ultrasound","Ultrasound diagnostics for dogs and cats."]},
+  {id:"lab", min:20, ic:"lab",    az:["Analizlər","Qanın biokimyəvi analizi və digər laborator müayinələr."], ru:["Анализы","Биохимический анализ крови и другие лабораторные исследования."], en:["Lab tests","Blood biochemistry and other laboratory tests."]},
+  {id:"micro", min:20, ic:"micro",  az:["Mikroskopik müayinə","Qulaq gənəsi (otodektoz), tükyeyənlər və digər parazitlərin aşkarlanması."], ru:["Микроскопия","Выявление ушного клеща, власоедов и других паразитов под микроскопом."], en:["Microscopy","Detecting ear mites, lice and other parasites under the microscope."]},
+  {id:"skin", min:30, ic:"skin",   az:["Dəri xəstəlikləri","Qaşınma və dermatitin müayinəsi, Vud lampası ilə yoxlama."], ru:["Дерматология","Диагностика зуда и дерматитов, осмотр под лампой Вуда."], en:["Skin problems","Itch and dermatitis diagnosis, including a Wood's lamp check."]},
+  {id:"steril", min:null, ic:"cut",    az:["Sterilizasiya və kastrasiya","Pişik və itlər üçün, kriptorxların kastrasiyası daxil olmaqla."], ru:["Стерилизация и кастрация","Для кошек и собак, включая кастрацию крипторхов."], en:["Spaying & neutering","For cats and dogs, including cryptorchid neutering."]},
+  {id:"surgery", min:null, ic:"heart",  az:["Cərrahiyyə","Yad cismin çıxarılması, şişlərin və hematomaların əməliyyatı."], ru:["Хирургия","Удаление инородных тел, новообразований и гематом."], en:["Surgery","Removal of foreign bodies, tumours and haematomas."]},
+  {id:"dental", min:null, ic:"tooth",  az:["Diş baxımı","Ultrasəs skaleri ilə diş daşlarının təmizlənməsi."], ru:["Стоматология","Чистка зубного камня ультразвуковым скалером."], en:["Dental care","Ultrasonic scaling to remove tartar."]},
+  {id:"parasite", min:20, ic:"bug",    az:["Parazitlərə qarşı müalicə","Birə, gənə və qurdlara qarşı müalicə və profilaktika."], ru:["Лечение от паразитов","Лечение и профилактика блох, клещей и глистов."], en:["Parasite treatment","Treatment and prevention of fleas, ticks and worms."]},
+  {id:"drip", min:30, ic:"drip",   az:["İynə və sistem","Həkim təyinatı ilə iynələr və sistem (damcı) köçürülməsi."], ru:["Уколы и капельницы","Инъекции и капельницы по назначению врача."], en:["Injections & IV drips","Injections and IV therapy as prescribed."]},
+  {id:"groom", min:30, ic:"comb",   az:["Gigiyenik qulluq","Tükün qırxılması, dırnaqların kəsilməsi, paranal vəzilərin təmizlənməsi."], ru:["Гигиенический уход","Стрижка шерсти и когтей, чистка параанальных желёз."], en:["Grooming & hygiene","Clipping, nail trims and anal gland cleaning."]}
 ];
 
 const PRODUCTS = [
@@ -555,8 +625,8 @@ const T = {
   aboutTitle:"Heyvanları <em>ürəkdən sevən</em> klinika",aboutP1:"Svetlana-T Baytarlıq Klinikasında hər bir heyvan ailə üzvü kimi qarşılanır. Həkimimiz Svetlana xanım dostunuzun xəstəliyini müalicə etməklə yanaşı, onun rahatlığına və sakitliyinə də diqqət yetirir.",aboutP2:"Biz sahiblərə hər addımı aydın izah edir, düzgün qidalanma və qulluq barədə məsləhət veririk. Klinikada küçə heyvanları üçün ianə qutusu da var — sizin köməyinizlə onlara da yardım edirik.",
   v1t:"Qayğı",v1s:"Hər heyvana fərdi yanaşma",v2t:"Peşəkarlıq",v2s:"Dəqiq diaqnoz və müalicə",v3t:"Etibar",v3s:"Açıq və dürüst məsləhət",
   galTitle:"Bizim <em>balaca pasiyentlər</em>",galBtn:"Instagram-da izləyin",
-  apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Formu doldurun — müraciətiniz WhatsApp vasitəsilə klinikaya göndəriləcək. Və ya onlayn rezerv sistemimizdən istifadə edin, ya da sadəcə zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
-  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
+  apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Xidməti, günü və boş saatı seçin — bir dəqiqəyə rezerv edin. Təcili hallarda zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
+  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
   dTitle:"Müraciətiniz hazırdır!",dText:"Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.",dWa:"WhatsApp ilə göndər",dCopy:"Mətni kopyala",dCopied:"Kopyalandı ✓",dBack:"← Formaya qayıt",
   ctTitle:"Bizimlə <em>əlaqə</em>",ctPhone:"Telefon",ctAddr:"Ünvan",ctHours:"İş saatları",copy:"Svetlana-T Baytarlıq Klinikası. Bütün hüquqlar qorunur.",
   msg:{hi:"Salam! Qəbula yazılmaq istəyirəm.",name:"Ad",phone:"Telefon",pet:"Heyvan",petName:"Heyvanın adı",service:"Xidmət",date:"Tarix",time:"Saat",note:"Qeyd"}},
@@ -568,8 +638,8 @@ const T = {
   aboutTitle:"Клиника, которая <em>любит животных</em>",aboutP1:"В ветеринарной клинике Svetlana-T каждого питомца встречают как члена семьи. Наш врач Светлана не только лечит болезнь, но и заботится о спокойствии и комфорте вашего любимца.",aboutP2:"Мы понятно объясняем хозяевам каждый шаг и даём советы по правильному питанию и уходу. В клинике есть копилка для бездомных животных — с вашей помощью мы помогаем и им.",
   v1t:"Забота",v1s:"Индивидуальный подход",v2t:"Профессионализм",v2s:"Точная диагностика и лечение",v3t:"Доверие",v3s:"Честные рекомендации",
   galTitle:"Наши <em>маленькие пациенты</em>",galBtn:"Мы в Instagram",
-  apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Заполните форму — заявка уйдёт в клинику через WhatsApp. Или воспользуйтесь онлайн-записью, или просто позвоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
-  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
+  apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Выберите услугу, день и свободное время — запись за минуту. В срочных случаях звоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
+  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
   dTitle:"Заявка готова!",dText:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника свяжется с вами.",dWa:"Отправить в WhatsApp",dCopy:"Скопировать текст",dCopied:"Скопировано ✓",dBack:"← Вернуться к форме",
   ctTitle:"<em>Контакты</em>",ctPhone:"Телефон",ctAddr:"Адрес",ctHours:"Часы работы",copy:"Ветеринарная клиника Svetlana-T. Все права защищены.",
   msg:{hi:"Здравствуйте! Хочу записаться на приём.",name:"Имя",phone:"Телефон",pet:"Животное",petName:"Кличка",service:"Услуга",date:"Дата",time:"Время",note:"Комментарий"}},
@@ -581,8 +651,8 @@ const T = {
   aboutTitle:"A clinic that <em>truly loves animals</em>",aboutP1:"At Svetlana-T Veterinary Clinic every pet is welcomed like family. Our vet, Svetlana, treats not only the illness but also cares about your pet's comfort and calm.",aboutP2:"We explain every step clearly and advise owners on proper nutrition and care. The clinic also keeps a donation box for street animals — with your help, we treat them too.",
   v1t:"Care",v1s:"A personal approach",v2t:"Expertise",v2s:"Accurate diagnosis & treatment",v3t:"Trust",v3s:"Honest advice",
   galTitle:"Our <em>little patients</em>",galBtn:"Follow on Instagram",
-  apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Fill in the form to send your request via WhatsApp, use our online booking page, or simply call us.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
-  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",fErr:"Please enter your name and phone number.",anyTime:"Any time",
+  apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Pick a service, a day and a free time — booking takes a minute. For emergencies, please call.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
+  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",fErr:"Please enter your name and phone number.",anyTime:"Any time",
   dTitle:"Your request is ready!",dText:"Tap the WhatsApp button to send it. The clinic will get back to you.",dWa:"Send via WhatsApp",dCopy:"Copy text",dCopied:"Copied ✓",dBack:"← Back to form",
   ctTitle:"Get in <em>touch</em>",ctPhone:"Phone",ctAddr:"Address",ctHours:"Opening hours",copy:"Svetlana-T Veterinary Clinic. All rights reserved.",
   msg:{hi:"Hello! I'd like to book an appointment.",name:"Name",phone:"Phone",pet:"Pet",petName:"Pet's name",service:"Service",date:"Date",time:"Time",note:"Notes"}}
@@ -599,7 +669,6 @@ $$(".setmore").forEach(a => { a.href = CONFIG.booking; a.target = "_blank"; a.re
 $$(".ig").forEach(a => { a.href = CONFIG.instagram; a.target = "_blank"; a.rel = "noopener"; });
 $$(".wa-link").forEach(a => { a.href = "https://wa.me/" + CONFIG.phoneIntl; a.target = "_blank"; a.rel = "noopener"; });
 $("#yr").textContent = new Date().getFullYear();
-$("#fDate").min = new Date().toISOString().slice(0,10);
 
 // photos
 function setPhoto(el, src, keepClass){
@@ -627,60 +696,167 @@ function render(){
   $("#svcGrid").innerHTML = SERVICES.map(s => `<div class="card reveal in"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p></div>`).join("");
   $("#prdGrid").innerHTML = PRODUCTS.map(p => `<div class="prod reveal in"><div class="prod-top" style="background:${p.bg}"><svg><use href="#i-${p.ic}"/></svg></div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div></div></div>`).join("");
 
-  const curPet = $('input[name=pet]:checked'); const pi = curPet ? +curPet.value : 0;
-  $("#pets").innerHTML = PETS[lang].map((p,i) => `<label><input type="radio" name="pet" value="${i}" ${i===pi?"checked":""}><span>${p}</span></label>`).join("");
-  const si = $("#fService").selectedIndex;
-  $("#fService").innerHTML = SERVICES.map(s => `<option>${s[lang][0]}</option>`).join("");
-  $("#fService").selectedIndex = si > 0 ? si : 0;
-  const ti = $("#fTime").selectedIndex;
-  $("#fTime").innerHTML = `<option>${t.anyTime}</option>` + CONFIG.timeSlots.map(x => `<option>${x}</option>`).join("");
-  $("#fTime").selectedIndex = ti > 0 ? ti : 0;
+  bkRender();
 
   const addr = CONFIG.address[lang], hrs = CONFIG.hours[lang];
   $("#addrTxt").textContent = addr; $("#hoursTxt").textContent = hrs;
   $("#addrCard").style.display = addr ? "" : "none";
   $("#hoursCard").style.display = hrs ? "" : "none";
   $("#extra").style.display = (addr || hrs) ? "grid" : "none";
-  if($("#done").style.display === "block") buildMsg();
 }
 
 function setLang(l){ lang = l; try{ localStorage.setItem("vetLang", l); }catch(e){} render(); }
 $$(".langs button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
 try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; }catch(e){}
-render();
 
-// appointment
-function buildMsg(){
-  const m = T[lang].msg, v = id => $(id).value.trim();
-  const pet = PETS[lang][+($('input[name=pet]:checked')||{value:0}).value];
-  const lines = [m.hi, "", `${m.name}: ${v("#fName")}`, `${m.phone}: ${v("#fPhone")}`, `${m.pet}: ${pet}`];
-  if(v("#fPetName")) lines.push(`${m.petName}: ${v("#fPetName")}`);
-  lines.push(`${m.service}: ${$("#fService").value}`);
-  if(v("#fDate")) lines.push(`${m.date}: ${v("#fDate").split("-").reverse().join(".")}`);
-  lines.push(`${m.time}: ${$("#fTime").value}`);
-  if(v("#fNote")) lines.push(`${m.note}: ${v("#fNote")}`);
-  const text = lines.join("\n");
-  $("#msgOut").textContent = text;
-  $("#waSend").href = "https://wa.me/" + CONFIG.phoneIntl + "?text=" + encodeURIComponent(text);
-  return text;
+// ================= booking wizard =================
+const BK = { step:1, pet:0, svc:null, date:null, time:null, cache:{}, result:null };
+const C = CONFIG.clinic, TZ = "Asia/Baku";
+const toMin = hm => { const [h,m] = hm.split(":").map(Number); return h*60+m; };
+const fromMin = m => String(Math.floor(m/60)).padStart(2,"0") + ":" + String(m%60).padStart(2,"0");
+function bakuNow(){
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+  return { date:`${p.year}-${p.month}-${p.day}`, min:(+p.hour)*60 + (+p.minute) };
 }
-$("#fDate").addEventListener("change", e => {
-  const d = new Date(e.target.value + "T12:00"); const wd = d.getDay();
-  if(wd === 1 || wd === 2){ e.target.value = ""; $("#err").textContent = T[lang].closedDay; $("#err").style.display = "block"; }
-  else $("#err").style.display = "none";
+function addDays(ds, n){ const [y,m,d] = ds.split("-").map(Number); const t = new Date(Date.UTC(y,m-1,d+n)); return t.toISOString().slice(0,10); }
+const wday = ds => { const [y,m,d] = ds.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)).getUTCDay(); };
+const NAMES = {
+  az:{d:["B.","B.e.","Ç.a.","Ç.","C.a.","C.","Ş."], m:["yan","fev","mar","apr","may","iyn","iyl","avq","sen","okt","noy","dek"]},
+  ru:{d:["вс","пн","вт","ср","чт","пт","сб"], m:["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"]},
+  en:{d:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], m:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}
+};
+const dParts = ds => { const [y,m,d] = ds.split("-").map(Number); return { wd: wday(ds), d, m: m-1 }; };
+const fmtDay = ds => { const p = dParts(ds), n = NAMES[lang]; return { wd: n.d[p.wd], d: p.d, m: n.m[p.m] }; };
+const fmtLong = ds => { const f = fmtDay(ds); return `${f.wd} ${f.d} ${f.m}`; };
+const svcObj = () => SERVICES.find(x => x.id === BK.svc);
+
+function workDays(){
+  const out = [], today = bakuNow().date;
+  for(let i=0; i<=C.daysAhead && out.length < 14; i++){ const d = addDays(today, i); if(C.days.includes(wday(d))) out.push(d); }
+  return out;
+}
+function localSlots(date, minutes){
+  if(!C.days.includes(wday(date))) return [];
+  const now = bakuNow(), out = [];
+  for(let t = toMin(C.open); t + minutes <= toMin(C.close); t += C.step){
+    if(date === now.date && t < now.min + C.noticeMin) continue;
+    if(C.breaks.some(([a,b]) => t < toMin(b) && t + minutes > toMin(a))) continue;
+    out.push(fromMin(t));
+  }
+  return out;
+}
+async function getSlots(date){
+  const key = BK.svc + "|" + date;
+  if(BK.cache[key]) return BK.cache[key];
+  let slots;
+  if(CONFIG.bookingApi){
+    const r = await fetch(CONFIG.bookingApi + "?action=slots&date=" + date + "&service=" + BK.svc);
+    const j = await r.json(); if(!j.ok) throw new Error(j.error); slots = j.slots;
+  } else slots = localSlots(date, svcObj().min);
+  return (BK.cache[key] = slots);
+}
+
+function go(n){
+  BK.step = n;
+  $$(".bk-step").forEach(el => el.classList.toggle("on", +el.dataset.step === n));
+  $$(".bk-bar i").forEach(el => el.classList.toggle("on", +el.dataset.n <= Math.min(n,3)));
+  if(n === 2) renderDays();
+  if(n === 3) setTimeout(() => $("#fName").focus({preventScroll:true}), 50);
+  const top = $("#bk").getBoundingClientRect().top;
+  if(top < 70 || top > innerHeight*.6) $("#bk").scrollIntoView({behavior:"smooth", block:"start"});
+}
+function chipText(withTime){
+  const s = svcObj(); if(!s) return "";
+  let t = `${PETS[lang][BK.pet]} · ${s[lang][0]} · ${s.min} ${T[lang].bkMin}`;
+  if(withTime && BK.date) t += ` · ${fmtLong(BK.date)}, ${BK.time}`;
+  return t;
+}
+function bkRender(){
+  const t = T[lang];
+  $("#pets").innerHTML = PETS[lang].map((p,i) => `<label><input type="radio" name="pet" value="${i}" ${i===BK.pet?"checked":""}><span>${p}</span></label>`).join("");
+  $("#svcList").innerHTML = [...SERVICES.filter(x=>x.min), ...SERVICES.filter(x=>!x.min)].map(s => `<button type="button" class="svc${s.min?"":" call"}" data-id="${s.id}"><span class="si"><svg><use href="#i-${s.ic}"/></svg></span><span><b>${s[lang][0]}</b><small>${s.min ? s.min+" "+t.bkMin : "📞 "+t.bkCall}</small></span></button>`).join("");
+  $("#chip2").textContent = chipText(false);
+  $("#chip3").textContent = chipText(true);
+  if(BK.step === 2) renderDays();
+  if(BK.step === 4) renderDone();
+}
+async function renderDays(){
+  $("#chip2").textContent = chipText(false);
+  const days = workDays();
+  if(!BK.date || !days.includes(BK.date)) BK.date = days[0];
+  $("#days").innerHTML = days.map(d => (f => `<button type="button" class="day${d===BK.date?" on":""}" data-d="${d}"><small>${f.wd}</small><b>${f.d}</b><span>${f.m}</span></button>`)(fmtDay(d))).join("");
+  const box = $("#slots"), date = BK.date;
+  box.innerHTML = '<div class="sk"></div>'.repeat(8);
+  try{
+    const slots = await getSlots(date);
+    if(date !== BK.date) return;
+    const flash = BK.flash ? `<div class="msg" style="color:var(--coral-d)">${BK.flash}</div>` : ""; BK.flash = null;
+    box.innerHTML = flash + (slots.length ? slots.map(x => `<button type="button" class="slot" data-t="${x}">${x}</button>`).join("") : `<div class="msg">${T[lang].bkNoSlots}</div>`);
+  }catch(e){ box.innerHTML = `<div class="msg">${T[lang].bkError}</div>`; }
+}
+function waText(){
+  const m = T[lang].msg, s = svcObj(), v = id => $(id).value.trim();
+  const lines = [m.hi, "", `${m.name}: ${v("#fName")}`, `${m.phone}: ${v("#fPhone")}`, `${m.pet}: ${PETS[lang][BK.pet]}`];
+  if(v("#fPetName")) lines.push(`${m.petName}: ${v("#fPetName")}`);
+  lines.push(`${m.service}: ${s[lang][0]}`, `${m.date}: ${BK.date.split("-").reverse().join(".")}`, `${m.time}: ${BK.time}`);
+  if(v("#fNote")) lines.push(`${m.note}: ${v("#fNote")}`);
+  return lines.join("\n");
+}
+function renderDone(){
+  const t = T[lang], viaApi = BK.result === "api";
+  $("#doneTitle").textContent = viaApi ? t.bkDoneT : t.bkWaT;
+  $("#doneText").textContent = viaApi ? t.bkDoneP : t.bkWaP;
+  $("#chip4").textContent = chipText(true);
+  const text = waText();
+  $("#msgOut").textContent = viaApi ? "" : text;
+  $("#waSend").href = "https://wa.me/" + CONFIG.phoneIntl + (viaApi ? "" : "?text=" + encodeURIComponent(text));
+  $("#waSend").querySelector("span").textContent = viaApi ? "WhatsApp" : t.dWa;
+  $("#copyBtn").style.display = viaApi ? "none" : "";
+}
+
+$("#bk").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  if(b.dataset.go) return go(+b.dataset.go);
+  if(b.classList.contains("svc")){
+    const s = SERVICES.find(x => x.id === b.dataset.id);
+    if(!s.min){ $("#svcList").querySelectorAll(".svc").forEach(x => x.style.outline = ""); b.style.outline = "2px solid var(--coral)";
+      const t = T[lang]; b.querySelector("small").innerHTML = `📞 <a href="tel:+${CONFIG.phoneIntl}" style="color:inherit">${CONFIG.phoneDisplay}</a>`; b.title = t.bkCallMsg + CONFIG.phoneDisplay; return; }
+    BK.svc = s.id; BK.time = null; return go(2);
+  }
+  if(b.classList.contains("day")){ BK.date = b.dataset.d; return renderDays(); }
+  if(b.classList.contains("slot")){ BK.time = b.dataset.t; $("#chip3").textContent = chipText(true); return go(3); }
 });
-$("#form").addEventListener("submit", e => {
+$("#pets").addEventListener("change", e => { BK.pet = +e.target.value; });
+
+$("#bkForm").addEventListener("submit", async e => {
   e.preventDefault();
-  $("#err").textContent = T[lang].fErr;
-  if(!$("#fName").value.trim() || $("#fPhone").value.replace(/\D/g,"").length < 7){ $("#err").style.display = "block"; return; }
-  $("#err").style.display = "none";
-  buildMsg();
-  $("#fields").style.display = "none"; $("#done").style.display = "block";
+  const t = T[lang], err = $("#err"), btn = $("#bkSubmit");
+  err.style.display = "none";
+  if(!$("#fName").value.trim() || $("#fPhone").value.replace(/\D/g,"").length < 7){ err.textContent = t.fErr; err.style.display = "block"; return; }
+  if(!CONFIG.bookingApi){ BK.result = "wa"; renderDone(); return go(4); }
+  btn.disabled = true; btn.querySelector("span").textContent = t.bkSending;
+  try{
+    const r = await fetch(CONFIG.bookingApi, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify({
+      service:BK.svc, date:BK.date, time:BK.time, pet:PETS.az[BK.pet] + " / " + PETS.ru[BK.pet], name:$("#fName").value, phone:$("#fPhone").value,
+      petName:$("#fPetName").value, note:$("#fNote").value, website:$("#fWeb").value, lang }) });
+    const j = await r.json();
+    if(j.ok){ BK.result = "api"; renderDone(); go(4); }
+    else if(j.error === "taken"){ delete BK.cache[BK.svc+"|"+BK.date]; BK.flash = t.bkTaken; go(2); }
+    else { err.textContent = j.error === "limit" ? t.bkLimit : t.bkError; err.style.display = "block"; }
+  }catch(ex){ err.textContent = t.bkError; err.style.display = "block"; }
+  finally{ btn.disabled = false; btn.querySelector("span").textContent = t.bkConfirm; }
 });
-$("#backBtn").addEventListener("click", () => { $("#done").style.display = "none"; $("#fields").style.display = "block"; });
+$("#newBtn").addEventListener("click", () => { BK.svc = null; BK.time = null; BK.result = null; BK.cache = {}; ["#fNote","#fPetName"].forEach(x => $(x).value = ""); go(1); });
 $("#copyBtn").addEventListener("click", async () => {
   try{ await navigator.clipboard.writeText($("#msgOut").textContent); $("#copyBtn span").textContent = T[lang].dCopied; setTimeout(()=>$("#copyBtn span").textContent = T[lang].dCopy, 2000); }catch(e){}
 });
+render();
+go(1);
+// hero "Book" button: own booking once the calendar is connected, Setmore until then
+if(CONFIG.bookingApi){
+  $$(".setmore").forEach(a => { a.href = "#appointment"; a.removeAttribute("target"); });
+  $$(".call-box .setmore").forEach(a => a.remove());
+}
 
 // sticky call bar: only once the hero buttons have scrolled away
 (() => {
