@@ -2,9 +2,16 @@
 <html lang="az">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Svetlana-T Baytarlıq Klinikası</title>
 <meta name="description" content="Svetlana-T Baytarlıq Klinikası (Bakı) — pişik, it və digər ev heyvanları üçün müayinə, peyvənd, müalicə, cərrahiyyə və baytarlıq məhsulları. Qəbul: 050 653 08 77">
+<link rel="canonical" href="https://svetlanatbaytarliq.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://svetlanatbaytarliq.com/">
+<meta property="og:title" content="Svetlana-T Baytarlıq Klinikası — Bakı">
+<meta property="og:description" content="Müayinə, peyvənd, UZİ, analizlər, cərrahiyyə və baytarlıq apteki. Qəbul: 050 653 08 77">
+<meta name="theme-color" content="#1f6f63">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231f6f63'/%3E%3Cg fill='%23fff' transform='translate(2.4 2.4) scale(.8)'%3E%3Cellipse cx='6' cy='9.5' rx='2.2' ry='2.8'/%3E%3Cellipse cx='10' cy='5.5' rx='2.2' ry='2.8'/%3E%3Cellipse cx='14.5' cy='5.5' rx='2.2' ry='2.8'/%3E%3Cellipse cx='18.4' cy='9.5' rx='2.2' ry='2.8'/%3E%3Cpath d='M12.2 11.2c-3 0-6.2 4.3-6.2 6.6 0 1.9 1.5 2.6 3 2.6 1.4 0 2.1-.7 3.2-.7s1.8.7 3.2.7c1.5 0 3-.7 3-2.6 0-2.3-3.2-6.6-6.2-6.6z'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
@@ -61,7 +68,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 .langs button{border:0;background:none;font:700 .78rem Manrope,sans-serif;padding:.45rem .7rem;border-radius:999px;cursor:pointer;color:var(--muted)}
 .langs button.on{background:var(--teal);color:#fff}
 .nav-call{padding:.7rem 1.1rem;font-size:.9rem}
-.burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;color:var(--teal-d);-webkit-tap-highlight-color:transparent}
 .burger svg{width:28px;height:28px}
 
 /* hero */
@@ -198,7 +205,8 @@ footer .logo small{color:#8fa8a2}
 footer .langs{background:transparent;border-color:#33504a}
 
 /* mobile action bar */
-.mbar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;gap:.6rem}
+.mbar{display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;gap:.6rem;transition:transform .35s ease,opacity .35s ease}
+.mbar.hide{transform:translateY(140%);opacity:0;pointer-events:none}
 .mbar a{flex:1;justify-content:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
@@ -223,6 +231,7 @@ footer .langs{background:transparent;border-color:#33504a}
   form{padding:1.5rem}
   .gal{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
   .mbar{display:flex}
+  footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
   .f1{left:0}.f2{right:0}
   .logo small{display:none}
 }
@@ -297,9 +306,9 @@ footer .langs{background:transparent;border-color:#33504a}
     <span class="eyebrow" data-i="heroEyebrow">Baytarlıq klinikası</span>
     <h1 data-i="heroTitle" data-html>Dostlarınızın sağlamlığı — <em>qayğılı əllərdə</em></h1>
     <p class="lead" data-i="heroLead">Pişiklər, itlər və digər ev heyvanları üçün müayinə, peyvənd, müalicə və cərrahiyyə. Hər bir heyvana sevgi və diqqətlə yanaşırıq.</p>
-    <div class="hero-cta">
+    <div class="hero-cta" id="heroCta">
      <a href="#appointment" class="btn btn-primary"><svg><use href="#i-cal"/></svg><span data-i="ctaBook">Qəbula yazıl</span></a>
-     <a class="btn btn-ghost tel"><svg><use href="#i-phone"/></svg><span class="phone-txt"></span></a>
+     <a class="btn btn-ghost wa-link"><svg style="color:#25d366"><use href="#i-wa"/></svg>WhatsApp</a>
     </div>
     <div class="badges">
      <div class="badge"><i><svg><use href="#i-heart"/></svg></i><span data-i="b1">Sevgi ilə müalicə</span></div>
@@ -484,7 +493,7 @@ footer .langs{background:transparent;border-color:#33504a}
  </div>
 </footer>
 
-<div class="mbar">
+<div class="mbar hide" id="mbar">
  <a class="btn btn-primary tel"><svg><use href="#i-phone"/></svg><span data-i="call">Zəng et</span></a>
  <a class="btn wa wa-link"><svg><use href="#i-wa"/></svg>WhatsApp</a>
 </div>
@@ -673,6 +682,13 @@ $("#backBtn").addEventListener("click", () => { $("#done").style.display = "none
 $("#copyBtn").addEventListener("click", async () => {
   try{ await navigator.clipboard.writeText($("#msgOut").textContent); $("#copyBtn span").textContent = T[lang].dCopied; setTimeout(()=>$("#copyBtn span").textContent = T[lang].dCopy, 2000); }catch(e){}
 });
+
+// sticky call bar: only once the hero buttons have scrolled away
+(() => {
+  const bar = $("#mbar"), cta = $("#heroCta");
+  if(!("IntersectionObserver" in window)){ bar.classList.remove("hide"); return; }
+  new IntersectionObserver(([e]) => bar.classList.toggle("hide", e.isIntersecting || e.boundingClientRect.top > 0)).observe(cta);
+})();
 
 // mobile menu
 $("#burger").addEventListener("click", () => $("#links").classList.toggle("open"));
