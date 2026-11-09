@@ -233,6 +233,19 @@ textarea{resize:vertical;min-height:90px}
 #msgOut:empty{display:none}
 @media (max-width:640px){.bk{padding:1.4rem 1rem 1.6rem}.svc-list{gap:.45rem}.svc{flex-direction:column;align-items:flex-start;gap:.45rem;padding:.7rem .75rem}.svc .si{width:30px;height:30px;border-radius:9px}.svc .si svg{width:16px;height:16px}.svc b{font-size:.82rem}.slots{grid-template-columns:repeat(3,1fr)}}
 
+
+.gal .g{cursor:zoom-in}
+img.pic{opacity:0;transition:opacity .5s ease;position:relative;z-index:1}
+img.pic.in{opacity:1}
+.prod-top.photo{height:190px}
+.prod-top.photo::after{display:none}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(10,24,21,.92);display:none;align-items:center;justify-content:center;padding:4vh 4vw}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:92vh;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:52px;height:52px;border-radius:50%;font-size:2rem;line-height:1;cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.25)}
+.lb-x{top:18px;right:18px}.lb-p{left:18px;top:50%;transform:translateY(-50%)}.lb-n{right:18px;top:50%;transform:translateY(-50%)}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -572,9 +585,17 @@ const CONFIG = {
   instagram: "https://www.instagram.com/veterinarnayaklinika1/",
   booking: "https://svetlanat2452.setmore.com",   // online booking page (Setmore)
   // Photos: put files in an "images" folder next to this page and list them here.
-  heroPhoto: "",                         // e.g. "images/hero.jpg"
-  aboutPhoto: "",                        // e.g. "images/svetlana.jpg"
-  gallery: ["", "", "", "", "", "", "", "", ""],  // e.g. ["images/1.jpg","images/2.jpg", ...] (9 slots; first one is the big tile)
+  // Photos live in the images/ folder. pos = which part of the photo to keep when it's cropped ("50% 30%" = centre, upper third)
+  heroPhoto:  { src:"images/dog-pomeranian.jpg", pos:"50% 30%", alt:"Pomeranian" },
+  aboutPhoto: { src:"images/dog-golden.jpg",     pos:"50% 45%", alt:"Golden retriever" },   // swap for a photo of Svetlana later
+  // Gallery: first photo is the big tile. Best with 5 or 9 photos.
+  gallery: [
+    { src:"images/cat-british.jpg",    pos:"50% 40%", alt:"British shorthair" },
+    { src:"images/dog-poodle.jpg",     pos:"50% 38%", alt:"Toy poodle" },
+    { src:"images/cat-persian.jpg",    pos:"50% 38%", alt:"Persian cat" },
+    { src:"images/dog-golden.jpg",     pos:"50% 50%", alt:"Golden retriever" },
+    { src:"images/dog-pomeranian.jpg", pos:"50% 35%", alt:"Pomeranian" }
+  ],
   // Optional — leave "" to hide. Write in each language.
   address: { az: "Bakı, Azərbaycan", ru: "Баку, Азербайджан", en: "Baku, Azerbaijan" },
   hours: {
@@ -604,6 +625,7 @@ const SERVICES = [
   {id:"groom", min:30, ic:"comb",   az:["Gigiyenik qulluq","Tükün qırxılması, dırnaqların kəsilməsi, paranal vəzilərin təmizlənməsi."], ru:["Гигиенический уход","Стрижка шерсти и когтей, чистка параанальных желёз."], en:["Grooming & hygiene","Clipping, nail trims and anal gland cleaning."]}
 ];
 
+// Each category can show a photo instead of the icon: add  img:"images/products/food.jpg"
 const PRODUCTS = [
   {ic:"bowl",  bg:"linear-gradient(135deg,#f6c667,#ef9b5a)", az:["Yemlər","Pişik, it və tutuquşular üçün keyfiyyətli quru və yaş yemlər.",["Monge","Vida Nativa","Gourmet Gold","RIO"]], ru:["Корма","Качественные сухие и влажные корма для кошек, собак и попугаев.",["Monge","Vida Nativa","Gourmet Gold","RIO"]], en:["Pet food","Quality dry and wet food for cats, dogs and parrots.",["Monge","Vida Nativa","Gourmet Gold","RIO"]]},
   {ic:"pill",  bg:"linear-gradient(135deg,#1f6f63,#46a592)", az:["Müalicəvi pəhriz yemləri","Böyrəklər və sidik yolları üçün baytarlıq pəhrizləri.",["Craftia Galena","Renal","Urinary"]], ru:["Лечебные диеты","Ветеринарные рационы для почек и мочевыводящих путей.",["Craftia Galena","Renal","Urinary"]], en:["Vet diets","Veterinary diets for kidney and urinary health.",["Craftia Galena","Renal","Urinary"]]},
@@ -670,20 +692,31 @@ $$(".wa-link").forEach(a => { a.href = "https://wa.me/" + CONFIG.phoneIntl; a.ta
 $("#yr").textContent = new Date().getFullYear();
 
 // photos
-function setPhoto(el, src, keepClass){
-  if(!src) return;
-  const img = new Image(); img.alt = ""; img.loading = "lazy";
-  img.onload = () => { el.innerHTML = ""; el.appendChild(img); };
-  img.src = src;
+function setPhoto(el, p, eager){
+  if(!p) return; if(typeof p === "string") p = { src:p };
+  if(!p.src) return;
+  const img = document.createElement("img"); img.alt = p.alt || ""; img.decoding = "async"; if(!eager) img.loading = "lazy";
+  if(p.pos) img.style.objectPosition = p.pos;
+  img.className = "pic";
+  img.onload = () => { img.classList.add("in"); el.querySelectorAll(":scope > .ph, :scope > .illu").forEach(x => x.remove()); };
+  img.onerror = () => img.remove();
+  img.src = p.src; el.prepend(img);
 }
-setPhoto($("#heroBlob"), CONFIG.heroPhoto);
+setPhoto($("#heroBlob"), CONFIG.heroPhoto, true);
 setPhoto($("#aboutPhoto"), CONFIG.aboutPhoto);
-const gal = $("#gal");
-CONFIG.gallery.forEach(src => {
+const gal = $("#gal"), photos = CONFIG.gallery.map(p => typeof p === "string" ? { src:p } : p).filter(p => p && p.src);
+(photos.length ? photos : Array(5).fill(null)).forEach((p, i) => {
   const d = document.createElement("div"); d.className = "g";
   d.innerHTML = '<div class="ph"><svg><use href="#i-paw"/></svg></div>';
-  gal.appendChild(d); setPhoto(d, src);
+  if(p){ d.tabIndex = 0; d.addEventListener("click", () => openLb(i)); d.addEventListener("keydown", e => { if(e.key === "Enter") openLb(i); }); }
+  gal.appendChild(d); setPhoto(d, p);
 });
+// lightbox
+const lb = document.createElement("div"); lb.className = "lb"; lb.innerHTML = '<button class="lb-x" aria-label="Close">×</button><button class="lb-p" aria-label="Previous">‹</button><img alt=""><button class="lb-n" aria-label="Next">›</button>';
+document.body.appendChild(lb); let lbi = 0;
+function openLb(i){ lbi = (i + photos.length) % photos.length; lb.querySelector("img").src = photos[lbi].src; lb.querySelector("img").alt = photos[lbi].alt || ""; lb.classList.add("on"); }
+lb.addEventListener("click", e => { if(e.target.classList.contains("lb-p")) openLb(lbi-1); else if(e.target.classList.contains("lb-n")) openLb(lbi+1); else lb.classList.remove("on"); });
+addEventListener("keydown", e => { if(!lb.classList.contains("on")) return; if(e.key === "Escape") lb.classList.remove("on"); if(e.key === "ArrowLeft") openLb(lbi-1); if(e.key === "ArrowRight") openLb(lbi+1); });
 
 function render(){
   const t = T[lang];
@@ -693,7 +726,7 @@ function render(){
   document.title = lang === "ru" ? "Ветеринарная клиника Svetlana-T" : lang === "en" ? "Svetlana-T Veterinary Clinic" : "Svetlana-T Baytarlıq Klinikası";
 
   $("#svcGrid").innerHTML = SERVICES.map(s => `<div class="card reveal in"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p></div>`).join("");
-  $("#prdGrid").innerHTML = PRODUCTS.map(p => `<div class="prod reveal in"><div class="prod-top" style="background:${p.bg}"><svg><use href="#i-${p.ic}"/></svg></div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div></div></div>`).join("");
+  $("#prdGrid").innerHTML = PRODUCTS.map(p => `<div class="prod reveal in"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : `<svg><use href="#i-${p.ic}"/></svg>`}</div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div></div></div>`).join("");
 
   bkRender();
 
@@ -760,9 +793,10 @@ function go(n){
   $$(".bk-step").forEach(el => el.classList.toggle("on", +el.dataset.step === n));
   $$(".bk-bar i").forEach(el => el.classList.toggle("on", +el.dataset.n <= Math.min(n,3)));
   if(n === 2) renderDays();
-  if(n === 3) setTimeout(() => $("#fName").focus({preventScroll:true}), 50);
-  const top = $("#bk").getBoundingClientRect().top;
-  if(top < 70 || top > innerHeight*.6) $("#bk").scrollIntoView({behavior:"smooth", block:"start"});
+  if(n === 3 && BK.started) setTimeout(() => $("#fName").focus({preventScroll:true}), 50);
+  if(BK.started){ const top = $("#bk").getBoundingClientRect().top;
+    if(top < 70 || top > innerHeight*.6) $("#bk").scrollIntoView({behavior:"smooth", block:"start"}); }
+  BK.started = true;
 }
 function chipText(withTime){
   const s = svcObj(); if(!s) return "";
