@@ -293,6 +293,35 @@ img.pic.in{opacity:1}
 .card .go{margin-top:1rem;font-weight:800;font-size:.88rem;color:var(--coral);display:inline-flex;align-items:center;gap:.3rem;transition:.25s}
 .card:hover .go{gap:.6rem;color:var(--coral-d)}
 
+
+/* product categories → modal */
+button.prod{display:flex;flex-direction:column;text-align:left;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;width:100%}
+.prod-body{display:flex;flex-direction:column;flex:1;width:100%}
+.prod .go{margin-top:auto;padding-top:1rem;font-weight:800;font-size:.88rem;color:var(--coral);transition:.25s}
+.prod:hover .go{color:var(--coral-d);letter-spacing:.01em}
+.prod .tags{margin-bottom:.2rem}
+.cnt{position:absolute;top:14px;right:14px;z-index:2;background:rgba(255,255,255,.9);color:var(--ink);font-weight:800;font-size:.8rem;border-radius:999px;padding:.25rem .6rem}
+.prod-top{width:100%}
+.pm{position:fixed;inset:0;z-index:90;background:rgba(10,24,21,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:4vh 1rem}
+.pm.on{display:flex;animation:fadeUp .25s ease}
+.pm-box{background:#fff;border-radius:26px;width:min(720px,100%);max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.5)}
+.pm-head{position:relative;padding:1.6rem 1.8rem 1.3rem;color:#fff}
+.pm-head h3{font-size:1.7rem;margin-bottom:.3rem}
+.pm-head p{opacity:.9;font-size:.95rem;max-width:90%}
+.pm-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.22);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
+.pm-x:hover{background:rgba(255,255,255,.35)}
+.pm-filter{display:flex;gap:.45rem;padding:1rem 1.8rem .4rem;flex-wrap:wrap}
+.pm-filter button{border:1.5px solid #e1e7e5;background:var(--cream);border-radius:999px;padding:.45rem .9rem;font:700 .82rem Manrope,sans-serif;color:var(--ink-2);cursor:pointer}
+.pm-filter button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.pm-list{list-style:none;overflow-y:auto;padding:.4rem 1.8rem 1rem;display:grid;gap:.6rem}
+.pm-list li{display:flex;gap:.9rem;align-items:flex-start;padding:.9rem 1rem;border-radius:16px;background:var(--cream)}
+.pm-list .pets-ic{display:flex;gap:.2rem;flex-shrink:0;font-size:1.05rem;min-width:46px}
+.pm-list b{display:block;font-size:.98rem;line-height:1.3}
+.pm-list small{display:block;color:var(--muted);font-size:.86rem;margin-top:.15rem;line-height:1.45}
+.pm-foot{border-top:1px solid #eef1f0;padding:1rem 1.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted);font-weight:600}
+.pm-btns{display:flex;gap:.5rem}
+@media (max-width:640px){.pm{padding:0;align-items:flex-end}.pm-box{border-radius:24px 24px 0 0;max-height:90vh}.pm-head,.pm-filter,.pm-list,.pm-foot{padding-left:1.1rem;padding-right:1.1rem}.pm-btns{width:100%}.pm-btns .btn{flex:1;justify-content:center}}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -589,6 +618,14 @@ footer .langs{background:transparent;border-color:#33504a}
  </div>
 </footer>
 
+<div class="pm" id="pm" aria-hidden="true">
+ <div class="pm-box" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="pm-head" id="pmHead"><button class="pm-x" id="pmX" aria-label="Close">×</button><h3 id="pmTitle"></h3><p id="pmSub"></p></div>
+  <div class="pm-filter" id="pmFilter"></div>
+  <ul class="pm-list" id="pmList"></ul>
+  <div class="pm-foot"><span id="pmNote"></span><div class="pm-btns"><a class="btn btn-sm btn-teal tel"><svg><use href="#i-phone"/></svg><span class="phone-txt"></span></a><a class="btn btn-sm ig-btn ig"><svg><use href="#i-ig"/></svg>Instagram</a></div></div>
+ </div>
+</div>
 <div class="mbar hide" id="mbar">
  <a class="btn btn-primary grow setmore" href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg><span data-i="ctaBook">Qəbula yazıl</span></a>
  <a class="btn btn-teal icon tel" aria-label="Call"><svg><use href="#i-phone"/></svg></a>
@@ -649,12 +686,79 @@ const SERVICES = [
 
 // Each category can show a photo instead of the icon: add  img:"images/products/food.jpg"
 const PRODUCTS = [
-  {ic:"bowl",  bg:"linear-gradient(135deg,#f6c667,#ef9b5a)", az:["Yemlər","Pişik, it və tutuquşular üçün keyfiyyətli quru və yaş yemlər.",["Monge","Vida Nativa","Gourmet Gold","RIO"]], ru:["Корма","Качественные сухие и влажные корма для кошек, собак и попугаев.",["Monge","Vida Nativa","Gourmet Gold","RIO"]], en:["Pet food","Quality dry and wet food for cats, dogs and parrots.",["Monge","Vida Nativa","Gourmet Gold","RIO"]]},
-  {ic:"pill",  bg:"linear-gradient(135deg,#1f6f63,#46a592)", az:["Müalicəvi pəhriz yemləri","Böyrəklər və sidik yolları üçün baytarlıq pəhrizləri.",["Craftia Galena","Renal","Urinary"]], ru:["Лечебные диеты","Ветеринарные рационы для почек и мочевыводящих путей.",["Craftia Galena","Renal","Urinary"]], en:["Vet diets","Veterinary diets for kidney and urinary health.",["Craftia Galena","Renal","Urinary"]]},
-  {ic:"shield",bg:"linear-gradient(135deg,#ef7b5a,#e2486f)", az:["Parazit əleyhinə vasitələr","Daxili və xarici parazitlərə qarşı preparatlar.",["Endopet","Tabletlər","Damcılar"]], ru:["Средства от паразитов","Препараты против внутренних и внешних паразитов.",["Endopet","Таблетки","Капли"]], en:["Parasite control","Products against internal and external parasites.",["Endopet","Tablets","Drops"]]},
-  {ic:"bone",  bg:"linear-gradient(135deg,#b49be0,#7a5fc0)", az:["Ləzzətlər","İt və pişiklər üçün dadlı və faydalı mükafatlar.",["8in1","SmartBones","GimCat","ZenTERA","RA NOVA"]], ru:["Лакомства","Вкусные и полезные угощения для собак и кошек.",["8in1","SmartBones","GimCat","ZenTERA","RA NOVA"]], en:["Treats","Tasty, healthy rewards for dogs and cats.",["8in1","SmartBones","GimCat","ZenTERA","RA NOVA"]]},
-  {ic:"vit",   bg:"linear-gradient(135deg,#7fb77e,#3f8f6b)", az:["Vitaminlər və əlavələr","Sağlam dəri, parlaq yun və güclü immunitet üçün.",["Canina","Somon yağı","Omega-3"]], ru:["Витамины и добавки","Для здоровой кожи, блестящей шерсти и иммунитета.",["Canina","Лососевое масло","Омега-3"]], en:["Vitamins & supplements","For healthy skin, a shiny coat and immunity.",["Canina","Salmon oil","Omega-3"]]},
-  {ic:"soap",  bg:"linear-gradient(135deg,#8ec5e0,#4d8fb8)", az:["Gigiyena və aksesuarlar","Göz baxımı vasitələri, keramik qablar və digər aksesuarlar.",["TRIXIE","Göz baxımı","Qablar"]], ru:["Гигиена и аксессуары","Средства ухода за глазами, керамические миски и аксессуары.",["TRIXIE","Уход за глазами","Миски"]], en:["Hygiene & accessories","Eye-care products, ceramic bowls and accessories.",["TRIXIE","Eye care","Bowls"]]}
+  {ic:"bowl", bg:"linear-gradient(135deg,#f6c667,#ef9b5a)",
+   az:["Yemlər","Pişik, it və tutuquşular üçün keyfiyyətli quru və yaş yemlər.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
+   ru:["Корма","Качественные сухие и влажные корма для кошек, собак и попугаев.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
+   en:["Pet food","Quality dry and wet food for cats, dogs and parrots.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
+   items:[
+    {n:"Monge Kitten — toyuq / курица / chicken", p:"c", az:"Balalar üçün premium quru yem, İtaliya. Prebiotiklərlə.", ru:"Премиальный сухой корм для котят, Италия. С пребиотиками.", en:"Premium dry kitten food from Italy, with prebiotics."},
+    {n:"Vida Nativa Kitten — toyuq və qaragilə", p:"c", az:"Balalar üçün quru yem: toyuq və qaragilə ilə.", ru:"Сухой корм для котят с курицей и голубикой.", en:"Dry kitten food with chicken and blueberry."},
+    {n:"Vida Nativa Nordica Kitten — qızılbalıq", p:"c", az:"Taxılsız: qızılbalıq və balqabaq ilə, balalar üçün.", ru:"Беззерновой корм для котят с лососем и тыквой.", en:"Grain-free kitten food with salmon and pumpkin."},
+    {n:"Gourmet Gold Pate", p:"c", az:"Yaş yem-paştet: dovşan, toyuq, hind toyuğu.", ru:"Влажный паштет: кролик, курица, индейка.", en:"Wet paté: rabbit, chicken, turkey."},
+    {n:"ZenTERA", p:"c", az:"Jele və sousda dilimlər, paştet: toyuq, qızılbalıq, dovşan.", ru:"Ломтики в желе и соусе, паштеты: курица, лосось, кролик.", en:"Chunks in jelly or gravy and patés: chicken, salmon, rabbit."},
+    {n:"PreVital Kitten Mousse", p:"c", az:"Balalar üçün dəniz balığı ilə zərif mus.", ru:"Нежный мусс с морской рыбой для котят.", en:"Soft mousse with sea fish for kittens."},
+    {n:"Nature's Protection Superior Care Red Coat", p:"d", az:"Kiçik cins, qırmızı tüklü itlər üçün; quzu əti, taxılsız.", ru:"Для мелких пород с рыжей шерстью; ягнёнок, без злаков.", en:"For small breeds with red coats; lamb, grain-free."},
+    {n:"RIO Daily Feed", p:"b", az:"Orta və iri tutuquşular üçün gündəlik dən qarışığı.", ru:"Ежедневная зерновая смесь для средних и крупных попугаев.", en:"Daily seed mix for medium and large parrots."}
+   ]},
+  {ic:"pill", bg:"linear-gradient(135deg,#1f6f63,#46a592)",
+   az:["Müalicəvi pəhriz yemləri","Böyrək, sidik yolları, qaraciyər, həzm və diabet üçün baytarlıq pəhrizləri.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
+   ru:["Лечебные диеты","Ветеринарные рационы для почек, мочевыводящих путей, печени, ЖКТ и при диабете.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
+   en:["Vet diets","Veterinary diets for kidneys, urinary tract, liver, digestion and diabetes.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
+   items:[
+    {n:"Craftia Galena Urinary Care", p:"c", az:"Sidik yolları üçün; struvit daşlarının əridilməsinə kömək edir.", ru:"Для мочевыводящих путей; помогает растворять струвиты.", en:"Urinary support; helps dissolve struvite stones."},
+    {n:"Craftia Galena PC Renal Care", p:"c", az:"Böyrək funksiyası üçün; az fosfor və zülal, Omega-3.", ru:"Для почек; меньше фосфора и белка, Омега-3.", en:"Kidney support; lower phosphorus and protein, Omega-3."},
+    {n:"Purina Pro Plan VD Urinary", p:"c", az:"Həssas sidik sistemi olan pişiklər üçün.", ru:"Для кошек с чувствительной мочевыделительной системой.", en:"For cats with a sensitive urinary system."},
+    {n:"Purina Pro Plan VD Diabetes Management", p:"c", az:"Diabetli pişiklər üçün; qanda şəkəri tənzimləməyə kömək edir.", ru:"Для кошек с диабетом; помогает контролировать сахар.", en:"For diabetic cats; helps control blood sugar."},
+    {n:"Purina Pro Plan VD HP Hepatic", p:"c", az:"Qaraciyər funksiyasını dəstəkləyən pəhriz.", ru:"Диета для поддержки функции печени.", en:"Diet supporting liver function."},
+    {n:"Purina Pro Plan VD EN Gastrointestinal", p:"d", az:"Həzm problemləri olan itlər üçün, asan həzm olunur.", ru:"Для собак с проблемами ЖКТ, легко усваивается.", en:"For dogs with digestive issues, highly digestible."},
+    {n:"Monge VetSolution HYPO Monoprotein", p:"d", az:"Allergiya və həssas həzm üçün; ördək və ya quzu, taxılsız.", ru:"При аллергии и чувствительном ЖКТ; утка или ягнёнок, без злаков.", en:"For allergies and sensitive digestion; duck or lamb, grain-free."}
+   ]},
+  {ic:"shield", bg:"linear-gradient(135deg,#ef7b5a,#e2486f)",
+   az:["Parazit əleyhinə vasitələr","Qurd, birə, gənə və ürək qurduna qarşı preparatlar.",["NexGard Combo","Endopet","Diroheart"]],
+   ru:["Средства от паразитов","Препараты от глистов, блох, клещей и сердечного червя.",["NexGard Combo","Endopet","Diroheart"]],
+   en:["Parasite control","Protection against worms, fleas, ticks and heartworm.",["NexGard Combo","Endopet","Diroheart"]],
+   items:[
+    {n:"NexGard Combo", p:"c", az:"Pişiklər üçün kompleks damcı: birə, gənə, qurdlar. 8 həftədən.", ru:"Комплексные капли для кошек: блохи, клещи, глисты. С 8 недель.", en:"All-in-one spot-on for cats: fleas, ticks, worms. From 8 weeks."},
+    {n:"Endopet", p:"cd", az:"Daxili parazitlərə qarşı tabletlər (50 tab.).", ru:"Таблетки от внутренних паразитов (50 таб.).", en:"Dewormer tablets (50 tablets)."},
+    {n:"Diroheart / Diroheart Plus M", p:"d", az:"Ürək qurdu və bağırsaq parazitlərinə qarşı çeynənən tablet, ayda 1 dəfə.", ru:"Жевательные таблетки от сердечного червя и кишечных паразитов, 1 раз в месяц.", en:"Monthly chewable against heartworm and intestinal worms."}
+   ]},
+  {ic:"bone", bg:"linear-gradient(135deg,#b49be0,#7a5fc0)",
+   az:["Ləzzətlər","İt, pişik və quşlar üçün dadlı və faydalı mükafatlar.",["8in1","SmartBones","GimCat","RA NOVA"]],
+   ru:["Лакомства","Вкусные и полезные угощения для собак, кошек и птиц.",["8in1","SmartBones","GimCat","RA NOVA"]],
+   en:["Treats","Tasty, healthy rewards for dogs, cats and birds.",["8in1","SmartBones","GimCat","RA NOVA"]],
+   items:[
+    {n:"8in1 Triple Flavour Ribs", p:"d", az:"Mal, toyuq və donuz dərisi — uzun çeynəmə üçün, 113 q.", ru:"Говяжья кожа, курица и свиная кожа — для долгого жевания, 113 г.", en:"Beef hide, chicken and pork hide — long-lasting chew, 113 g."},
+    {n:"8in1 Delights Beef Twisted Sticks", p:"d", az:"İçində təbii mal əti; dişləri təmizləməyə kömək edir.", ru:"С натуральной говядиной внутри; помогает чистить зубы.", en:"Real beef inside; helps keep teeth clean."},
+    {n:"SmartBones Peanut Butter Sticks", p:"d", az:"Fıstıq yağı və toyuq ilə, xam dərisiz.", ru:"С арахисовой пастой и курицей, без сыромятной кожи.", en:"Peanut butter and chicken, rawhide-free."},
+    {n:"RA NOVA Pet Treat Lollipop", p:"cd", az:"Dondurularaq qurudulmuş toyuq əti lolipop.", ru:"Леденец из сублимированной курицы.", en:"Freeze-dried chicken lollipop."},
+    {n:"GimCat Nutri Taurine Bites", p:"c", az:"Taurin və kəsmik ilə — ürək və gözlər üçün, Almaniya.", ru:"С таурином и творогом — для сердца и глаз, Германия.", en:"With taurine and cottage cheese — heart and eyes, Germany."},
+    {n:"Quşlar üçün mükafat yemi — meyvəli", p:"b", az:"Dalğalı tutuquşu və ekzotik quşlar üçün meyvəli ləzzət.", ru:"Фруктовое лакомство для волнистых и экзотических попугаев.", en:"Fruit treat for budgies and exotic birds."},
+    {n:"Quşlar üçün mükafat yemi — yumurta və bal", p:"b", az:"Bütün quşlar üçün; dəniz qabığı — kalsium mənbəyi.", ru:"Для всех птиц; морская ракушка — источник кальция.", en:"For all birds; with seashell for calcium."}
+   ]},
+  {ic:"vit", bg:"linear-gradient(135deg,#7fb77e,#3f8f6b)",
+   az:["Vitaminlər və əlavələr","Ürək, həzm, dəri, yun və immunitet üçün.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
+   ru:["Витамины и добавки","Для сердца, пищеварения, кожи, шерсти и иммунитета.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
+   en:["Vitamins & supplements","For heart, digestion, skin, coat and immunity.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
+   items:[
+    {n:"Canina 100% somon yağı", p:"cd", az:"Omega-3 — parlaq yun, sağlam dəri, immunitet.", ru:"Омега-3 — блестящая шерсть, здоровая кожа, иммунитет.", en:"Omega-3 — shiny coat, healthy skin, immunity."},
+    {n:"GimCat Multi-Vitamin Professional", p:"c", az:"Pişiklər üçün kompleks vitamin və minerallar.", ru:"Комплекс витаминов и минералов для кошек.", en:"Complete vitamins and minerals for cats."},
+    {n:"CardioOne", p:"cd", az:"Ürək dəstəyi: Q10, L-karnitin, taurin, vitamin E.", ru:"Поддержка сердца: Q10, L-карнитин, таурин, витамин E.", en:"Heart support: Q10, L-carnitine, taurine, vitamin E."},
+    {n:"Zoovital Gastrovital", p:"cd", az:"Həzm sistemini dəstəkləyən kapsullar (60 əd.).", ru:"Капсулы для поддержки пищеварения (60 шт.).", en:"Digestive support capsules (60 pcs)."},
+    {n:"8in1 Excel Deter", p:"d", az:"İtlərdə nəcis yeməyin (koprofagiya) qarşısını almağa kömək edir.", ru:"Помогает отучить собак от поедания экскрементов.", en:"Helps stop dogs eating their own stool."}
+   ]},
+  {ic:"soap", bg:"linear-gradient(135deg,#8ec5e0,#4d8fb8)",
+   az:["Gigiyena və aksesuarlar","Şampunlar, göz baxımı, keramik qablar və daşıyıcılar.",["TRIXIE","Vet Expert"]],
+   ru:["Гигиена и аксессуары","Шампуни, уход за глазами, керамические миски и переноски.",["TRIXIE","Vet Expert"]],
+   en:["Hygiene & accessories","Shampoos, eye care, ceramic bowls and carriers.",["TRIXIE","Vet Expert"]],
+   items:[
+    {n:"TRIXIE şampun — uzun tüklü itlər", p:"d", az:"Asan daranma, yumşaq və parlaq tük, 250 ml.", ru:"Лёгкое расчёсывание, мягкая блестящая шерсть, 250 мл.", en:"Easy brushing, soft shiny coat, 250 ml."},
+    {n:"TRIXIE şampun — ağ və açıq rəngli itlər", p:"d", az:"Ağ rəngi qoruyur, saralmanın qarşısını alır, 250 ml.", ru:"Сохраняет белизну, предотвращает желтизну, 250 мл.", en:"Keeps white coats bright, prevents yellowing, 250 ml."},
+    {n:"TRIXIE şampunlar — pişiklər", p:"c", az:"Bütün pişiklər üçün və uzun tüklü pişiklər üçün.", ru:"Для всех кошек и для длинношёрстных.", en:"For all cats and for long-haired cats."},
+    {n:"Vet Expert Anti Seborrhoeic Shampoo", p:"cd", az:"Seboreya və qepikli dəri üçün baytarlıq şampunu.", ru:"Ветеринарный шампунь при себорее и шелушении.", en:"Vet shampoo for seborrhoea and flaky skin."},
+    {n:"TRIXIE Eye-Care", p:"cd", az:"Gözlərin təmizlənməsi üçün gigiyenik disklər.", ru:"Гигиенические диски для очищения глаз.", en:"Hygiene pads for cleaning around the eyes."},
+    {n:"TRIXIE keramik yem qabı", p:"cd", az:"Sürüşməyən silikon altlıq, su və yem üçün.", ru:"Нескользящая силиконовая подставка, для воды и корма.", en:"Non-slip silicone base, for food or water."},
+    {n:"Plastik daşıyıcılar", p:"cd", az:"Pişiklər və kiçik cins itlər üçün.", ru:"Для кошек и собак мелких пород.", en:"For cats and small dogs."}
+   ]}
 ];
 
 const PETS = { az:["Pişik","İt","Quş","Gəmirici","Digər"], ru:["Кошка","Собака","Птица","Грызун","Другое"], en:["Cat","Dog","Bird","Rodent","Other"] };
@@ -669,7 +773,7 @@ const T = {
   v1t:"Qayğı",v1s:"Hər heyvana fərdi yanaşma",v2t:"Peşəkarlıq",v2s:"Dəqiq diaqnoz və müalicə",v3t:"Etibar",v3s:"Açıq və dürüst məsləhət",
   galTitle:"Bizim <em>balaca pasiyentlər</em>",galBtn:"Instagram-da izləyin",
   apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Xidməti, günü və boş saatı seçin — bir dəqiqəyə rezerv edin. Təcili hallarda zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
-  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
+  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",pSee:"Məhsullara bax",pAll:"Hamısı",pCat:"Pişik",pDog:"İt",pBird:"Quş",pNote:"Mövcudluq və qiyməti zəng edərək dəqiqləşdirin.",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
   dTitle:"Müraciətiniz hazırdır!",dText:"Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.",dWa:"WhatsApp ilə göndər",dCopy:"Mətni kopyala",dCopied:"Kopyalandı ✓",dBack:"← Formaya qayıt",
   ctTitle:"Bizimlə <em>əlaqə</em>",ctPhone:"Telefon",ctAddr:"Ünvan",ctHours:"İş saatları",copy:"Svetlana-T Baytarlıq Klinikası. Bütün hüquqlar qorunur.",
   msg:{hi:"Salam! Qəbula yazılmaq istəyirəm.",name:"Ad",phone:"Telefon",pet:"Heyvan",petName:"Heyvanın adı",service:"Xidmət",date:"Tarix",time:"Saat",note:"Qeyd"}},
@@ -682,7 +786,7 @@ const T = {
   v1t:"Забота",v1s:"Индивидуальный подход",v2t:"Профессионализм",v2s:"Точная диагностика и лечение",v3t:"Доверие",v3s:"Честные рекомендации",
   galTitle:"Наши <em>маленькие пациенты</em>",galBtn:"Мы в Instagram",
   apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Выберите услугу, день и свободное время — запись за минуту. В срочных случаях звоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
-  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
+  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",pSee:"Смотреть товары",pAll:"Все",pCat:"Кошки",pDog:"Собаки",pBird:"Птицы",pNote:"Наличие и цены уточняйте по телефону.",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
   dTitle:"Заявка готова!",dText:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника свяжется с вами.",dWa:"Отправить в WhatsApp",dCopy:"Скопировать текст",dCopied:"Скопировано ✓",dBack:"← Вернуться к форме",
   ctTitle:"<em>Контакты</em>",ctPhone:"Телефон",ctAddr:"Адрес",ctHours:"Часы работы",copy:"Ветеринарная клиника Svetlana-T. Все права защищены.",
   msg:{hi:"Здравствуйте! Хочу записаться на приём.",name:"Имя",phone:"Телефон",pet:"Животное",petName:"Кличка",service:"Услуга",date:"Дата",time:"Время",note:"Комментарий"}},
@@ -695,7 +799,7 @@ const T = {
   v1t:"Care",v1s:"A personal approach",v2t:"Expertise",v2s:"Accurate diagnosis & treatment",v3t:"Trust",v3s:"Honest advice",
   galTitle:"Our <em>little patients</em>",galBtn:"Follow on Instagram",
   apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Pick a service, a day and a free time — booking takes a minute. For emergencies, please call.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
-  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",fErr:"Please enter your name and phone number.",anyTime:"Any time",
+  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",pSee:"See products",pAll:"All",pCat:"Cats",pDog:"Dogs",pBird:"Birds",pNote:"Call to check availability and prices.",fErr:"Please enter your name and phone number.",anyTime:"Any time",
   dTitle:"Your request is ready!",dText:"Tap the WhatsApp button to send it. The clinic will get back to you.",dWa:"Send via WhatsApp",dCopy:"Copy text",dCopied:"Copied ✓",dBack:"← Back to form",
   ctTitle:"Get in <em>touch</em>",ctPhone:"Phone",ctAddr:"Address",ctHours:"Opening hours",copy:"Svetlana-T Veterinary Clinic. All rights reserved.",
   msg:{hi:"Hello! I'd like to book an appointment.",name:"Name",phone:"Phone",pet:"Pet",petName:"Pet's name",service:"Service",date:"Date",time:"Time",note:"Notes"}}
@@ -747,7 +851,7 @@ function render(){
   document.title = lang === "ru" ? "Ветеринарная клиника Svetlana-T" : lang === "en" ? "Svetlana-T Veterinary Clinic" : "Svetlana-T Baytarlıq Klinikası";
 
   $("#svcGrid").innerHTML = SERVICES.map(s => `<a class="card reveal in svc-link" data-id="${s.id}" href="${CONFIG.booking}" target="_blank" rel="noopener"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p><span class="go">${T[lang].ctaBook} →</span></a>`).join("");
-  $("#prdGrid").innerHTML = PRODUCTS.map(p => `<div class="prod reveal in"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : `<svg><use href="#i-${p.ic}"/></svg>`}</div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div></div></div>`).join("");
+  $("#prdGrid").innerHTML = PRODUCTS.map((p, i) => `<button type="button" class="prod reveal in" data-i="${i}"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : `<svg><use href="#i-${p.ic}"/></svg>`}<span class="cnt">${p.items.length}</span></div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div><span class="go">${T[lang].pSee} (${p.items.length}) →</span></div></button>`).join("");
 
   bkRender();
 
@@ -758,7 +862,7 @@ function render(){
   $("#extra").style.display = (addr || hrs) ? "grid" : "none";
 }
 
-function setLang(l){ lang = l; try{ localStorage.setItem("vetLang", l); }catch(e){} render(); renderSchedule(); }
+function setLang(l){ lang = l; try{ localStorage.setItem("vetLang", l); }catch(e){} render(); renderSchedule(); renderPm(); }
 $$(".langs button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
 try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; }catch(e){}
 
@@ -975,6 +1079,31 @@ function renderSchedule(){
   $("#schedList").innerHTML = `<li><span>${t.sVet}:</span> ${range}, ${S.vet[0]}–${S.vet[1]}</li><li><span>${t.sShop}:</span> ${S.shop[0]}–${S.shop[1]}</li><li><span>${t.sOff}</span></li>`;
 }
 renderSchedule(); setInterval(renderSchedule, 60000);
+
+
+// ---------- product category modal ----------
+const PM = { i:null, f:"all" };
+const PET_IC = { c:"🐱", d:"🐶", b:"🦜" };
+function renderPm(){
+  if(PM.i == null) return;
+  const t = T[lang], p = PRODUCTS[PM.i];
+  $("#pmHead").style.background = p.bg; $("#pmTitle").textContent = p[lang][0]; $("#pmSub").textContent = p[lang][1];
+  const kinds = ["c","d","b"].filter(k => p.items.some(x => x.p.includes(k)));
+  const label = { c:t.pCat, d:t.pDog, b:t.pBird };
+  $("#pmFilter").innerHTML = kinds.length > 1 ? [`<button data-f="all" class="${PM.f==="all"?"on":""}">${t.pAll}</button>`, ...kinds.map(k => `<button data-f="${k}" class="${PM.f===k?"on":""}">${PET_IC[k]} ${label[k]}</button>`)].join("") : "";
+  $("#pmList").innerHTML = p.items.filter(x => PM.f === "all" || x.p.includes(PM.f)).map(x =>
+    `<li><span class="pets-ic">${[...x.p].map(k => PET_IC[k]).join("")}</span><span><b>${x.n}</b><small>${x[lang]}</small></span></li>`).join("");
+  $("#pmNote").textContent = t.pNote;
+}
+function openPm(i){ PM.i = i; PM.f = "all"; renderPm(); $("#pm").classList.add("on"); $("#pm").setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; $("#pmX").focus({preventScroll:true}); }
+function closePm(){ $("#pm").classList.remove("on"); $("#pm").setAttribute("aria-hidden","true"); document.body.style.overflow = ""; PM.i = null; }
+$("#prdGrid").addEventListener("click", e => { const b = e.target.closest(".prod"); if(b) openPm(+b.dataset.i); });
+$("#pm").addEventListener("click", e => { if(e.target.id === "pm" || e.target.id === "pmX") closePm(); const f = e.target.closest("[data-f]"); if(f){ PM.f = f.dataset.f; renderPm(); } });
+addEventListener("keydown", e => { if(e.key === "Escape" && PM.i != null) closePm(); });
+// the modal's call/IG buttons were added after the link setup ran
+$$("#pm .tel").forEach(a => a.href = "tel:+" + CONFIG.phoneIntl);
+$$("#pm .phone-txt").forEach(e => e.textContent = CONFIG.phoneDisplay);
+$$("#pm .ig").forEach(a => { a.href = CONFIG.instagram; a.target = "_blank"; a.rel = "noopener"; });
 
 // sticky call bar: only once the hero buttons have scrolled away
 (() => {
