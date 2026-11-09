@@ -27,7 +27,7 @@
  "name":"Svetlana-T Baytarlıq Klinikası","alternateName":["Ветеринарная клиника Svetlana-T","Svetlana-T Veterinary Clinic"],
  "url":"https://svetlanatbaytarliq.com/","telephone":"+994506530877",
  "image":["https://svetlanatbaytarliq.com/images/dog-pomeranian.jpg","https://svetlanatbaytarliq.com/images/cat-british.jpg"],
- "address":{"@type":"PostalAddress","addressLocality":"Bakı","addressCountry":"AZ"},
+ "address":{"@type":"PostalAddress","streetAddress":"Məhəmməd Hadi küçəsi 68","addressLocality":"Bakı","postalCode":"AZ1129","addressCountry":"AZ"},"hasMap":"https://www.google.com/maps/search/?api=1&query=68+Mahammad+Hadi,+Baku+1129,+Azerbaijan",
  "areaServed":"Bakı","availableLanguage":["az","ru","en"],
  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Wednesday","Thursday","Friday","Saturday"],"opens":"11:00","closes":"19:00"}],
  "sameAs":["https://www.instagram.com/veterinarnayaklinika1/"],
@@ -378,6 +378,12 @@ button.prod{display:flex;flex-direction:column;text-align:left;border:0;padding:
 .lb img{max-height:94vh}
 @media (max-width:640px){.pm-cards{columns:1}}
 
+
+.sched-addr{display:flex;align-items:center;gap:.45rem;margin-top:.6rem;padding-top:.6rem;border-top:1px dashed #e6dfd3;font-size:.88rem;font-weight:700;color:var(--ink)}
+.sched-addr svg{width:17px;height:17px;color:var(--coral);flex-shrink:0}
+.sched-addr:hover span{text-decoration:underline}
+.map-link{display:block;margin-top:.3rem;font-size:.82rem;font-weight:800;color:var(--coral)}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -507,6 +513,7 @@ footer .langs{background:transparent;border-color:#33504a}
     <div class="sched" id="sched">
      <div class="sched-now"><span class="dot"></span><b id="schedNow"></b></div>
      <ul id="schedList"></ul>
+     <a class="sched-addr maps" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span id="schedAddr"></span></a>
     </div>
    </div>
    <div class="hero-art reveal">
@@ -654,7 +661,7 @@ footer .langs{background:transparent;border-color:#33504a}
     <a class="cc setmore" href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener"><i style="background:var(--coral)"><svg><use href="#i-cal"/></svg></i><span><small data-i="setmore">Onlayn rezerv</small><b data-i="ctaBook">Qəbula yazıl</b></span></a>
    </div>
    <div class="contact-grid extra reveal" id="extra">
-    <div class="cc" id="addrCard"><i style="background:var(--coral)"><svg><use href="#i-pin"/></svg></i><span><small data-i="ctAddr">Ünvan</small><b id="addrTxt"></b></span></div>
+    <a class="cc maps" id="addrCard" target="_blank" rel="noopener"><i style="background:var(--coral)"><svg><use href="#i-pin"/></svg></i><span><small data-i="ctAddr">Ünvan</small><b id="addrTxt"></b><span class="map-link" data-i="mapOpen">Xəritədə aç →</span></span></a>
     <div class="cc" id="hoursCard"><i style="background:var(--coral)"><svg><use href="#i-clock"/></svg></i><span><small data-i="ctHours">İş saatları</small><b id="hoursTxt"></b></span></div>
    </div>
   </div>
@@ -710,7 +717,8 @@ const CONFIG = {
     { src:"/images/dog-pomeranian.jpg", pos:"50% 35%", alt:"Pomeranian" }
   ],
   // Optional — leave "" to hide. Write in each language.
-  address: { az: "Bakı, Azərbaycan", ru: "Баку, Азербайджан", en: "Baku, Azerbaijan" },
+  address: { az: "Məhəmməd Hadi küçəsi 68, Bakı AZ1129", ru: "ул. Мухаммеда Хади, 68, Баку AZ1129", en: "68 Mahammad Hadi St, Baku AZ1129" },
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("68 Mahammad Hadi, Baku 1129, Azerbaijan"),
   // Shown at the top of the page. Open/closed status is worked out from these (Baku time).
   schedule: { days:[3,4,5,6], shop:["11:00","19:00"], vet:["11:00","16:00"], lunch:["14:00","15:00"] },
   hours: {
@@ -834,7 +842,7 @@ const T = {
   v1t:"Qayğı",v1s:"Hər heyvana fərdi yanaşma",v2t:"Peşəkarlıq",v2s:"Dəqiq diaqnoz və müalicə",v3t:"Etibar",v3s:"Açıq və dürüst məsləhət",
   galTitle:"Bizim <em>balaca pasiyentlər</em>",galBtn:"Instagram-da izləyin",
   apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Xidməti, günü və boş saatı seçin — bir dəqiqəyə rezerv edin. Təcili hallarda zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
-  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",pSee:"Məhsullara bax",pAll:"Hamısı",pCat:"Pişik",pDog:"İt",pBird:"Quş",pNote:"Mövcudluq və qiyməti zəng edərək dəqiqləşdirin.",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
+  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",pSee:"Məhsullara bax",pAll:"Hamısı",pCat:"Pişik",pDog:"İt",pBird:"Quş",pNote:"Mövcudluq və qiyməti zəng edərək dəqiqləşdirin.",mapOpen:"Xəritədə aç →",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
   dTitle:"Müraciətiniz hazırdır!",dText:"Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.",dWa:"WhatsApp ilə göndər",dCopy:"Mətni kopyala",dCopied:"Kopyalandı ✓",dBack:"← Formaya qayıt",
   ctTitle:"Bizimlə <em>əlaqə</em>",ctPhone:"Telefon",ctAddr:"Ünvan",ctHours:"İş saatları",copy:"Svetlana-T Baytarlıq Klinikası. Bütün hüquqlar qorunur.",
   msg:{hi:"Salam! Qəbula yazılmaq istəyirəm.",name:"Ad",phone:"Telefon",pet:"Heyvan",petName:"Heyvanın adı",service:"Xidmət",date:"Tarix",time:"Saat",note:"Qeyd"}},
@@ -847,7 +855,7 @@ const T = {
   v1t:"Забота",v1s:"Индивидуальный подход",v2t:"Профессионализм",v2s:"Точная диагностика и лечение",v3t:"Доверие",v3s:"Честные рекомендации",
   galTitle:"Наши <em>маленькие пациенты</em>",galBtn:"Мы в Instagram",
   apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Выберите услугу, день и свободное время — запись за минуту. В срочных случаях звоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
-  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",pSee:"Смотреть товары",pAll:"Все",pCat:"Кошки",pDog:"Собаки",pBird:"Птицы",pNote:"Наличие и цены уточняйте по телефону.",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
+  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",pSee:"Смотреть товары",pAll:"Все",pCat:"Кошки",pDog:"Собаки",pBird:"Птицы",pNote:"Наличие и цены уточняйте по телефону.",mapOpen:"Открыть на карте →",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
   dTitle:"Заявка готова!",dText:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника свяжется с вами.",dWa:"Отправить в WhatsApp",dCopy:"Скопировать текст",dCopied:"Скопировано ✓",dBack:"← Вернуться к форме",
   ctTitle:"<em>Контакты</em>",ctPhone:"Телефон",ctAddr:"Адрес",ctHours:"Часы работы",copy:"Ветеринарная клиника Svetlana-T. Все права защищены.",
   msg:{hi:"Здравствуйте! Хочу записаться на приём.",name:"Имя",phone:"Телефон",pet:"Животное",petName:"Кличка",service:"Услуга",date:"Дата",time:"Время",note:"Комментарий"}},
@@ -860,7 +868,7 @@ const T = {
   v1t:"Care",v1s:"A personal approach",v2t:"Expertise",v2s:"Accurate diagnosis & treatment",v3t:"Trust",v3s:"Honest advice",
   galTitle:"Our <em>little patients</em>",galBtn:"Follow on Instagram",
   apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Pick a service, a day and a free time — booking takes a minute. For emergencies, please call.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
-  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",pSee:"See products",pAll:"All",pCat:"Cats",pDog:"Dogs",pBird:"Birds",pNote:"Call to check availability and prices.",fErr:"Please enter your name and phone number.",anyTime:"Any time",
+  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",pSee:"See products",pAll:"All",pCat:"Cats",pDog:"Dogs",pBird:"Birds",pNote:"Call to check availability and prices.",mapOpen:"Open in Maps →",fErr:"Please enter your name and phone number.",anyTime:"Any time",
   dTitle:"Your request is ready!",dText:"Tap the WhatsApp button to send it. The clinic will get back to you.",dWa:"Send via WhatsApp",dCopy:"Copy text",dCopied:"Copied ✓",dBack:"← Back to form",
   ctTitle:"Get in <em>touch</em>",ctPhone:"Phone",ctAddr:"Address",ctHours:"Opening hours",copy:"Svetlana-T Veterinary Clinic. All rights reserved.",
   msg:{hi:"Hello! I'd like to book an appointment.",name:"Name",phone:"Phone",pet:"Pet",petName:"Pet's name",service:"Service",date:"Date",time:"Time",note:"Notes"}}
@@ -875,6 +883,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 // links
 $$(".tel").forEach(a => a.href = "tel:+" + CONFIG.phoneIntl);
 $$(".phone-txt").forEach(e => e.textContent = CONFIG.phoneDisplay);
+$$(".maps").forEach(a => a.href = CONFIG.mapsUrl);
 $$(".setmore").forEach(a => { a.href = CONFIG.booking; a.target = "_blank"; a.rel = "noopener"; });
 $$(".ig").forEach(a => { a.href = CONFIG.instagram; a.target = "_blank"; a.rel = "noopener"; });
 $$(".wa-link").forEach(a => { a.href = "https://wa.me/" + CONFIG.phoneIntl; a.target = "_blank"; a.rel = "noopener"; });
@@ -920,7 +929,7 @@ function render(){
   bkRender();
 
   const addr = CONFIG.address[lang], hrs = CONFIG.hours[lang];
-  $("#addrTxt").textContent = addr; $("#hoursTxt").textContent = hrs;
+  $("#addrTxt").textContent = addr; $("#schedAddr").textContent = addr; $("#hoursTxt").textContent = hrs;
   $("#addrCard").style.display = addr ? "" : "none";
   $("#hoursCard").style.display = hrs ? "" : "none";
   $("#extra").style.display = (addr || hrs) ? "grid" : "none";
