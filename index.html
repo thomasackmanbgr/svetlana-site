@@ -315,12 +315,36 @@ button.prod{display:flex;flex-direction:column;text-align:left;border:0;padding:
 .pm-filter button.on{background:var(--teal);border-color:var(--teal);color:#fff}
 .pm-list{list-style:none;overflow-y:auto;padding:.4rem 1.8rem 1rem;display:grid;gap:.6rem}
 .pm-list li{display:flex;gap:.9rem;align-items:flex-start;padding:.9rem 1rem;border-radius:16px;background:var(--cream)}
-.pm-list .pets-ic{display:flex;gap:.2rem;flex-shrink:0;font-size:1.05rem;min-width:46px}
 .pm-list b{display:block;font-size:.98rem;line-height:1.3}
 .pm-list small{display:block;color:var(--muted);font-size:.86rem;margin-top:.15rem;line-height:1.45}
 .pm-foot{border-top:1px solid #eef1f0;padding:1rem 1.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted);font-weight:600}
 .pm-btns{display:flex;gap:.5rem}
 @media (max-width:640px){.pm{padding:0;align-items:flex-end}.pm-box{border-radius:24px 24px 0 0;max-height:90vh}.pm-head,.pm-filter,.pm-list,.pm-foot{padding-left:1.1rem;padding-right:1.1rem}.pm-btns{width:100%}.pm-btns .btn{flex:1;justify-content:center}}
+
+
+.lb{z-index:120}
+.lb.single .lb-p,.lb.single .lb-n{display:none}
+.pm-list li{align-items:center}
+.pm-list li.has-img{cursor:zoom-in;transition:.2s}
+.pm-list li.has-img:hover{background:#f3ece1}
+.pm-list .th{width:64px;height:64px;border-radius:12px;object-fit:cover;flex-shrink:0;background:#fff;box-shadow:0 4px 12px -6px rgba(0,0,0,.25)}
+.pm-list .th.none{display:grid;place-items:center;font-size:1.15rem;background:#fff}
+.pm-list .tx{flex:1;min-width:0}
+.pm-list em{display:block;font-style:normal;font-size:.8rem;margin-top:.25rem;letter-spacing:.1em}
+.pm-list .zoom{color:var(--muted);font-size:1.1rem;padding:0 .2rem}
+
+
+.prod-top{height:170px}
+.fan{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:100%}
+.fan img{width:104px;height:104px;border-radius:16px;object-fit:cover;border:3px solid #fff;box-shadow:0 12px 24px -10px rgba(0,0,0,.4);transition:transform .35s ease}
+.fan.n3 img:nth-child(1){transform:rotate(-9deg) translateX(18px)}
+.fan.n3 img:nth-child(2){transform:translateY(-6px);z-index:2;position:relative}
+.fan.n3 img:nth-child(3){transform:rotate(9deg) translateX(-18px)}
+.fan.n2 img:nth-child(1){transform:rotate(-6deg) translateX(8px)}
+.fan.n2 img:nth-child(2){transform:rotate(6deg) translateX(-8px)}
+.prod:hover .fan.n3 img:nth-child(1){transform:rotate(-13deg) translateX(4px)}
+.prod:hover .fan.n3 img:nth-child(3){transform:rotate(13deg) translateX(-4px)}
+.prod:hover .fan.n1 img{transform:scale(1.06) rotate(-3deg)}
 
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
@@ -695,10 +719,10 @@ const PRODUCTS = [
     {n:"Vida Nativa Kitten — toyuq və qaragilə", p:"c", az:"Balalar üçün quru yem: toyuq və qaragilə ilə.", ru:"Сухой корм для котят с курицей и голубикой.", en:"Dry kitten food with chicken and blueberry."},
     {n:"Vida Nativa Nordica Kitten — qızılbalıq", p:"c", az:"Taxılsız: qızılbalıq və balqabaq ilə, balalar üçün.", ru:"Беззерновой корм для котят с лососем и тыквой.", en:"Grain-free kitten food with salmon and pumpkin."},
     {n:"Gourmet Gold Pate", p:"c", az:"Yaş yem-paştet: dovşan, toyuq, hind toyuğu.", ru:"Влажный паштет: кролик, курица, индейка.", en:"Wet paté: rabbit, chicken, turkey."},
-    {n:"ZenTERA", p:"c", az:"Jele və sousda dilimlər, paştet: toyuq, qızılbalıq, dovşan.", ru:"Ломтики в желе и соусе, паштеты: курица, лосось, кролик.", en:"Chunks in jelly or gravy and patés: chicken, salmon, rabbit."},
-    {n:"PreVital Kitten Mousse", p:"c", az:"Balalar üçün dəniz balığı ilə zərif mus.", ru:"Нежный мусс с морской рыбой для котят.", en:"Soft mousse with sea fish for kittens."},
+    {img:"zentera", n:"ZenTERA", p:"c", az:"Sterilizasiya olunmuş pişiklər üçün yaş yem, 1 yaşdan: mal əti və qaraciyər, toyuq, qızılbalıq, dovşan, ördək.", ru:"Влажный корм для стерилизованных кошек от 1 года: говядина с печенью, курица, лосось, кролик, утка.", en:"Wet food for neutered cats 1+: beef & liver, chicken, salmon, rabbit, duck."},
+    {img:"prevital-kitten", n:"PreVital Kitten Mousse", p:"c", az:"Balalar üçün dəniz balığı ilə zərif mus.", ru:"Нежный мусс с морской рыбой для котят.", en:"Soft mousse with sea fish for kittens."},
     {n:"Nature's Protection Superior Care Red Coat", p:"d", az:"Kiçik cins, qırmızı tüklü itlər üçün; quzu əti, taxılsız.", ru:"Для мелких пород с рыжей шерстью; ягнёнок, без злаков.", en:"For small breeds with red coats; lamb, grain-free."},
-    {n:"RIO Daily Feed", p:"b", az:"Orta və iri tutuquşular üçün gündəlik dən qarışığı.", ru:"Ежедневная зерновая смесь для средних и крупных попугаев.", en:"Daily seed mix for medium and large parrots."}
+    {img:"rio-daily", n:"RIO Daily Feed", p:"b", az:"Orta və iri tutuquşular (korella, sevgi quşları) üçün gündəlik tam rasion, kalsiumla.", ru:"Полнорационный корм для средних и крупных попугаев (корелла, неразлучники), с кальцием.", en:"Complete daily feed for medium and large parrots (cockatiels, lovebirds), with calcium."}
    ]},
   {ic:"pill", bg:"linear-gradient(135deg,#1f6f63,#46a592)",
    az:["Müalicəvi pəhriz yemləri","Böyrək, sidik yolları, qaraciyər, həzm və diabet üçün baytarlıq pəhrizləri.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
@@ -706,11 +730,11 @@ const PRODUCTS = [
    en:["Vet diets","Veterinary diets for kidneys, urinary tract, liver, digestion and diabetes.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
    items:[
     {n:"Craftia Galena Urinary Care", p:"c", az:"Sidik yolları üçün; struvit daşlarının əridilməsinə kömək edir.", ru:"Для мочевыводящих путей; помогает растворять струвиты.", en:"Urinary support; helps dissolve struvite stones."},
-    {n:"Craftia Galena PC Renal Care", p:"c", az:"Böyrək funksiyası üçün; az fosfor və zülal, Omega-3.", ru:"Для почек; меньше фосфора и белка, Омега-3.", en:"Kidney support; lower phosphorus and protein, Omega-3."},
-    {n:"Purina Pro Plan VD Urinary", p:"c", az:"Həssas sidik sistemi olan pişiklər üçün.", ru:"Для кошек с чувствительной мочевыделительной системой.", en:"For cats with a sensitive urinary system."},
+    {img:"craftia-renal", n:"Craftia Galena PC Renal Care", p:"c", az:"Böyrək funksiyası üçün; az fosfor və zülal, Omega-3.", ru:"Для почек; меньше фосфора и белка, Омега-3.", en:"Kidney support; lower phosphorus and protein, Omega-3."},
+    {img:"purina-urinary", n:"Purina Pro Plan VD Urinary", p:"c", az:"Həssas sidik sistemi olan pişiklər üçün.", ru:"Для кошек с чувствительной мочевыделительной системой.", en:"For cats with a sensitive urinary system."},
     {n:"Purina Pro Plan VD Diabetes Management", p:"c", az:"Diabetli pişiklər üçün; qanda şəkəri tənzimləməyə kömək edir.", ru:"Для кошек с диабетом; помогает контролировать сахар.", en:"For diabetic cats; helps control blood sugar."},
-    {n:"Purina Pro Plan VD HP Hepatic", p:"c", az:"Qaraciyər funksiyasını dəstəkləyən pəhriz.", ru:"Диета для поддержки функции печени.", en:"Diet supporting liver function."},
-    {n:"Purina Pro Plan VD EN Gastrointestinal", p:"d", az:"Həzm problemləri olan itlər üçün, asan həzm olunur.", ru:"Для собак с проблемами ЖКТ, легко усваивается.", en:"For dogs with digestive issues, highly digestible."},
+    {img:"purina-hepatic", n:"Purina Pro Plan VD HP Hepatic", p:"c", az:"Qaraciyər funksiyasını dəstəkləyən pəhriz.", ru:"Диета для поддержки функции печени.", en:"Diet supporting liver function."},
+    {img:"purina-en", n:"Purina Pro Plan VD EN Gastrointestinal", p:"d", az:"Həzm problemləri olan itlər üçün, asan həzm olunur.", ru:"Для собак с проблемами ЖКТ, легко усваивается.", en:"For dogs with digestive issues, highly digestible."},
     {n:"Monge VetSolution HYPO Monoprotein", p:"d", az:"Allergiya və həssas həzm üçün; ördək və ya quzu, taxılsız.", ru:"При аллергии и чувствительном ЖКТ; утка или ягнёнок, без злаков.", en:"For allergies and sensitive digestion; duck or lamb, grain-free."}
    ]},
   {ic:"shield", bg:"linear-gradient(135deg,#ef7b5a,#e2486f)",
@@ -720,7 +744,7 @@ const PRODUCTS = [
    items:[
     {n:"NexGard Combo", p:"c", az:"Pişiklər üçün kompleks damcı: birə, gənə, qurdlar. 8 həftədən.", ru:"Комплексные капли для кошек: блохи, клещи, глисты. С 8 недель.", en:"All-in-one spot-on for cats: fleas, ticks, worms. From 8 weeks."},
     {n:"Endopet", p:"cd", az:"Daxili parazitlərə qarşı tabletlər (50 tab.).", ru:"Таблетки от внутренних паразитов (50 таб.).", en:"Dewormer tablets (50 tablets)."},
-    {n:"Diroheart / Diroheart Plus M", p:"d", az:"Ürək qurdu və bağırsaq parazitlərinə qarşı çeynənən tablet, ayda 1 dəfə.", ru:"Жевательные таблетки от сердечного червя и кишечных паразитов, 1 раз в месяц.", en:"Monthly chewable against heartworm and intestinal worms."}
+    {img:"diroheart", n:"Diroheart / Diroheart Plus M", p:"d", az:"Ürək qurdu və bağırsaq parazitlərinə qarşı çeynənən tablet, ayda 1 dəfə.", ru:"Жевательные таблетки от сердечного червя и кишечных паразитов, 1 раз в месяц.", en:"Monthly chewable against heartworm and intestinal worms."}
    ]},
   {ic:"bone", bg:"linear-gradient(135deg,#b49be0,#7a5fc0)",
    az:["Ləzzətlər","İt, pişik və quşlar üçün dadlı və faydalı mükafatlar.",["8in1","SmartBones","GimCat","RA NOVA"]],
@@ -730,21 +754,26 @@ const PRODUCTS = [
     {n:"8in1 Triple Flavour Ribs", p:"d", az:"Mal, toyuq və donuz dərisi — uzun çeynəmə üçün, 113 q.", ru:"Говяжья кожа, курица и свиная кожа — для долгого жевания, 113 г.", en:"Beef hide, chicken and pork hide — long-lasting chew, 113 g."},
     {n:"8in1 Delights Beef Twisted Sticks", p:"d", az:"İçində təbii mal əti; dişləri təmizləməyə kömək edir.", ru:"С натуральной говядиной внутри; помогает чистить зубы.", en:"Real beef inside; helps keep teeth clean."},
     {n:"SmartBones Peanut Butter Sticks", p:"d", az:"Fıstıq yağı və toyuq ilə, xam dərisiz.", ru:"С арахисовой пастой и курицей, без сыромятной кожи.", en:"Peanut butter and chicken, rawhide-free."},
-    {n:"RA NOVA Pet Treat Lollipop", p:"cd", az:"Dondurularaq qurudulmuş toyuq əti lolipop.", ru:"Леденец из сублимированной курицы.", en:"Freeze-dried chicken lollipop."},
+    {img:"ranova-lollipop", n:"RA NOVA Pet Treat Lollipop", p:"cd", az:"Dondurularaq qurudulmuş toyuq əti lolipop.", ru:"Леденец из сублимированной курицы.", en:"Freeze-dried chicken lollipop."},
     {n:"GimCat Nutri Taurine Bites", p:"c", az:"Taurin və kəsmik ilə — ürək və gözlər üçün, Almaniya.", ru:"С таурином и творогом — для сердца и глаз, Германия.", en:"With taurine and cottage cheese — heart and eyes, Germany."},
     {n:"Quşlar üçün mükafat yemi — meyvəli", p:"b", az:"Dalğalı tutuquşu və ekzotik quşlar üçün meyvəli ləzzət.", ru:"Фруктовое лакомство для волнистых и экзотических попугаев.", en:"Fruit treat for budgies and exotic birds."},
     {n:"Quşlar üçün mükafat yemi — yumurta və bal", p:"b", az:"Bütün quşlar üçün; dəniz qabığı — kalsium mənbəyi.", ru:"Для всех птиц; морская ракушка — источник кальция.", en:"For all birds; with seashell for calcium."}
    ]},
   {ic:"vit", bg:"linear-gradient(135deg,#7fb77e,#3f8f6b)",
-   az:["Vitaminlər və əlavələr","Ürək, həzm, dəri, yun və immunitet üçün.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
-   ru:["Витамины и добавки","Для сердца, пищеварения, кожи, шерсти и иммунитета.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
-   en:["Vitamins & supplements","For heart, digestion, skin, coat and immunity.",["Canina","GimCat","CardioOne","Zoovital","8in1"]],
+   az:["Vitaminlər və əlavələr","Ürək, böyrək, oynaqlar, həzm, dəri və immunitet üçün.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
+   ru:["Витамины и добавки","Для сердца, почек, суставов, пищеварения, кожи и иммунитета.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
+   en:["Vitamins & supplements","For heart, kidneys, joints, digestion, skin and immunity.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
    items:[
     {n:"Canina 100% somon yağı", p:"cd", az:"Omega-3 — parlaq yun, sağlam dəri, immunitet.", ru:"Омега-3 — блестящая шерсть, здоровая кожа, иммунитет.", en:"Omega-3 — shiny coat, healthy skin, immunity."},
     {n:"GimCat Multi-Vitamin Professional", p:"c", az:"Pişiklər üçün kompleks vitamin və minerallar.", ru:"Комплекс витаминов и минералов для кошек.", en:"Complete vitamins and minerals for cats."},
-    {n:"CardioOne", p:"cd", az:"Ürək dəstəyi: Q10, L-karnitin, taurin, vitamin E.", ru:"Поддержка сердца: Q10, L-карнитин, таурин, витамин E.", en:"Heart support: Q10, L-carnitine, taurine, vitamin E."},
-    {n:"Zoovital Gastrovital", p:"cd", az:"Həzm sistemini dəstəkləyən kapsullar (60 əd.).", ru:"Капсулы для поддержки пищеварения (60 шт.).", en:"Digestive support capsules (60 pcs)."},
-    {n:"8in1 Excel Deter", p:"d", az:"İtlərdə nəcis yeməyin (koprofagiya) qarşısını almağa kömək edir.", ru:"Помогает отучить собак от поедания экскрементов.", en:"Helps stop dogs eating their own stool."}
+    {img:"vetexpert-cardioone", n:"Vet Expert CardioOne", p:"cd", az:"Ürək dəstəyi: Q10, L-karnitin, taurin, vitamin E. 90 tablet, Polşa.", ru:"Поддержка сердца: Q10, L-карнитин, таурин, витамин E. 90 таблеток, Польша.", en:"Heart support: Q10, L-carnitine, taurine, vitamin E. 90 tablets, Poland."},
+    {img:"zoovital-gastrovital", n:"Zoovital Gastrovital", p:"cd", az:"100% bitki mənşəli; ishal və qəbizlikdə həzmə dəstək. 60 kapsul.", ru:"100% растительный; поддержка пищеварения при диарее и запоре. 60 капсул.", en:"100% plant-based digestive support for diarrhoea and constipation. 60 capsules."},
+    {img:"vetexpert-renalvet", n:"Vet Expert RenalVet", p:"cd", az:"Böyrək funksiyasını dəstəkləyir: kalsium karbonat, xitozan, D3. Polşa.", ru:"Поддержка функции почек: карбонат кальция, хитозан, D3. Польша.", en:"Kidney support: calcium carbonate, chitosan, vitamin D3. Poland."},
+    {img:"vetexpert-urinovet", n:"Vet Expert UrinoVet Cat Dilution", p:"c", az:"Sidik yolları üçün: pH-ı normallaşdırır, struvit riskini azaldır.", ru:"Для мочевыводящих путей: нормализует pH, снижает риск струвитов.", en:"Urinary support: balances pH, lowers struvite risk."},
+    {img:"vetexpert-arthrovet", n:"Vet Expert ArthroVet Complex", p:"cd", az:"Oynaqlar üçün: qlükozamin, xondroitin, hialuron turşusu.", ru:"Для суставов: глюкозамин, хондроитин, гиалуроновая кислота.", en:"Joint support: glucosamine, chondroitin, hyaluronic acid."},
+    {img:"vetexpert-vetomune", n:"Vet Expert VetoMune", p:"cd", az:"İmmunitet və bərpa üçün: beta-qlükan, CaHMB.", ru:"Для иммунитета и восстановления: бета-глюкан, CaHMB.", en:"Immunity and recovery: beta-glucan, CaHMB."},
+    {img:"vetexpert-neuro", n:"Vet Expert Neuro Support", p:"cd", az:"Sinir sistemi və yaşlı heyvanlarda idrak üçün: B vitaminləri, L-triptofan.", ru:"Для нервной системы и когнитивных функций у пожилых: витамины B, L-триптофан.", en:"Nervous system and senior brain support: B vitamins, L-tryptophan."},
+    {img:"8in1-excel-deter", n:"8in1 Excel Deter", p:"d", az:"İtlərdə nəcis yeməyin (koprofagiya) qarşısını almağa kömək edir.", ru:"Помогает отучить собак от поедания экскрементов.", en:"Helps stop dogs eating their own stool."}
    ]},
   {ic:"soap", bg:"linear-gradient(135deg,#8ec5e0,#4d8fb8)",
    az:["Gigiyena və aksesuarlar","Şampunlar, göz baxımı, keramik qablar və daşıyıcılar.",["TRIXIE","Vet Expert"]],
@@ -754,7 +783,7 @@ const PRODUCTS = [
     {n:"TRIXIE şampun — uzun tüklü itlər", p:"d", az:"Asan daranma, yumşaq və parlaq tük, 250 ml.", ru:"Лёгкое расчёсывание, мягкая блестящая шерсть, 250 мл.", en:"Easy brushing, soft shiny coat, 250 ml."},
     {n:"TRIXIE şampun — ağ və açıq rəngli itlər", p:"d", az:"Ağ rəngi qoruyur, saralmanın qarşısını alır, 250 ml.", ru:"Сохраняет белизну, предотвращает желтизну, 250 мл.", en:"Keeps white coats bright, prevents yellowing, 250 ml."},
     {n:"TRIXIE şampunlar — pişiklər", p:"c", az:"Bütün pişiklər üçün və uzun tüklü pişiklər üçün.", ru:"Для всех кошек и для длинношёрстных.", en:"For all cats and for long-haired cats."},
-    {n:"Vet Expert Anti Seborrhoeic Shampoo", p:"cd", az:"Seboreya və qepikli dəri üçün baytarlıq şampunu.", ru:"Ветеринарный шампунь при себорее и шелушении.", en:"Vet shampoo for seborrhoea and flaky skin."},
+    {img:"vetexpert-antiseb-shampoo", n:"Vet Expert Anti Seborrhoeic Shampoo", p:"cd", az:"Seboreya və qepikli dəri üçün baytarlıq şampunu.", ru:"Ветеринарный шампунь при себорее и шелушении.", en:"Vet shampoo for seborrhoea and flaky skin."},
     {n:"TRIXIE Eye-Care", p:"cd", az:"Gözlərin təmizlənməsi üçün gigiyenik disklər.", ru:"Гигиенические диски для очищения глаз.", en:"Hygiene pads for cleaning around the eyes."},
     {n:"TRIXIE keramik yem qabı", p:"cd", az:"Sürüşməyən silikon altlıq, su və yem üçün.", ru:"Нескользящая силиконовая подставка, для воды и корма.", en:"Non-slip silicone base, for food or water."},
     {n:"Plastik daşıyıcılar", p:"cd", az:"Pişiklər və kiçik cins itlər üçün.", ru:"Для кошек и собак мелких пород.", en:"For cats and small dogs."}
@@ -839,9 +868,10 @@ const gal = $("#gal"), photos = CONFIG.gallery.map(p => typeof p === "string" ? 
 // lightbox
 const lb = document.createElement("div"); lb.className = "lb"; lb.innerHTML = '<button class="lb-x" aria-label="Close">×</button><button class="lb-p" aria-label="Previous">‹</button><img alt=""><button class="lb-n" aria-label="Next">›</button>';
 document.body.appendChild(lb); let lbi = 0;
-function openLb(i){ lbi = (i + photos.length) % photos.length; lb.querySelector("img").src = photos[lbi].src; lb.querySelector("img").alt = photos[lbi].alt || ""; lb.classList.add("on"); }
+function openLb(i){ lb.classList.remove("single"); lbi = (i + photos.length) % photos.length; lb.querySelector("img").src = photos[lbi].src; lb.querySelector("img").alt = photos[lbi].alt || ""; lb.classList.add("on"); }
+function openImg(src, alt){ lb.classList.add("single"); lb.querySelector("img").src = src; lb.querySelector("img").alt = alt || ""; lb.classList.add("on"); }
 lb.addEventListener("click", e => { if(e.target.classList.contains("lb-p")) openLb(lbi-1); else if(e.target.classList.contains("lb-n")) openLb(lbi+1); else lb.classList.remove("on"); });
-addEventListener("keydown", e => { if(!lb.classList.contains("on")) return; if(e.key === "Escape") lb.classList.remove("on"); if(e.key === "ArrowLeft") openLb(lbi-1); if(e.key === "ArrowRight") openLb(lbi+1); });
+addEventListener("keydown", e => { if(!lb.classList.contains("on")) return; if(e.key === "Escape"){ lb.classList.remove("on"); e.preventDefault(); return; } if(lb.classList.contains("single")) return; if(e.key === "ArrowLeft") openLb(lbi-1); if(e.key === "ArrowRight") openLb(lbi+1); });
 
 function render(){
   const t = T[lang];
@@ -851,7 +881,7 @@ function render(){
   document.title = lang === "ru" ? "Ветеринарная клиника Svetlana-T" : lang === "en" ? "Svetlana-T Veterinary Clinic" : "Svetlana-T Baytarlıq Klinikası";
 
   $("#svcGrid").innerHTML = SERVICES.map(s => `<a class="card reveal in svc-link" data-id="${s.id}" href="${CONFIG.booking}" target="_blank" rel="noopener"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p><span class="go">${T[lang].ctaBook} →</span></a>`).join("");
-  $("#prdGrid").innerHTML = PRODUCTS.map((p, i) => `<button type="button" class="prod reveal in" data-i="${i}"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : `<svg><use href="#i-${p.ic}"/></svg>`}<span class="cnt">${p.items.length}</span></div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div><span class="go">${T[lang].pSee} (${p.items.length}) →</span></div></button>`).join("");
+  $("#prdGrid").innerHTML = PRODUCTS.map((p, i) => `<button type="button" class="prod reveal in" data-i="${i}"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : (th => th.length ? `<div class="fan n${th.length}">${th.map(x => `<img src="images/products/${x.img}-t.jpg" alt="" loading="lazy">`).join("")}</div>` : `<svg><use href="#i-${p.ic}"/></svg>`)(p.items.filter(x => x.img).slice(0,3))}<span class="cnt">${p.items.length}</span></div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div><span class="go">${T[lang].pSee} (${p.items.length}) →</span></div></button>`).join("");
 
   bkRender();
 
@@ -1091,15 +1121,15 @@ function renderPm(){
   const kinds = ["c","d","b"].filter(k => p.items.some(x => x.p.includes(k)));
   const label = { c:t.pCat, d:t.pDog, b:t.pBird };
   $("#pmFilter").innerHTML = kinds.length > 1 ? [`<button data-f="all" class="${PM.f==="all"?"on":""}">${t.pAll}</button>`, ...kinds.map(k => `<button data-f="${k}" class="${PM.f===k?"on":""}">${PET_IC[k]} ${label[k]}</button>`)].join("") : "";
-  $("#pmList").innerHTML = p.items.filter(x => PM.f === "all" || x.p.includes(PM.f)).map(x =>
-    `<li><span class="pets-ic">${[...x.p].map(k => PET_IC[k]).join("")}</span><span><b>${x.n}</b><small>${x[lang]}</small></span></li>`).join("");
+  $("#pmList").innerHTML = [...p.items.filter(x => x.img), ...p.items.filter(x => !x.img)].filter(x => PM.f === "all" || x.p.includes(PM.f)).map(x =>
+    `<li${x.img ? ` class="has-img" data-img="images/products/${x.img}.jpg" tabindex="0"` : ""}>${x.img ? `<img class="th" src="images/products/${x.img}-t.jpg" alt="" loading="lazy">` : `<span class="th none">${[...x.p].map(k => PET_IC[k]).join("")}</span>`}<span class="tx"><b>${x.n}</b><small>${x[lang]}</small><em>${[...x.p].map(k => PET_IC[k]).join(" ")}</em></span>${x.img ? '<span class="zoom">⤢</span>' : ""}</li>`).join("");
   $("#pmNote").textContent = t.pNote;
 }
 function openPm(i){ PM.i = i; PM.f = "all"; renderPm(); $("#pm").classList.add("on"); $("#pm").setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; $("#pmX").focus({preventScroll:true}); }
 function closePm(){ $("#pm").classList.remove("on"); $("#pm").setAttribute("aria-hidden","true"); document.body.style.overflow = ""; PM.i = null; }
 $("#prdGrid").addEventListener("click", e => { const b = e.target.closest(".prod"); if(b) openPm(+b.dataset.i); });
-$("#pm").addEventListener("click", e => { if(e.target.id === "pm" || e.target.id === "pmX") closePm(); const f = e.target.closest("[data-f]"); if(f){ PM.f = f.dataset.f; renderPm(); } });
-addEventListener("keydown", e => { if(e.key === "Escape" && PM.i != null) closePm(); });
+$("#pm").addEventListener("click", e => { const li = e.target.closest("li.has-img"); if(li){ openImg(li.dataset.img, li.querySelector("b").textContent); return; } if(e.target.id === "pm" || e.target.id === "pmX") closePm(); const f = e.target.closest("[data-f]"); if(f){ PM.f = f.dataset.f; renderPm(); } });
+addEventListener("keydown", e => { if(e.key === "Escape" && PM.i != null && !e.defaultPrevented && !lb.classList.contains("on")) closePm(); if(e.key === "Enter" && e.target.matches && e.target.matches("li.has-img")) openImg(e.target.dataset.img, ""); });
 // the modal's call/IG buttons were added after the link setup ran
 $$("#pm .tel").forEach(a => a.href = "tel:+" + CONFIG.phoneIntl);
 $$("#pm .phone-txt").forEach(e => e.textContent = CONFIG.phoneDisplay);
