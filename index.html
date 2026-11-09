@@ -73,7 +73,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 
 /* hero */
 .hero{padding:60px 0 90px;position:relative;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
 .hero h1{font-size:clamp(2.6rem,5.6vw,4.4rem);margin:1.1rem 0 1.3rem}
 .hero .lead{font-size:1.15rem}
 .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;margin:2rem 0 2.4rem}
@@ -90,9 +90,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 .float i{width:38px;height:38px;border-radius:12px;display:grid;place-items:center}
 .float i svg{width:20px;height:20px}
 .float small{display:block;font-weight:600;color:var(--muted);font-size:.75rem}
-.f1{left:-4%;top:18%}
+
 .f1 i{background:#fde5dc;color:var(--coral)}
-.f2{right:-3%;bottom:16%;animation-delay:-3s}
+.f2{animation-delay:-3s}
 .f2 i{background:var(--teal-l);color:var(--teal)}
 .sun{position:absolute;right:6%;top:0;width:90px;height:90px;border-radius:50%;background:var(--sun);opacity:.9;z-index:-1}
 @keyframes bob{50%{transform:translateY(-10px)}}
@@ -246,6 +246,47 @@ img.pic.in{opacity:1}
 .lb button:hover{background:rgba(255,255,255,.25)}
 .lb-x{top:18px;right:18px}.lb-p{left:18px;top:50%;transform:translateY(-50%)}.lb-n{right:18px;top:50%;transform:translateY(-50%)}
 
+
+/* hero buttons */
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1rem;margin:2rem 0 1.6rem}
+.btn-lg{padding:1.2rem 2.3rem;font-size:1.12rem;border-radius:999px}
+.btn-lg svg{width:22px;height:22px}
+.mini{display:flex;gap:.6rem;flex-wrap:wrap}
+.btn-sm{padding:.7rem 1.1rem;font-size:.88rem}
+.btn-sm svg{width:17px;height:17px}
+/* schedule */
+.sched{display:inline-block;background:#fff;border:1px solid #ece6dc;border-radius:20px;padding:1rem 1.3rem;box-shadow:0 14px 34px -24px rgba(22,48,43,.35)}
+.sched-now{display:flex;align-items:center;gap:.55rem;font-size:.95rem;margin-bottom:.45rem}
+.sched-now .dot{width:10px;height:10px;border-radius:50%;background:#9aa9a5;box-shadow:0 0 0 4px rgba(154,169,165,.2)}
+.sched.open .dot{background:#22b07d;box-shadow:0 0 0 4px rgba(34,176,125,.18);animation:pulse 2s infinite}
+.sched.break .dot{background:var(--sun);box-shadow:0 0 0 4px rgba(246,198,103,.25)}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(34,176,125,.05)}}
+.sched ul{list-style:none;display:grid;gap:.15rem;font-size:.88rem;color:var(--ink-2);font-weight:600}
+.sched li span{color:var(--muted);font-weight:600}
+/* hero slideshow */
+.show{position:absolute;inset:2% 4% 6% 8%;border-radius:200px 200px 36px 36px;overflow:hidden;background:linear-gradient(150deg,var(--teal),#46a592);box-shadow:var(--shadow)}
+.show img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1.1s ease,transform 6s ease}
+.show img.on{opacity:1;transform:scale(1)}
+.show .ph{position:absolute;inset:0;display:grid;place-items:center}
+.show .ph svg{width:30%;color:rgba(255,255,255,.4)}
+.show-dots{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:.45rem;margin-left:4%}
+.show-dots button{width:9px;height:9px;border-radius:9px;border:0;background:#cfd9d6;cursor:pointer;padding:0;transition:.3s}
+.show-dots button.on{width:26px;background:var(--coral)}
+.hero-art{aspect-ratio:4/5;max-width:470px;justify-self:end;width:100%}
+.f1{left:-6%;top:22%}
+.f2{right:-4%;bottom:18%}
+/* sticky bar */
+.mbar .grow{flex:1}
+.mbar .icon{flex:0 0 54px;padding:0;height:54px;justify-content:center;border-radius:50%}
+.mbar .icon svg{width:22px;height:22px}
+@media (max-width:1020px){.hero-art{justify-self:center;max-width:420px}}
+@media (max-width:640px){
+  .hero-cta .btn-lg{width:100%;justify-content:center}
+  .mini{width:100%}.mini .btn{flex:1;justify-content:center}
+  .sched{display:block}
+  .f1{left:-2%}.f2{right:-2%}
+}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -267,7 +308,7 @@ footer .langs{background:transparent;border-color:#33504a}
 /* mobile action bar */
 .mbar{display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;gap:.6rem;transition:transform .35s ease,opacity .35s ease}
 .mbar.hide{transform:translateY(140%);opacity:0;pointer-events:none}
-.mbar a{flex:1;justify-content:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+.mbar a{justify-content:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
@@ -366,51 +407,23 @@ footer .langs{background:transparent;border-color:#33504a}
     <h1 data-i="heroTitle" data-html>Dostlarınızın sağlamlığı — <em>qayğılı əllərdə</em></h1>
     <p class="lead" data-i="heroLead">Pişiklər, itlər və digər ev heyvanları üçün müayinə, peyvənd, müalicə və cərrahiyyə. Hər bir heyvana sevgi və diqqətlə yanaşırıq.</p>
     <div class="hero-cta" id="heroCta">
-     <a href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener" class="btn btn-primary setmore"><svg><use href="#i-cal"/></svg><span data-i="ctaBook">Qəbula yazıl</span></a>
-     <a class="btn ig-btn ig"><svg><use href="#i-ig"/></svg><span data-i="galBtn">Instagram-da izləyin</span></a>
+     <a href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener" class="btn btn-primary btn-lg setmore"><svg><use href="#i-cal"/></svg><span data-i="ctaBook">Qəbula yazıl</span></a>
+     <div class="mini">
+      <a class="btn btn-sm btn-ghost tel"><svg><use href="#i-phone"/></svg><span class="phone-txt"></span></a>
+      <a class="btn btn-sm ig-btn ig"><svg><use href="#i-ig"/></svg>Instagram</a>
+     </div>
     </div>
-    <div class="badges">
-     <div class="badge"><i><svg><use href="#i-heart"/></svg></i><span data-i="b1">Sevgi ilə müalicə</span></div>
-     <div class="badge"><i><svg><use href="#i-steth"/></svg></i><span data-i="b2">Təcrübəli həkim</span></div>
-     <div class="badge"><i><svg><use href="#i-pill"/></svg></i><span data-i="b3">Baytarlıq apteki</span></div>
+    <div class="sched" id="sched">
+     <div class="sched-now"><span class="dot"></span><b id="schedNow"></b></div>
+     <ul id="schedList"></ul>
     </div>
    </div>
    <div class="hero-art reveal">
     <div class="sun"></div>
-    <div class="blob" id="heroBlob">
-     <!-- illustration shown until a hero photo is set -->
-     <svg class="illu" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
-      <circle cx="320" cy="90" r="60" fill="rgba(255,255,255,.08)"/>
-      <circle cx="70" cy="330" r="90" fill="rgba(255,255,255,.06)"/>
-      <!-- dog -->
-      <g transform="translate(40 120)">
-       <ellipse cx="110" cy="250" rx="120" ry="22" fill="rgba(0,0,0,.12)"/>
-       <path d="M40 120c0-55 35-90 80-90s80 35 80 90v60c0 40-30 70-80 70s-80-30-80-70z" fill="#f3d9b8"/>
-       <path d="M42 70C20 70 4 110 14 150c6 22 30 18 34-4l8-60z" fill="#b9814f"/>
-       <path d="M198 70c22 0 38 40 28 80-6 22-30 18-34-4l-8-60z" fill="#b9814f"/>
-       <path d="M80 150c0-20 18-30 40-30s40 10 40 30-18 40-40 40-40-20-40-40z" fill="#fff4e6"/>
-       <ellipse cx="120" cy="140" rx="14" ry="10" fill="#3a2a22"/>
-       <circle cx="88" cy="105" r="8" fill="#3a2a22"/><circle cx="152" cy="105" r="8" fill="#3a2a22"/>
-       <circle cx="91" cy="102" r="2.5" fill="#fff"/><circle cx="155" cy="102" r="2.5" fill="#fff"/>
-       <path d="M110 162q10 8 20 0" stroke="#3a2a22" stroke-width="4" fill="none" stroke-linecap="round"/>
-       <path d="M114 166q6 16 12 0" fill="#ef7b5a"/>
-       <!-- collar -->
-       <path d="M58 205q62 30 124 0" stroke="#ef7b5a" stroke-width="12" fill="none" stroke-linecap="round"/>
-       <circle cx="120" cy="228" r="11" fill="#f6c667"/>
-      </g>
-      <!-- cat -->
-      <g transform="translate(205 235)">
-       <path d="M10 60 0 0l38 28h44l38-28-10 60c8 14 10 26 10 36 0 40-30 64-60 64S0 136 0 96c0-10 2-22 10-36z" fill="#f7f1ea"/>
-       <path d="M6 10 30 30M114 10 90 30" stroke="#f3b8a4" stroke-width="8" stroke-linecap="round"/>
-       <ellipse cx="40" cy="80" rx="7" ry="9" fill="#2f3b39"/><ellipse cx="80" cy="80" rx="7" ry="9" fill="#2f3b39"/>
-       <path d="M54 98h12l-6 7z" fill="#ef7b5a"/>
-       <path d="M60 105q-6 8-14 4M60 105q6 8 14 4" stroke="#2f3b39" stroke-width="3" fill="none" stroke-linecap="round"/>
-       <path d="M18 100h-22M18 108h-20M102 100h22M102 108h20" stroke="#cdbfb2" stroke-width="2.5" stroke-linecap="round"/>
-      </g>
-      <!-- cross badge -->
-      <g transform="translate(300 40)"><rect width="56" height="56" rx="16" fill="#fff"/><path d="M28 14v28M14 28h28" stroke="#ef7b5a" stroke-width="9" stroke-linecap="round"/></g>
-     </svg>
+    <div class="show" id="heroShow" aria-roledescription="carousel">
+     <div class="ph"><svg><use href="#i-paw"/></svg></div>
     </div>
+    <div class="show-dots" id="showDots"></div>
     <div class="float f1"><i><svg><use href="#i-syringe"/></svg></i><span><span data-i="f1t">Peyvənd</span><small data-i="f1s">Pişik və itlər üçün</small></span></div>
     <div class="float f2"><i><svg><use href="#i-check"/></svg></i><span><span data-i="f2t">Onlayn qəbul</span><small data-i="f2s">Rahat və sürətli</small></span></div>
    </div>
@@ -547,7 +560,7 @@ footer .langs{background:transparent;border-color:#33504a}
    <div class="contact-grid reveal">
     <a class="cc tel"><i><svg><use href="#i-phone"/></svg></i><span><small data-i="ctPhone">Telefon</small><b class="phone-txt"></b></span></a>
     <a class="cc ig"><i style="background:linear-gradient(45deg,#f9a14b,#e2486f 50%,#8a3ab9)"><svg><use href="#i-ig"/></svg></i><span><small>Instagram</small><b>@veterinarnayaklinika1</b></span></a>
-    <a class="cc wa-link"><i style="background:#25d366"><svg><use href="#i-wa"/></svg></i><span><small>WhatsApp</small><b class="phone-txt"></b></span></a>
+    <a class="cc setmore" href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener"><i style="background:var(--coral)"><svg><use href="#i-cal"/></svg></i><span><small data-i="setmore">Onlayn rezerv</small><b data-i="ctaBook">Qəbula yazıl</b></span></a>
    </div>
    <div class="contact-grid extra reveal" id="extra">
     <div class="cc" id="addrCard"><i style="background:var(--coral)"><svg><use href="#i-pin"/></svg></i><span><small data-i="ctAddr">Ünvan</small><b id="addrTxt"></b></span></div>
@@ -571,8 +584,9 @@ footer .langs{background:transparent;border-color:#33504a}
 </footer>
 
 <div class="mbar hide" id="mbar">
- <a class="btn btn-primary tel"><svg><use href="#i-phone"/></svg><span data-i="call">Zəng et</span></a>
- <a class="btn wa wa-link"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+ <a class="btn btn-primary grow setmore" href="https://svetlanat2452.setmore.com" target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg><span data-i="ctaBook">Qəbula yazıl</span></a>
+ <a class="btn btn-teal icon tel" aria-label="Call"><svg><use href="#i-phone"/></svg></a>
+ <a class="btn ig-btn icon ig" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
 </div>
 
 <script>
@@ -598,6 +612,8 @@ const CONFIG = {
   ],
   // Optional — leave "" to hide. Write in each language.
   address: { az: "Bakı, Azərbaycan", ru: "Баку, Азербайджан", en: "Baku, Azerbaijan" },
+  // Shown at the top of the page. Open/closed status is worked out from these (Baku time).
+  schedule: { days:[3,4,5,6], shop:["11:00","19:00"], vet:["11:00","16:00"], lunch:["14:00","15:00"] },
   hours: {
     az: "Həkim: Çərşənbə–Şənbə, 11:00–16:00\nMağaza: 11:00–19:00\nNahar fasiləsi: 14:00–15:00\nBazar ertəsi və Çərşənbə axşamı — istirahət",
     ru: "Врач: ср–сб, 11:00–16:00\nМагазин: 11:00–19:00\nОбед: 14:00–15:00\nПн и вт — выходные",
@@ -647,7 +663,7 @@ const T = {
   v1t:"Qayğı",v1s:"Hər heyvana fərdi yanaşma",v2t:"Peşəkarlıq",v2s:"Dəqiq diaqnoz və müalicə",v3t:"Etibar",v3s:"Açıq və dürüst məsləhət",
   galTitle:"Bizim <em>balaca pasiyentlər</em>",galBtn:"Instagram-da izləyin",
   apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Xidməti, günü və boş saatı seçin — bir dəqiqəyə rezerv edin. Təcili hallarda zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
-  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
+  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
   dTitle:"Müraciətiniz hazırdır!",dText:"Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.",dWa:"WhatsApp ilə göndər",dCopy:"Mətni kopyala",dCopied:"Kopyalandı ✓",dBack:"← Formaya qayıt",
   ctTitle:"Bizimlə <em>əlaqə</em>",ctPhone:"Telefon",ctAddr:"Ünvan",ctHours:"İş saatları",copy:"Svetlana-T Baytarlıq Klinikası. Bütün hüquqlar qorunur.",
   msg:{hi:"Salam! Qəbula yazılmaq istəyirəm.",name:"Ad",phone:"Telefon",pet:"Heyvan",petName:"Heyvanın adı",service:"Xidmət",date:"Tarix",time:"Saat",note:"Qeyd"}},
@@ -660,7 +676,7 @@ const T = {
   v1t:"Забота",v1s:"Индивидуальный подход",v2t:"Профессионализм",v2s:"Точная диагностика и лечение",v3t:"Доверие",v3s:"Честные рекомендации",
   galTitle:"Наши <em>маленькие пациенты</em>",galBtn:"Мы в Instagram",
   apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Выберите услугу, день и свободное время — запись за минуту. В срочных случаях звоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
-  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
+  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
   dTitle:"Заявка готова!",dText:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника свяжется с вами.",dWa:"Отправить в WhatsApp",dCopy:"Скопировать текст",dCopied:"Скопировано ✓",dBack:"← Вернуться к форме",
   ctTitle:"<em>Контакты</em>",ctPhone:"Телефон",ctAddr:"Адрес",ctHours:"Часы работы",copy:"Ветеринарная клиника Svetlana-T. Все права защищены.",
   msg:{hi:"Здравствуйте! Хочу записаться на приём.",name:"Имя",phone:"Телефон",pet:"Животное",petName:"Кличка",service:"Услуга",date:"Дата",time:"Время",note:"Комментарий"}},
@@ -673,7 +689,7 @@ const T = {
   v1t:"Care",v1s:"A personal approach",v2t:"Expertise",v2s:"Accurate diagnosis & treatment",v3t:"Trust",v3s:"Honest advice",
   galTitle:"Our <em>little patients</em>",galBtn:"Follow on Instagram",
   apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Pick a service, a day and a free time — booking takes a minute. For emergencies, please call.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
-  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",fErr:"Please enter your name and phone number.",anyTime:"Any time",
+  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",fErr:"Please enter your name and phone number.",anyTime:"Any time",
   dTitle:"Your request is ready!",dText:"Tap the WhatsApp button to send it. The clinic will get back to you.",dWa:"Send via WhatsApp",dCopy:"Copy text",dCopied:"Copied ✓",dBack:"← Back to form",
   ctTitle:"Get in <em>touch</em>",ctPhone:"Phone",ctAddr:"Address",ctHours:"Opening hours",copy:"Svetlana-T Veterinary Clinic. All rights reserved.",
   msg:{hi:"Hello! I'd like to book an appointment.",name:"Name",phone:"Phone",pet:"Pet",petName:"Pet's name",service:"Service",date:"Date",time:"Time",note:"Notes"}}
@@ -702,7 +718,6 @@ function setPhoto(el, p, eager){
   img.onerror = () => img.remove();
   img.src = p.src; el.prepend(img);
 }
-setPhoto($("#heroBlob"), CONFIG.heroPhoto, true);
 setPhoto($("#aboutPhoto"), CONFIG.aboutPhoto);
 const gal = $("#gal"), photos = CONFIG.gallery.map(p => typeof p === "string" ? { src:p } : p).filter(p => p && p.src);
 (photos.length ? photos : Array(5).fill(null)).forEach((p, i) => {
@@ -737,7 +752,7 @@ function render(){
   $("#extra").style.display = (addr || hrs) ? "grid" : "none";
 }
 
-function setLang(l){ lang = l; try{ localStorage.setItem("vetLang", l); }catch(e){} render(); }
+function setLang(l){ lang = l; try{ localStorage.setItem("vetLang", l); }catch(e){} render(); renderSchedule(); }
 $$(".langs button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
 try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; }catch(e){}
 
@@ -890,6 +905,63 @@ if(CONFIG.bookingApi){
   $$(".setmore").forEach(a => { a.href = "#appointment"; a.removeAttribute("target"); });
   $$(".call-box .setmore").forEach(a => a.remove());
 }
+
+
+// ---------- hero slideshow (all gallery photos, hero photo first) ----------
+(() => {
+  const box = $("#heroShow"), dots = $("#showDots");
+  const list = [CONFIG.heroPhoto, ...CONFIG.gallery].map(p => typeof p === "string" ? { src:p } : p).filter(p => p && p.src)
+    .filter((p, i, a) => a.findIndex(q => q.src === p.src) === i);
+  if(!list.length) return;
+  let cur = 0, timer;
+  const imgs = list.map((p, i) => {
+    const im = document.createElement("img"); im.alt = p.alt || ""; im.decoding = "async";
+    if(p.pos) im.style.objectPosition = p.pos;
+    if(i === 0){ im.src = p.src; im.onload = () => { box.querySelector(".ph")?.remove(); }; } else im.dataset.src = p.src;
+    box.appendChild(im); return im;
+  });
+  dots.innerHTML = list.map((_, i) => `<button aria-label="${i+1}"></button>`).join("");
+  const show = i => {
+    cur = (i + list.length) % list.length;
+    const nx = imgs[(cur + 1) % imgs.length]; if(nx.dataset.src){ nx.src = nx.dataset.src; delete nx.dataset.src; }
+    if(imgs[cur].dataset.src){ imgs[cur].src = imgs[cur].dataset.src; delete imgs[cur].dataset.src; }
+    imgs.forEach((im, k) => im.classList.toggle("on", k === cur));
+    [...dots.children].forEach((d, k) => d.classList.toggle("on", k === cur));
+  };
+  const play = () => { clearInterval(timer); if(list.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(() => show(cur + 1), 4500); };
+  dots.addEventListener("click", e => { const i = [...dots.children].indexOf(e.target); if(i >= 0){ show(i); play(); } });
+  let x0 = null;
+  box.addEventListener("touchstart", e => x0 = e.touches[0].clientX, {passive:true});
+  box.addEventListener("touchend", e => { if(x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if(Math.abs(dx) > 40){ show(cur + (dx < 0 ? 1 : -1)); play(); } x0 = null; });
+  box.addEventListener("mouseenter", () => clearInterval(timer)); box.addEventListener("mouseleave", play);
+  show(0); play();
+})();
+
+// ---------- schedule / open-now ----------
+function renderSchedule(){
+  const t = T[lang], S = CONFIG.schedule, now = bakuNow(), d = wday(now.date), n = NAMES[lang];
+  const open = S.days.includes(d) && now.min >= toMin(S.shop[0]) && now.min < toMin(S.shop[1]);
+  const lunch = open && now.min >= toMin(S.lunch[0]) && now.min < toMin(S.lunch[1]);
+  const el = $("#sched"); el.classList.toggle("open", open && !lunch); el.classList.toggle("break", lunch);
+  let txt;
+  if(lunch) txt = t.sLunch;
+  else if(open) txt = lang === "az" ? `${t.sOpen} · ${S.shop[1]}${t.sUntil}` : `${t.sOpen} · ${t.sUntil} ${S.shop[1]}`;
+  else {
+    let k = 0; while(k < 8){ const dd = addDays(now.date, k); if(S.days.includes(wday(dd)) && (k > 0 || now.min < toMin(S.shop[0]))) break; k++; }
+    const wd2 = wday(addDays(now.date, k)), h = S.shop[0];
+    const FULL = { az:["bazar","bazar ertəsi","çərşənbə axşamı","çərşənbə","cümə axşamı","cümə","şənbə"],
+                   ru:["в воскресенье","в понедельник","во вторник","в среду","в четверг","в пятницу","в субботу"],
+                   en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] };
+    const when = k === 0 ? t.sToday : k === 1 ? t.sTomorrow : FULL[lang][wd2];
+    txt = lang === "az" ? `${t.sClosed} · ${when} ${h}-da açılır`
+        : lang === "ru" ? `${t.sClosed} · откроемся ${when} в ${h}`
+        : `${t.sClosed} · opens ${when} ${h}`;
+  }
+  $("#schedNow").textContent = txt;
+  const range = lang === "az" ? "Çərşənbə–Şənbə" : lang === "ru" ? "ср–сб" : "Wed–Sat";
+  $("#schedList").innerHTML = `<li><span>${t.sVet}:</span> ${range}, ${S.vet[0]}–${S.vet[1]}</li><li><span>${t.sShop}:</span> ${S.shop[0]}–${S.shop[1]}</li><li><span>${t.sOff}</span></li>`;
+}
+renderSchedule(); setInterval(renderSchedule, 60000);
 
 // sticky call bar: only once the hero buttons have scrolled away
 (() => {
