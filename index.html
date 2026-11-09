@@ -287,6 +287,12 @@ img.pic.in{opacity:1}
   .f1{left:-2%}.f2{right:-2%}
 }
 
+
+.card{display:flex;flex-direction:column;color:inherit;cursor:pointer}
+.card p{flex:1}
+.card .go{margin-top:1rem;font-weight:800;font-size:.88rem;color:var(--coral);display:inline-flex;align-items:center;gap:.3rem;transition:.25s}
+.card:hover .go{gap:.6rem;color:var(--coral-d)}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -740,7 +746,7 @@ function render(){
   $$(".langs button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
   document.title = lang === "ru" ? "Ветеринарная клиника Svetlana-T" : lang === "en" ? "Svetlana-T Veterinary Clinic" : "Svetlana-T Baytarlıq Klinikası";
 
-  $("#svcGrid").innerHTML = SERVICES.map(s => `<div class="card reveal in"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p></div>`).join("");
+  $("#svcGrid").innerHTML = SERVICES.map(s => `<a class="card reveal in svc-link" data-id="${s.id}" href="${CONFIG.booking}" target="_blank" rel="noopener"><div class="ic"><svg><use href="#i-${s.ic}"/></svg></div><h3>${s[lang][0]}</h3><p>${s[lang][1]}</p><span class="go">${T[lang].ctaBook} →</span></a>`).join("");
   $("#prdGrid").innerHTML = PRODUCTS.map(p => `<div class="prod reveal in"><div class="prod-top${p.img?" photo":""}" style="background:${p.img ? `url(${p.img}) center/cover` : p.bg}">${p.img ? "" : `<svg><use href="#i-${p.ic}"/></svg>`}</div><div class="prod-body"><h3>${p[lang][0]}</h3><p>${p[lang][1]}</p><div class="tags">${p[lang][2].map(x=>`<span>${x}</span>`).join("")}</div></div></div>`).join("");
 
   bkRender();
@@ -900,6 +906,13 @@ $("#copyBtn").addEventListener("click", async () => {
 });
 render();
 go(1);
+$("#svcGrid").addEventListener("click", e => {
+  const a = e.target.closest(".svc-link"); if(!a || !CONFIG.bookingApi) return;   // no API yet → normal link to Setmore
+  e.preventDefault();
+  const s = SERVICES.find(x => x.id === a.dataset.id);
+  if(s && s.min){ BK.svc = s.id; BK.time = null; go(2); } else go(1);
+  $("#appointment").scrollIntoView({behavior:"smooth"});
+});
 // hero "Book" button: own booking once the calendar is connected, Setmore until then
 if(CONFIG.bookingApi){
   $$(".setmore").forEach(a => { a.href = "#appointment"; a.removeAttribute("target"); });
