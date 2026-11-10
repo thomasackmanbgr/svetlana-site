@@ -40,7 +40,7 @@ for code, p in PAGES.items():
     (ROOT / code / "index.html").write_text(h, encoding="utf-8")
 
 today = datetime.date.today().isoformat()
-alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{c}" href="{SITE}{u}"/>' for c, u in [("az","/"),("ru","/ru/"),("en","/en/"),("x-default","/")])
-urls = "".join(f'\n  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{today}</lastmod>{alts}\n  </url>' for u in ["/", "/ru/", "/en/"])
-(ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}\n</urlset>\n', encoding="utf-8")
+urls = "".join(f"\n  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{today}</lastmod>\n  </url>" for u in ["/", "/ru/", "/en/"])
+# plain format on purpose: language alternates live in each page's <head> (hreflang links)
+(ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}\n</urlset>\n', encoding="utf-8")
 print("built: /ru/ /en/ + sitemap.xml")
