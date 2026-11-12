@@ -30,7 +30,7 @@
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-  const HOME = { pos: V(1.2, 2.6, 8.2), target: V(0.1, 1.25, 0) };
+  const HOME = { pos: V(1.0, 2.9, 11.5), target: V(0.15, 1.3, 0) };
   camera.position.copy(HOME.pos);
 
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -111,9 +111,9 @@
     const skin = new THREE.Group(), skel = new THREE.Group(), org = new THREE.Group();
     root.add(skin, skel, org);
     const { C, R, head, hr } = P;
-    const skinMat = holoMat(P.skin, 0.95);
-    const bone = std(0xf2e8d8, { roughness: 0.5, emissive: 0x2a2018, emissiveIntensity: 0.25 });
-    const boneJ = std(0xe8dccb, { roughness: 0.55 });
+    const skinMat = holoMat(P.skin, 0.8);
+    const bone = std(0xe6d8c4, { roughness: 0.6, emissive: 0x1a120c, emissiveIntensity: 0.12 });
+    const boneJ = std(0xd9c9b3, { roughness: 0.6 });
 
     /* joint positions */
     const sx = C.x + R.x * 0.58, hx = C.x - R.x * 0.66;
@@ -202,7 +202,7 @@
     for (const z of [-1, 1]) {
       const f = F(z * legZ), h = H(z * legZ);
       [[f[0], f[1]], [f[1], f[2]], [h[0], h[1]], [h[1], h[2]], [h[2], h[3]]].forEach(([a, b]) => skel.add(limb(bone, a, b, bR, bR * 0.8, 10)));
-      [...f, ...h].forEach(p => skel.add(ell(boneJ, p, V(bR * 1.6, bR * 1.6, bR * 1.6), true)));
+      [...f, ...h].forEach(p => skel.add(ell(boneJ, p, V(bR * 1.3, bR * 1.3, bR * 1.3), true)));
       for (const p of [f[2], h[3]]) for (let k = -1; k <= 1; k++) skel.add(limb(bone, p, p.clone().add(V(0.14, -0.06, k * 0.05)), 0.015, 0.012, 6));
     }
 
@@ -290,17 +290,17 @@
     const narrow = isNarrow();
     if (!s.focus) {
       camTo.target.copy(HOME.target); camTo.pos.copy(HOME.pos);
-      if (!narrow) { camTo.target.x -= 1.6; camTo.pos.x -= 1.6; }         // hero: animal on the right, text on the left
-      else { camTo.target.y -= 0.55; camTo.pos.z += 1.6; }
+      if (!narrow) { camTo.target.x -= 2.1; camTo.pos.x -= 2.1; }         // hero: animal on the right, text on the left
+      else { camTo.target.y -= 1.0; camTo.pos.z += 3.2; }
     } else {
       // predict organ positions at the target explode value
       const saved = explode; applyExplode(s.explode ?? explode); world.updateMatrixWorld(true);
       const p = focusPoint(s.focus) || HOME.target.clone();
       applyExplode(saved);
-      const dist = s.focus[0] === "skeleton" ? 6.6 : 4.4;
-      const side = (s.side || 1) * (narrow ? 0 : 1.15);
-      camTo.target.copy(p).add(V(-side, narrow ? -0.75 : 0, 0));
-      camTo.pos.copy(p).add(V(-side + 0.9, 0.9, dist + (narrow ? 1.8 : 0)));
+      const dist = s.focus[0] === "skeleton" ? 9.5 : s.focus[0] === "skin" ? 7.5 : 6.4;
+      const shift = (s.side || 1) * (narrow ? 0 : 1.7);                // panel on the right -> organ shown on the left
+      camTo.target.copy(p).add(V(shift, narrow ? -1.1 : 0, 0));
+      camTo.pos.copy(camTo.target).add(V(0.9, 1.0, dist + (narrow ? 2.6 : 0)));
     }
     camAnim = 1;
   }
@@ -338,7 +338,7 @@
     A.skinMat.uniforms.glow.value = THREE.MathUtils.lerp(A.skinMat.uniforms.glow.value, f && f.includes("skin") ? 0.6 + Math.sin(t * 3) * 0.2 : 0, 0.08);
     const skelO = !f || f.includes("skeleton") || f.includes("teeth") ? 1 : 0.28;
     A._skelO = THREE.MathUtils.lerp(A._skelO ?? 1, skelO, 0.08); setOpacity(A.skel, A._skelO);
-    A.bone.emissiveIntensity = f && f.includes("skeleton") ? 0.45 + Math.sin(t * 3) * 0.15 : 0.25;
+    A.bone.emissiveIntensity = f && f.includes("skeleton") ? 0.35 + Math.sin(t * 3) * 0.12 : 0.12;
     A.org.children.forEach(m => {
       const on = !f || f.includes(m.userData.key);
       m.userData._o = THREE.MathUtils.lerp(m.userData._o ?? 1, on ? 1 : 0.16, 0.08);
