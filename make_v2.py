@@ -208,7 +208,10 @@ footer{background:#050404;border-top:1px solid var(--line)}
   .panel p{font-size:.92rem}
   .anat-bar{bottom:12px;gap:.6rem;padding:.5rem}
   .lay span{display:none}.lay input{width:90px}
-  .anat-bar{top:82px;bottom:auto}
+  .hero-copy .lead,.hint3d,#schedList,.sched-addr{display:none!important}
+  .hero-copy .sched{padding:.65rem 1rem}.hero-copy .sched-now{margin:0}
+  .hero-copy{padding-top:5rem}
+  body.instory .mbar{transform:translateY(140%);opacity:0;pointer-events:none}
   .stage-fallback{right:50%;transform:translateX(50%);top:12%;width:70vw}
 }
 @media (max-width:420px){.sp-toggle button span{display:none}.lay b{display:none}}
@@ -298,6 +301,8 @@ $$("#anatBar [data-sp]").forEach(b => b.addEventListener("click", () => {
 $("#rotBtn").addEventListener("click", () => { if(window.Anatomy) $("#rotBtn").classList.toggle("on", Anatomy.toggleRotate()); });
 $("#resetBtn").addEventListener("click", () => { window.Anatomy && Anatomy.reset(); $("#rotBtn").classList.add("on"); });
 window.onAnatomyReady = () => { Anatomy.refreshLabels(); };
+// phones: hide the bottom call bar while the 3D story fills the screen (story panels carry their own Book button)
+new IntersectionObserver(([e]) => document.body.classList.toggle("instory", e.isIntersecting), { rootMargin: "0px 0px -55% 0px" }).observe($("#anatomy"));
 '''
 rep('// sticky call bar', js + '\n// sticky call bar')
 # call renderStory on every language render
