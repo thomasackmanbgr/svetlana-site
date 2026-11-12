@@ -311,7 +311,7 @@ rep('  const addr = CONFIG.address[lang]', '  if(window.renderStory) window.rend
 # libraries + engine (after the main script)
 rep('</body>', '''<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="/anatomy/anatomy.js?v=6"></script>
+<script src="/anatomy/anatomy.js?v=7"></script>
 </body>''')
 
 # preview: switch language in place (the /ru/ and /en/ addresses still serve the current design)

@@ -164,9 +164,9 @@
              [V(0.85, 1.52), .5, .35], [V(0.2, 1.46), .45, .37], [V(-0.5, 1.6), .3, .31], [V(-1.05, 1.62), .34, .29], [V(-1.4, 1.65), .09, .08]],
       spine: [V(1.55, 2.17), V(1.32, 2.0), V(1.06, 1.84), V(0.55, 1.83), V(-0.25, 1.8), V(-0.95, 1.79), V(-1.22, 1.76), V(-1.36, 1.73)],
       regions: { C: [0, 0.2], T: [0.2, 0.62], L: [0.62, 0.9], S: [0.9, 1] },
-      tail: [V(-1.36, 1.73), V(-1.7, 1.62), V(-2.08, 1.38), V(-2.4, 1.05), V(-2.52, 0.86)], tailR: [0.085, 0.025], wag: [3.5, 0.3],
-      skull: { cran: V(1.8, 2.3), cranR: V(0.23, 0.17, 0.17), snoutA: V(1.98, 2.27), snoutB: V(2.52, 2.06), snoutR: [0.12, 0.065], occ: V(1.58, 2.24), eye: V(2.0, 2.33), eyeR: 0.07, jawBack: V(1.74, 2.06), chin: V(2.46, 1.97) },
-      ear: "flop", teethN: 10,
+      tail: [V(-1.36, 1.73), V(-1.68, 1.6), V(-2.0, 1.36), V(-2.24, 1.06), V(-2.32, 0.9)], tailR: [0.085, 0.025], wag: [3.5, 0.3],
+      skull: { cran: V(1.8, 2.3), cranR: V(0.23, 0.17, 0.17), snoutA: V(1.98, 2.27), snoutB: V(2.52, 2.06), snoutR: [[0.13, 0.11], [0.075, 0.055]], occ: V(1.58, 2.24), eye: V(2.0, 2.33), eyeR: 0.07, jawBack: V(1.74, 2.06), chin: V(2.46, 1.97) },
+      ear: "flop", teethN: 7, sx: 0.88,
       front: { scapTop: V(0.82, 1.98), shoulder: V(1.14, 1.36), elbow: V(0.93, 0.95), carpus: V(1.0, 0.32), fetlock: V(1.07, 0.12), toe: V(1.2, 0.04), z: 0.24, r: [0.15, 0.14, 0.1, 0.06, 0.055] },
       hind: { hip: V(-1.12, 1.46), stifle: V(-0.83, 0.96), hock: V(-1.24, 0.46), fetlock: V(-1.14, 0.12), toe: V(-1.02, 0.04), z: 0.26, r: [0.22, 0.2, 0.13, 0.06, 0.055] },
       pelvis: { ilium: V(-0.86, 1.86), ischium: V(-1.4, 1.42), pubis: V(-1.08, 1.28) },
@@ -182,7 +182,7 @@
       spine: [V(1.47, 1.46), V(1.3, 1.32), V(1.08, 1.19), V(0.6, 1.15), V(-0.15, 1.15), V(-0.82, 1.21), V(-1.04, 1.18), V(-1.18, 1.16)],
       regions: { C: [0, 0.2], T: [0.2, 0.6], L: [0.6, 0.9], S: [0.9, 1] },
       tail: [V(-1.18, 1.16), V(-1.6, 1.18), V(-1.95, 1.4), V(-2.12, 1.8), V(-2.02, 2.15), V(-1.84, 2.28)], tailR: [0.06, 0.03], wag: [1.2, 0.16],
-      skull: { cran: V(1.62, 1.56), cranR: V(0.17, 0.14, 0.15), snoutA: V(1.76, 1.5), snoutB: V(1.95, 1.43), snoutR: [0.075, 0.05], occ: V(1.46, 1.52), eye: V(1.76, 1.58), eyeR: 0.07, jawBack: V(1.58, 1.4), chin: V(1.9, 1.37) },
+      skull: { cran: V(1.62, 1.56), cranR: V(0.17, 0.14, 0.15), snoutA: V(1.76, 1.5), snoutB: V(1.95, 1.43), snoutR: [[0.08, 0.08], [0.05, 0.05]], occ: V(1.46, 1.52), eye: V(1.76, 1.58), eyeR: 0.07, jawBack: V(1.58, 1.4), chin: V(1.9, 1.37) },
       ear: "point", teethN: 6,
       front: { scapTop: V(0.82, 1.32), shoulder: V(1.0, 0.93), elbow: V(0.84, 0.6), carpus: V(0.92, 0.19), fetlock: V(0.96, 0.08), toe: V(1.05, 0.03), z: 0.17, r: [0.11, 0.1, 0.075, 0.042, 0.04] },
       hind: { hip: V(-0.92, 1.0), stifle: V(-0.6, 0.62), hock: V(-1.03, 0.28), fetlock: V(-0.96, 0.08), toe: V(-0.86, 0.03), z: 0.18, r: [0.16, 0.14, 0.09, 0.042, 0.04] },
@@ -196,9 +196,9 @@
 
   /* ======================= build one animal ======================= */
   function buildAnimal(S) {
-    const root = new THREE.Group();
+    const root = new THREE.Group(), inner = new THREE.Group(); root.add(inner); inner.scale.x = S.sx || 1;
     const skin = new THREE.Group(), skel = new THREE.Group(), org = new THREE.Group(), fixed = new THREE.Group();
-    root.add(skin, skel, org, fixed);
+    inner.add(skin, skel, org, fixed);
     const br = S.bone;
 
     /* ---------- skin shell ---------- */
@@ -298,7 +298,7 @@
     // skull: cranium, muzzle, occipital crest, zygomatic arches, mandible, teeth, eyes
     const K = S.skull;
     B.push(ell(bone, K.cran, K.cranR));
-    B.push(mesh(sweep([K.cran.clone().add(V(K.cranR.x * 0.6, -K.cranR.y * 0.15)), K.snoutA, K.snoutB], u => [lerp(K.snoutR[0], K.snoutR[1], u) * cap(u, 0.03), lerp(K.snoutR[0] * 0.95, K.snoutR[1] * 0.9, u) * cap(u, 0.03)], 30, 14), bone));
+    B.push(mesh(sweep([K.cran.clone().add(V(K.cranR.x * 0.6, -K.cranR.y * 0.15)), K.snoutA, K.snoutB], u => [lerp(K.snoutR[0][0], K.snoutR[1][0], u) * cap(u, 0.03), lerp(K.snoutR[0][1], K.snoutR[1][1], u) * cap(u, 0.03)], 30, 14), bone));
     B.push(ell(bone, K.occ, V(K.cranR.x * 0.35, K.cranR.y * 0.55, K.cranR.z * 0.75)));
     const eyeM = wet(0x1b1010, { roughness: 0.1 });
     for (const s of [-1, 1]) {
@@ -313,7 +313,7 @@
         const up = K.snoutA.clone().lerp(K.snoutB, tu), lw = jb.clone().lerp(ch, 0.25 + t * 0.72);
         const hU = canine ? br * 1.7 : br * (t < 0.6 ? 0.75 : 0.45), hL = canine ? br * 1.5 : br * 0.55;
         const ut = new THREE.Mesh(new THREE.ConeGeometry(canine ? br * 0.42 : br * 0.32, hU, 6), toothM);
-        ut.position.set(up.x, up.y - lerp(K.snoutR[0], K.snoutR[1], tu) * 0.85 - hU * 0.4, s * lerp(K.snoutR[0] * 0.75, K.snoutR[1] * 0.6, t) * lerp(1, 0.55, t) * 1.1); ut.rotation.x = Math.PI; TT.push(ut);
+        ut.position.set(up.x, up.y - lerp(K.snoutR[0][0], K.snoutR[1][0], tu) * 0.85 - hU * 0.4, s * lerp(K.snoutR[0][1] * 0.75, K.snoutR[1][1] * 0.6, t) * lerp(1, 0.55, t) * 1.1); ut.rotation.x = Math.PI; TT.push(ut);
         const lt = new THREE.Mesh(new THREE.ConeGeometry(canine ? br * 0.4 : br * 0.3, hL, 6), toothM);
         lt.position.set(lw.x, lw.y + hL * 0.45 + br * 0.4, s * lerp(K.cranR.z * 0.6, br * 0.9, t)); TT.push(lt);
       }
@@ -323,7 +323,7 @@
       const F = S.front, H = S.hind, zF = s * F.z, zH = s * H.z;
       const sh = V(F.shoulder.x, F.shoulder.y, zF), top = V(F.scapTop.x, F.scapTop.y, s * (F.z + 0.1));
       const ax = new THREE.Vector3().subVectors(top, sh), L = ax.length(), ayv = V(-ax.y, ax.x, 0).normalize();
-      B.push(plate(bone, [[0, -0.03 * L], [0.55 * L, -0.25 * L], [1.0 * L, -0.33 * L], [1.03 * L, 0.18 * L], [0.6 * L, 0.12 * L], [0.12 * L, 0.06 * L]], sh, ax, ayv, br * 0.35));
+      B.push(plate(bone, [[0, -0.04 * L], [0.25 * L, -0.09 * L], [0.7 * L, -0.2 * L], [1.0 * L, -0.24 * L], [1.02 * L, 0.12 * L], [0.65 * L, 0.1 * L], [0.2 * L, 0.06 * L]], sh, ax, ayv, br * 0.35));
       B.push(bar(bone, sh.clone().addScaledVector(ax, 0.15), sh.clone().addScaledVector(ax, 0.98).add(V(0, 0, s * br * 0.6)), br * 0.35, br * 1.1));  // scapular spine
       const el = V(F.elbow.x, F.elbow.y, zF), ca = V(F.carpus.x, F.carpus.y, zF), fe = V(F.fetlock.x, F.fetlock.y, zF);
       B.push(longBone(bone, sh, el, br * 0.95));                                                                                  // humerus
@@ -353,7 +353,7 @@
     for (const s of [-1, 1]) {
       const zi = s * S.hind.z * 0.85, acet = V(S.hind.hip.x, S.hind.hip.y, s * S.hind.z * 0.95), il = V(Pp.ilium.x, Pp.ilium.y, zi * 1.15);
       const ax = new THREE.Vector3().subVectors(il, acet), L = ax.length(), ayv = V(-ax.y, ax.x, 0).normalize();
-      B.push(plate(bone, [[0, -0.05 * L], [0.6 * L, -0.12 * L], [1.05 * L, -0.2 * L], [1.1 * L, 0.18 * L], [0.55 * L, 0.12 * L], [0, 0.06 * L]], acet, ax, ayv, br * 0.4));
+      B.push(plate(bone, [[0, -0.05 * L], [0.5 * L, -0.07 * L], [0.95 * L, -0.15 * L], [1.08 * L, 0.0], [1.0 * L, 0.13 * L], [0.5 * L, 0.07 * L], [0, 0.05 * L]], acet, ax, ayv, br * 0.4));
       const isch = V(Pp.ischium.x, Pp.ischium.y, zi * 0.9), pub = V(Pp.pubis.x, Pp.pubis.y, s * br * 0.6);
       B.push(tube(bone, [acet, acet.clone().lerp(isch, 0.5).add(V(0, 0.02, 0)), isch], br * 0.65, 16, 8));
       B.push(tube(bone, [acet, acet.clone().lerp(pub, 0.5).add(V(0.02, -0.03, 0)), pub], br * 0.5, 16, 8));
@@ -381,9 +381,12 @@
     const lungM = wet(0xf2a3b0, { roughness: 0.55, clearcoat: 0.2, opacity: 0.9 }), LD = V(0.5, 0.7, 1);
     const lungLobes = [];
     for (const s of [-1, 1]) {
-      lungLobes.push(add("lungs", ell(lungM, TH(0.2, 0.62, s * 0.48), V(tL * 0.18, tH * 0.3, Th.w * 0.42)), LD));
-      lungLobes.push(add("lungs", ell(lungM, TH(0.45, 0.45, s * 0.58), V(tL * 0.14, tH * 0.28, Th.w * 0.36)), LD));
-      lungLobes.push(add("lungs", ell(lungM, TH(0.74, 0.6, s * 0.52), V(tL * 0.26, tH * 0.36, Th.w * 0.44)), LD));
+      const c = TH(0.5, 0.56, s * 0.5);
+      const g = sweep([TH(0.02, 0.66, s * 0.42), TH(0.3, 0.6, s * 0.5), TH(0.65, 0.55, s * 0.52), TH(1.02, 0.6, s * 0.46)],
+        u => { const pr = Math.pow(Math.sin(Math.PI * Math.min(1, u * 1.05)), 0.55) * (1 - 0.22 * bump(u, 0.3, 0.025) - 0.22 * bump(u, 0.56, 0.025)) * (0.6 + 0.4 * u);
+               return [tH * 0.44 * pr, Th.w * 0.44 * pr]; }, 60, 20);
+      g.translate(-c.x, -c.y, -c.z);
+      const l = mesh(g, lungM); l.position.copy(c); lungLobes.push(add("lungs", l, LD));
     }
     const bif = TH(0.42, 0.62, 0), trM = std(0xf5e4dc, { roughness: 0.45 });
     add("lungs", mesh(sweep([S.larynx, S.larynx.clone().lerp(bif, 0.4).add(V(0, 0.04, 0)), bif], u => br * 0.85 * (1 + 0.14 * Math.sin(u * 140)) * cap(u, 0.02), 140, 10), trM), LD);
@@ -463,11 +466,11 @@
       addFixed("brain", tube(nerveM, [t1.clone().add(V(0.05, -br, s * br)), V(F.shoulder.x - 0.03, F.shoulder.y + 0.05, s * F.z * 0.85), V(F.elbow.x + 0.01, F.elbow.y + 0.04, s * F.z * 0.95), V(F.carpus.x - 0.01, F.carpus.y + 0.05, s * F.z * 1.02)], br * 0.13, 40, 5));
       addFixed("brain", tube(nerveM, [sac.clone().add(V(0, -br, s * br)), V(H.hip.x - 0.07, H.hip.y - 0.03, s * H.z * 0.9), V(H.stifle.x - 0.08, H.stifle.y + 0.06, s * H.z * 1.02), V(H.hock.x + 0.05, H.hock.y + 0.05, s * H.z * 1.04)], br * 0.15, 40, 5));
     }
-    O.teeth = { meshes: [teeth], dir: V(0, 0, 0), noMove: true, anchor: K.chin.clone().lerp(K.snoutA, 0.35).add(V(0, -K.snoutR[0] * 0.6, 0)) };
+    O.teeth = { meshes: [teeth], dir: V(0, 0, 0), noMove: true, anchor: K.chin.clone().lerp(K.snoutA, 0.35).add(V(0, -K.snoutR[0][0] * 0.6, 0)) };
 
     root.traverse(m => { if (m.material && !m.material.uniforms) m.userData.baseOpacity = m.material.opacity; });
     Object.values(O).forEach(o => { if (o.group) o.group.userData.home = o.group.position.clone(); });
-    return { root, skin, skel, org, fixed, O, skinMat, heart: vent, lungs: lungLobes, tail: [tailG, tailSkel], bone, center: V((Th.x0 + Ab.x1) / 2, (Th.top + Th.bot) / 2 + 0.1, 0), S };
+    return { root, inner, skin, skel, org, fixed, O, skinMat, heart: vent, lungs: lungLobes, tail: [tailG, tailSkel], bone, center: V((Th.x0 + Ab.x1) / 2, (Th.top + Th.bot) / 2 + 0.1, 0), S };
   }
 
   /* ======================= world ======================= */
@@ -507,9 +510,9 @@
   function focusPoint(keys) {
     const pts = [];
     keys.forEach(k => {
-      if (k === "skeleton") pts.push(A.center.clone());
-      else if (k === "skin") pts.push(A.S.skull.cran.clone().add(V(0.15, -0.1, 0)));
-      else if (k === "teeth") pts.push(A.O.teeth.anchor.clone());
+      if (k === "skeleton") pts.push(A.center.clone().applyMatrix4(A.inner.matrixWorld));
+      else if (k === "skin") pts.push(A.S.skull.cran.clone().add(V(0.15, -0.1, 0)).applyMatrix4(A.inner.matrixWorld));
+      else if (k === "teeth") pts.push(A.O.teeth.anchor.clone().applyMatrix4(A.inner.matrixWorld));
       else if (A.O[k] && A.O[k].group) pts.push(new THREE.Box3().setFromObject(A.O[k].group).getCenter(new THREE.Vector3()));
     });
     if (!pts.length) return null;
@@ -591,7 +594,7 @@
       const el = labels[k], o = A.O[k], inFocus = focus && focus.includes(k);
       const vis = o && (inFocus || (showAll && !focus) || (story === "free" && explode > 0.35));
       if (!vis) { el.classList.remove("on"); return; }
-      if (k === "teeth") tmp.copy(o.anchor).applyMatrix4(A.root.matrixWorld);
+      if (k === "teeth") tmp.copy(o.anchor).applyMatrix4(A.inner.matrixWorld);
       else { box.setFromObject(o.group); box.getCenter(tmp); if (k === "lungs" || k === "liver" || k === "intestines") tmp.z = box.max.z; }
       tmp.project(camera);
       if (tmp.z > 1) { el.classList.remove("on"); return; }
