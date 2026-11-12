@@ -161,7 +161,7 @@ footer{background:#050404;border-top:1px solid var(--line)}
 .hint3d{display:flex;align-items:center;gap:.55rem;margin-top:1.6rem;color:#9b908a;font-size:.85rem;font-weight:600}
 .hint3d svg{width:20px;height:20px;color:var(--coral);animation:nudge 2.4s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateX(6px) rotate(-8deg)}}
-.panel{max-width:470px;width:100%;border-radius:28px;padding:2.1rem 2.1rem 2rem;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;box-shadow:var(--shadow)}
+.panel{max-width:470px;width:100%;max-height:calc(100vh - 200px);max-height:calc(100svh - 200px);overflow:auto;scrollbar-width:thin;border-radius:28px;padding:2.1rem 2.1rem 2rem;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;box-shadow:var(--shadow)}
 .st.in .panel{opacity:1;transform:none}
 .st-tag{display:flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
 .st-tag i{width:22px;height:2px;background:var(--coral);border-radius:2px}
@@ -199,16 +199,16 @@ footer{background:#050404;border-top:1px solid var(--line)}
 .ib svg{width:16px;height:16px}.ib.on,.ib:hover{color:var(--coral);border-color:rgba(229,164,149,.45)}
 .story ~ section{z-index:1}
 @media (max-width:900px){
-  .st{align-items:flex-end;padding:90px 4% 120px}
+  .st{align-items:flex-end;padding:90px 4% 96px}
   .st.right{justify-content:center}.st{justify-content:center}
   .st-hero{align-items:flex-end}
   .hero-copy{background:linear-gradient(180deg,transparent,rgba(7,6,6,.92) 22%);padding-top:3rem;border-radius:24px}
   .hero-copy h1{font-size:clamp(2.1rem,9vw,3rem)}
-  .panel{padding:1.4rem 1.2rem 1.3rem;max-height:62vh;overflow:auto;border-radius:22px}
+  .panel{padding:1.4rem 1.2rem 1.3rem;max-height:56vh;max-height:56svh;overflow:auto;border-radius:22px}
   .panel p{font-size:.92rem}
   .anat-bar{bottom:12px;gap:.6rem;padding:.5rem}
   .lay span{display:none}.lay input{width:90px}
-  .mbar{bottom:calc(76px + env(safe-area-inset-bottom))}
+  .anat-bar{top:82px;bottom:auto}
   .stage-fallback{right:50%;transform:translateX(50%);top:12%;width:70vw}
 }
 @media (max-width:420px){.sp-toggle button span{display:none}.lay b{display:none}}
@@ -306,7 +306,7 @@ rep('  const addr = CONFIG.address[lang]', '  if(window.renderStory) window.rend
 # libraries + engine (after the main script)
 rep('</body>', '''<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="/anatomy/anatomy.js?v=3"></script>
+<script src="/anatomy/anatomy.js?v=4"></script>
 </body>''')
 
 out = ROOT / "v2"; out.mkdir(exist_ok=True)

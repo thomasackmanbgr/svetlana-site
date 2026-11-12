@@ -292,7 +292,7 @@
     if (!s.focus) {
       camTo.target.copy(HOME.target); camTo.pos.copy(HOME.pos);
       if (!narrow) { camTo.target.x -= 2.1; camTo.pos.x -= 2.1; }         // hero: animal on the right, text on the left
-      else { camTo.target.y -= 1.0; camTo.pos.z += 3.2; }
+      else { camTo.pos.z += 4.2; camTo.pos.y += 0.4; }
     } else {
       // predict organ positions at the target explode value
       const saved = explode; applyExplode(s.explode ?? explode); world.updateMatrixWorld(true);
@@ -300,10 +300,17 @@
       applyExplode(saved);
       const dist = s.focus[0] === "skeleton" ? 11 : s.focus[0] === "skin" ? 8 : 8.2;
       const shift = (s.side || 1) * (narrow ? 0 : 1.7);                // panel on the right -> organ shown on the left
-      camTo.target.copy(p).add(V(shift, narrow ? -1.1 : 0, 0));
+      camTo.target.copy(p).add(V(shift, 0, 0));
       camTo.pos.copy(camTo.target).add(V(0.9, 1.0, dist + (narrow ? 2.6 : 0)));
     }
+    viewShiftTo = narrow ? (s.focus ? 0.31 : 0.3) : 0;   // phones: draw the model in the top part of the screen
     camAnim = 1;
+  }
+  let viewShift = 0, viewShiftTo = 0;
+  function applyViewShift() {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    if (Math.abs(viewShift) < 0.001 && viewShiftTo === 0) { if (camera.view) { camera.clearViewOffset(); } return; }
+    camera.setViewOffset(w, h, 0, h * viewShift, w, h);
   }
   function setStory(k) {
     if (!STORY[k] || k === story) return;
@@ -382,10 +389,10 @@
   function resize() {
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setSize(w, h, false); camera.aspect = w / h;
-    camera.fov = w < 600 ? 44 : 34; camera.updateProjectionMatrix();
+    camera.fov = w < 600 ? 44 : 34; camera.updateProjectionMatrix(); applyViewShift();
   }
   addEventListener("resize", () => { resize(); planCamera(); });
-  resize(); planCamera(); camAnim = 0; camera.position.copy(camTo.pos); controls.target.copy(camTo.target);
+  resize(); planCamera(); viewShift = viewShiftTo; applyViewShift(); camAnim = 0; camera.position.copy(camTo.pos); controls.target.copy(camTo.target);
 
   const ease = t => 1 - Math.pow(1 - t, 3);
   function frame(now) {
@@ -394,6 +401,7 @@
     const dt = Math.min((now - last) / 1000, 0.05); last = now; time += dt;
 
     explode = THREE.MathUtils.lerp(explode, targetExplode, 0.07);
+    if (Math.abs(viewShift - viewShiftTo) > 0.0005) { viewShift = THREE.MathUtils.lerp(viewShift, viewShiftTo, 0.08); applyViewShift(); }
     applyExplode(explode);
 
     // camera move
