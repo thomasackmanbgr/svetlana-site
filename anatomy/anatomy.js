@@ -26,7 +26,7 @@
   renderer.setPixelRatio(Math.min(devicePixelRatio, isTouch ? 1.6 : 2));
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
+  renderer.toneMappingExposure = 1.0;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
@@ -43,8 +43,8 @@
   controls.addEventListener("start", () => { userDragging = true; camAnim = 0; });
   controls.addEventListener("end", () => { userDragging = false; });
 
-  scene.add(new THREE.AmbientLight(0xfff3ec, 0.75));
-  const key = new THREE.DirectionalLight(0xffeee2, 2.2); key.position.set(4, 7, 6); scene.add(key);
+  scene.add(new THREE.AmbientLight(0xfff3ec, 0.55));
+  const key = new THREE.DirectionalLight(0xffeee2, 1.9); key.position.set(4, 7, 6); scene.add(key);
   const fill = new THREE.DirectionalLight(0xe5a495, 1.1); fill.position.set(-6, 1, -3); scene.add(fill);
   const rim = new THREE.DirectionalLight(0x8fe0d0, 0.9); rim.position.set(-2, 6, -7); scene.add(rim);
   const under = new THREE.PointLight(0xe5a495, 0.8, 12); under.position.set(0, -1, 3); scene.add(under);
@@ -75,8 +75,9 @@
       fragmentShader: "uniform vec3 c; uniform float o; uniform float glow; varying vec3 n; varying vec3 v; void main(){ float f=pow(1.0-abs(dot(n,v)),2.2); float a=(0.05+f*0.9+glow*0.25)*o; gl_FragColor=vec4(c*(0.6+f*1.2+glow),a); }"
     });
   }
-  const std = (color, o = {}) => new THREE.MeshStandardMaterial(Object.assign({ color, roughness: 0.42, metalness: 0.08, transparent: true, opacity: 1 }, o));
-  const phys = (color, o = {}) => new THREE.MeshPhysicalMaterial(Object.assign({ color, roughness: 0.32, metalness: 0.0, clearcoat: 0.8, clearcoatRoughness: 0.25, transparent: true, opacity: 1 }, o));
+  const lin = c => new THREE.Color(c).convertSRGBToLinear();
+  const std = (color, o = {}) => new THREE.MeshStandardMaterial(Object.assign({ color: lin(color), roughness: 0.42, metalness: 0.08, transparent: true, opacity: 1 }, o));
+  const phys = (color, o = {}) => new THREE.MeshPhysicalMaterial(Object.assign({ color: lin(color), roughness: 0.32, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.3, transparent: true, opacity: 1 }, o));
 
   /* ---------- geometry helpers ---------- */
   const SPH = new THREE.SphereGeometry(1, 40, 28), SPH_LO = new THREE.SphereGeometry(1, 18, 12);
@@ -297,7 +298,7 @@
       const saved = explode; applyExplode(s.explode ?? explode); world.updateMatrixWorld(true);
       const p = focusPoint(s.focus) || HOME.target.clone();
       applyExplode(saved);
-      const dist = s.focus[0] === "skeleton" ? 9.5 : s.focus[0] === "skin" ? 7.5 : 6.4;
+      const dist = s.focus[0] === "skeleton" ? 11 : s.focus[0] === "skin" ? 8 : 8.2;
       const shift = (s.side || 1) * (narrow ? 0 : 1.7);                // panel on the right -> organ shown on the left
       camTo.target.copy(p).add(V(shift, narrow ? -1.1 : 0, 0));
       camTo.pos.copy(camTo.target).add(V(0.9, 1.0, dist + (narrow ? 2.6 : 0)));
