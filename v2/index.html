@@ -1111,12 +1111,12 @@ function render(){
 
 function setLang(l){
   try{ localStorage.setItem("vetLang", l); }catch(e){}
-  if(location.protocol.startsWith("http") && l !== (PATH_LANG || "az")){ location.href = LANG_URL[l] + location.hash; return; }   // each language has its own address (for Google)
+  if(false){ location.href = LANG_URL[l] + location.hash; return; }   // each language has its own address (for Google)
   lang = l; render(); renderSchedule(); renderPm();
 }
 $$(".langs [data-lang]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); setLang(b.dataset.lang); }));
 // visitors who picked Russian/English before get sent to that version when they open the main address
-try{ const s = localStorage.getItem("vetLang"); if(!PATH_LANG && T[s] && s !== "az" && location.protocol.startsWith("http") && !/bot|crawl|spider/i.test(navigator.userAgent)) location.replace(LANG_URL[s] + location.hash); }catch(e){}
+try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; }catch(e){}
 
 // ================= booking wizard =================
 const BK = { step:1, pet:0, svc:null, date:null, time:null, cache:{}, result:null };

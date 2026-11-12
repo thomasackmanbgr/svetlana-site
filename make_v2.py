@@ -314,6 +314,12 @@ rep('</body>', '''<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r
 <script src="/anatomy/anatomy.js?v=4"></script>
 </body>''')
 
+# preview: switch language in place (the /ru/ and /en/ addresses still serve the current design)
+rep('if(location.protocol.startsWith("http") && l !== (PATH_LANG || "az")){', 'if(false){')
+i = s.index('try{ const s = localStorage.getItem("vetLang"); if(!PATH_LANG')
+j = s.index('}catch(e){}', i)
+s = s[:i] + 'try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; ' + s[j:]
+
 out = ROOT / "v2"; out.mkdir(exist_ok=True)
 (out / "index.html").write_text(s, encoding="utf-8")
 print("built /v2/index.html", len(s)//1024, "KB")
