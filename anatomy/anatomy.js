@@ -160,12 +160,12 @@
   const SPECIES = {
     dog: {
       skin: 0xf4c4b7,
-      body: [[V(2.66, 2.02), .045, .05], [V(2.36, 2.12), .13, .13], [V(1.95, 2.3), .26, .23], [V(1.6, 2.22), .24, .19], [V(1.3, 1.98), .27, .2],
+      body: [[V(2.56, 2.04), .05, .06], [V(2.3, 2.12), .14, .14], [V(1.95, 2.3), .26, .23], [V(1.6, 2.22), .24, .19], [V(1.3, 1.98), .27, .2],
              [V(0.85, 1.52), .5, .35], [V(0.2, 1.46), .45, .37], [V(-0.5, 1.6), .3, .31], [V(-1.05, 1.62), .34, .29], [V(-1.4, 1.65), .09, .08]],
       spine: [V(1.55, 2.17), V(1.32, 2.0), V(1.06, 1.84), V(0.55, 1.83), V(-0.25, 1.8), V(-0.95, 1.79), V(-1.22, 1.76), V(-1.36, 1.73)],
       regions: { C: [0, 0.2], T: [0.2, 0.62], L: [0.62, 0.9], S: [0.9, 1] },
       tail: [V(-1.36, 1.73), V(-1.7, 1.62), V(-2.08, 1.38), V(-2.4, 1.05), V(-2.52, 0.86)], tailR: [0.085, 0.025], wag: [3.5, 0.3],
-      skull: { cran: V(1.8, 2.3), cranR: V(0.23, 0.17, 0.17), snoutA: V(1.98, 2.27), snoutB: V(2.62, 2.05), snoutR: [0.11, 0.045], occ: V(1.58, 2.24), eye: V(2.0, 2.33), eyeR: 0.07, jawBack: V(1.74, 2.06), chin: V(2.56, 1.96) },
+      skull: { cran: V(1.8, 2.3), cranR: V(0.23, 0.17, 0.17), snoutA: V(1.98, 2.27), snoutB: V(2.52, 2.06), snoutR: [0.12, 0.065], occ: V(1.58, 2.24), eye: V(2.0, 2.33), eyeR: 0.07, jawBack: V(1.74, 2.06), chin: V(2.46, 1.97) },
       ear: "flop", teethN: 10,
       front: { scapTop: V(0.82, 1.98), shoulder: V(1.14, 1.36), elbow: V(0.93, 0.95), carpus: V(1.0, 0.32), fetlock: V(1.07, 0.12), toe: V(1.2, 0.04), z: 0.24, r: [0.15, 0.14, 0.1, 0.06, 0.055] },
       hind: { hip: V(-1.12, 1.46), stifle: V(-0.83, 0.96), hock: V(-1.24, 0.46), fetlock: V(-1.14, 0.12), toe: V(-1.02, 0.04), z: 0.26, r: [0.22, 0.2, 0.13, 0.06, 0.055] },
@@ -311,7 +311,7 @@
       for (let i = 0; i < n; i++) {
         const t = i / (n - 1), canine = i === n - 2, tu = 0.1 + t * 0.85;
         const up = K.snoutA.clone().lerp(K.snoutB, tu), lw = jb.clone().lerp(ch, 0.25 + t * 0.72);
-        const hU = canine ? br * 2.3 : br * (t < 0.6 ? 1.0 : 0.6), hL = canine ? br * 2.0 : br * 0.7;
+        const hU = canine ? br * 1.7 : br * (t < 0.6 ? 0.75 : 0.45), hL = canine ? br * 1.5 : br * 0.55;
         const ut = new THREE.Mesh(new THREE.ConeGeometry(canine ? br * 0.42 : br * 0.32, hU, 6), toothM);
         ut.position.set(up.x, up.y - lerp(K.snoutR[0], K.snoutR[1], tu) * 0.85 - hU * 0.4, s * lerp(K.snoutR[0] * 0.75, K.snoutR[1] * 0.6, t) * lerp(1, 0.55, t) * 1.1); ut.rotation.x = Math.PI; TT.push(ut);
         const lt = new THREE.Mesh(new THREE.ConeGeometry(canine ? br * 0.4 : br * 0.3, hL, 6), toothM);
@@ -666,7 +666,8 @@
     setExplode(v) { story = "free"; focus = null; targetExplode = v; autoRotate = false; },
     toggleRotate() { autoRotate = !autoRotate; return autoRotate; },
     reset() { story = "_"; setStory("hero"); },
-    get species() { return species; }, get story() { return story; }
+    get species() { return species; }, get story() { return story; },
+    _v: { world, camera, controls, animals, scene }
   };
   window.onAnatomyReady && window.onAnatomyReady();
 })();
