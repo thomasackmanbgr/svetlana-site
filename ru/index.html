@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://svetlanatbaytarliq.com/ru/">
 <meta property="og:title" content="Ветеринарная клиника Svetlana-T — Баку">
 <meta property="og:description" content="Ветеринарная клиника Svetlana-T, Баку: осмотр, прививки, УЗИ, анализы, стерилизация и хирургия для кошек и собак. Ветаптека и корма. Онлайн-запись: 050 653 08 77">
-<meta name="theme-color" content="#1f6f63">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -101,7 +101,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 .badge i svg{width:19px;height:19px}
 
 .hero-art{position:relative;aspect-ratio:1/1.05}
-.blob{position:absolute;inset:4% 2% 0 6%;background:linear-gradient(150deg,var(--teal) 0%,#2b8a7b 60%,#46a592 100%);border-radius:46% 54% 42% 58%/52% 44% 56% 48%;overflow:hidden;box-shadow:var(--shadow)}
+.blob{position:absolute;inset:4% 2% 0 6%;background:linear-gradient(150deg,#e11d2e 0%,#9e0f1b 60%,#1a1a1a 100%);border-radius:46% 54% 42% 58%/52% 44% 56% 48%;overflow:hidden;box-shadow:var(--shadow)}
 .blob img{width:100%;height:100%;object-fit:cover}
 .blob .illu{position:absolute;inset:0;width:100%;height:100%}
 .float{position:absolute;background:#fff;border-radius:18px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;box-shadow:var(--shadow);font-weight:700;font-size:.9rem;animation:bob 6s ease-in-out infinite}
@@ -145,7 +145,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.88);backdro
 
 /* about */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:center}
-.about-photo{position:relative;aspect-ratio:4/5;border-radius:200px 200px var(--r) var(--r);overflow:hidden;background:linear-gradient(160deg,#f7d9c9,#ef7b5a);box-shadow:var(--shadow)}
+.about-photo{position:relative;aspect-ratio:4/5;border-radius:200px 200px var(--r) var(--r);overflow:hidden;background:linear-gradient(160deg,#2a2a2a,#9e0f1b);box-shadow:var(--shadow)}
 .about-photo img{width:100%;height:100%;object-fit:cover}
 .about-photo .ph{position:absolute;inset:0;display:grid;place-items:center}
 .about-photo .ph svg{width:55%;color:rgba(255,255,255,.85)}
@@ -387,6 +387,152 @@ button.prod{display:flex;flex-direction:column;text-align:left;border:0;padding:
 .sched-addr:hover span{text-decoration:underline}
 .map-link{display:block;margin-top:.3rem;font-size:.82rem;font-weight:800;color:var(--coral)}
 
+
+/* ===================== DARK LUXURY THEME (v2) ===================== */
+:root{
+  --ink:#ffffff; --ink-2:#d9d9d9; --muted:#9a9a9a;
+  --teal:#e11d2e; --teal-d:#b8141f; --teal-l:rgba(255,255,255,.13);
+  --coral:#e11d2e; --coral-d:#b8141f; --sun:#ff6b75;
+  --cream:#0a0a0a; --sand:#0d0d0d; --white:#121212;
+  --line:rgba(225,29,46,.16); --glass:rgba(14,14,14,.66);
+  --shadow:0 24px 60px -24px rgba(0,0,0,.8);
+}
+html{background:#000000}
+body{background:#000000;color:var(--ink)}
+::selection{background:#e11d2e;color:#000}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:#000000}::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#e11d2e}
+em,.rg{font-style:italic;background:linear-gradient(135deg,#ffffff 0%,#e11d2e 50%,#9e0f1b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+h1,h2,h3{color:#fff}
+.eyebrow{color:var(--coral)} .eyebrow::before{background:var(--coral)}
+.lead{color:#c8c8c8}
+.glass,.card,.prod,.value,.cc,.sched,.note,.bk,.pc,.pm-box,.svc,.day,.slot,.pm-rows li,.pm-filter button,input,select,textarea,.langs,.btn-ghost{
+  background:var(--glass)!important;border:1px solid var(--line)!important;color:var(--ink);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.card:hover,.prod:hover,.cc:hover,.pc:hover{border-color:rgba(225,29,46,.5)!important;box-shadow:0 0 30px rgba(225,29,46,.12),var(--shadow)}
+header{background:rgba(0,0,0,.62);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+.links a{color:#bdb2ab} .links a:hover{color:var(--coral)}
+.links.open{background:#0a0a0a!important;border-color:var(--line)!important}
+.logo b{color:#fff} .logo small{color:#9a9a9a}
+.logo-mark{background:linear-gradient(135deg,#ff4d5a,#e11d2e 45%,#9e0f1b)} .logo-mark svg{color:#fff!important}
+.burger{color:var(--coral)}
+.langs button,.langs a{color:#9a9a9a} .langs a.on,.langs button.on{background:linear-gradient(135deg,#ff4d5a,#e11d2e 55%,#9e0f1b);color:#fff}
+.btn-primary{background:linear-gradient(110deg,#ff4d5a,#e11d2e 45%,#9e0f1b);color:#fff;box-shadow:0 12px 30px -10px rgba(225,29,46,.45)}
+.btn-primary:hover{filter:brightness(1.08);background:linear-gradient(110deg,#ff4d5a,#e11d2e 45%,#9e0f1b)}
+.btn-teal{background:rgba(225,29,46,.1);color:var(--sun);border:1px solid rgba(225,29,46,.35)}
+.btn-teal:hover{background:rgba(225,29,46,.2)}
+.btn-ghost{color:var(--ink)!important} .btn-ghost:hover{border-color:var(--coral)!important;color:var(--coral)!important}
+section{position:relative}
+.services,.gallery,#about,#contact{background:transparent}
+.products{background:linear-gradient(180deg,transparent,#0d0b0a 20%,#0d0b0a 80%,transparent)}
+.card .ic{background:linear-gradient(135deg,rgba(225,29,46,.22),rgba(158,15,27,.22));color:var(--sun);border:1px solid var(--line)}
+.card:hover .ic{background:linear-gradient(135deg,#ff4d5a,#9e0f1b);color:#fff}
+.card p,.prod-body p,.value span,.cc small{color:#a3a3a3}
+.tags span{background:rgba(225,29,46,.1);color:var(--sun)}
+.cnt{background:rgba(0,0,0,.6);color:var(--sun)}
+.about-photo{background:linear-gradient(160deg,#2a2a2a,#9e0f1b)}
+.gal .g{background:linear-gradient(135deg,#171312,#241a17)}
+.gal .g:nth-child(2n){background:linear-gradient(135deg,#1b1513,#2b1e1a)}
+.appt{background:radial-gradient(120% 90% at 85% 10%,rgba(225,29,46,.16),transparent 55%),radial-gradient(90% 70% at 0% 100%,rgba(255,255,255,.1),transparent 60%),#050505}
+.appt .eyebrow{color:var(--coral)} .appt .lead{color:#c8c8c8}
+.call-box{background:var(--glass);border-color:var(--line)}
+.bk-bar i{background:#262626} .bk-bar i.on{background:linear-gradient(90deg,#ff4d5a,#e11d2e)}
+.svc .si,.day.on{background:linear-gradient(135deg,#ff4d5a,#9e0f1b)!important;color:#fff!important}
+.day.on small,.day.on span{color:#3a221c}
+.pets span{background:var(--glass);border-color:var(--line);color:var(--ink)}
+.pets input:checked+span{background:linear-gradient(135deg,#ff4d5a,#9e0f1b);border-color:transparent;color:#fff}
+.slot:hover{border-color:var(--coral)!important;color:var(--coral)}
+.bk-chip{background:rgba(225,29,46,.1);color:var(--sun)}
+input:focus,select:focus,textarea:focus{border-color:var(--coral)!important;box-shadow:0 0 0 4px rgba(225,29,46,.15)}
+select option{background:#121212}
+.sched-addr{color:var(--ink);border-top-color:var(--line)} .sched li span{color:#9a9a9a} .sched ul{color:#d9d9d9}
+.cc i{background:linear-gradient(135deg,#ff4d5a,#9e0f1b)!important;color:#fff} .cc i svg{color:#fff}
+.pm{background:rgba(0,0,0,.7)} .pm-foot{border-color:var(--line)} .pm-filter button.on{background:linear-gradient(135deg,#ff4d5a,#9e0f1b)!important;color:#fff}
+.pc img{background:#fff}
+.pm-list .th.none{background:#1c1817}
+footer{background:#000000;border-top:1px solid var(--line)}
+.mbar .btn-teal{background:#161616}
+.nav-call{white-space:nowrap}
+@media (max-width:1180px){.links{gap:1.1rem}.nav-call span{display:none}.nav-call{padding:.7rem}}
+.link-btn{color:var(--coral)}
+.prod-top::after{background:rgba(255,255,255,.08)}
+
+/* ===================== 3D STORY ===================== */
+.story{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;z-index:0;
+  background:radial-gradient(60% 55% at 62% 52%,rgba(225,29,46,.12),transparent 70%),radial-gradient(50% 40% at 20% 90%,rgba(255,255,255,.07),transparent 70%),#000000}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.stage canvas:active{cursor:grabbing}
+.stage-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55))}
+.stage-fallback{display:none;position:absolute;right:6%;top:14%;width:min(420px,40vw);aspect-ratio:4/5}
+.stage.nogl .stage-fallback{display:block}
+.stage.nogl canvas,.stage.nogl .anat-bar,.stage.nogl .anat-labels{display:none}
+.stage-fallback .show{position:absolute;inset:0}
+.story-flow{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh;pointer-events:none}
+.st{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:110px 6% 130px}
+.st.right{justify-content:flex-end}
+.st > *{pointer-events:auto}
+.st-hero{align-items:center}
+.hero-copy{max-width:560px}
+.hero-copy h1{font-size:clamp(2.6rem,5.4vw,4.6rem);margin:1rem 0 1.2rem;text-shadow:0 10px 40px rgba(0,0,0,.5)}
+.hero-copy .lead{font-size:1.1rem}
+.hero-copy .sched{margin-top:.2rem}
+.hint3d{display:flex;align-items:center;gap:.55rem;margin-top:1.6rem;color:#9a9a9a;font-size:.85rem;font-weight:600}
+.hint3d svg{width:20px;height:20px;color:var(--coral);animation:nudge 2.4s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(6px) rotate(-8deg)}}
+.panel{max-width:470px;width:100%;max-height:calc(100vh - 200px);max-height:calc(100svh - 200px);overflow:auto;scrollbar-width:thin;border-radius:28px;padding:2.1rem 2.1rem 2rem;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;box-shadow:var(--shadow)}
+.st.in .panel{opacity:1;transform:none}
+.st-tag{display:flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
+.st-tag i{width:22px;height:2px;background:var(--coral);border-radius:2px}
+.panel h2{font-size:clamp(1.8rem,3vw,2.5rem);margin:.7rem 0 .9rem}
+.panel p{color:#c4c4c4;font-size:.98rem;line-height:1.7}
+.st-sub{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8c8c8c;margin:1.3rem 0 .55rem}
+.st-svcs{display:flex;flex-wrap:wrap;gap:.45rem}
+.st-svcs a{font-size:.8rem;font-weight:700;padding:.45rem .8rem;border-radius:999px;border:1px solid var(--line);color:var(--sun);background:rgba(225,29,46,.07);transition:.2s}
+.st-svcs a:hover{background:rgba(225,29,46,.18)}
+.st-prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:.55rem}
+.st-prod{display:flex;flex-direction:column;gap:.35rem;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:.4rem;cursor:zoom-in;text-align:left;font:inherit;color:inherit;transition:.2s}
+.st-prod:hover{border-color:rgba(225,29,46,.55);transform:translateY(-2px)}
+.st-prod img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#fff}
+.st-prod span{font-size:.68rem;font-weight:700;line-height:1.25;color:#d9d9d9;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st-prod.noimg{cursor:pointer}.st-prod.noimg b{display:grid;place-items:center;aspect-ratio:1;border-radius:10px;background:#1c1817;font-size:1.4rem}
+.st-btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.st-btns .btn{padding:.85rem 1.3rem;font-size:.9rem}
+.anat-labels{position:absolute;inset:0;pointer-events:none;z-index:3}
+.alabel{position:absolute;left:0;top:0;display:flex;align-items:center;gap:.45rem;pointer-events:auto;background:none;border:0;cursor:pointer;opacity:0;transition:opacity .35s;font:700 .74rem Manrope,sans-serif;color:#fff;white-space:nowrap;margin:-7px 0 0 -7px}
+.alabel.on{opacity:1}
+.alabel i{width:14px;height:14px;border-radius:50%;background:#e11d2e;box-shadow:0 0 0 0 rgba(225,29,46,.7);animation:ring 2s infinite;flex-shrink:0}
+.alabel span{background:rgba(8,8,8,.78);border:1px solid var(--line);padding:.3rem .6rem;border-radius:999px;backdrop-filter:blur(8px)}
+.alabel.hot span{border-color:#e11d2e;color:var(--sun)}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(225,29,46,.7)}70%{box-shadow:0 0 0 12px rgba(225,29,46,0)}100%{box-shadow:0 0 0 0 rgba(225,29,46,0)}}
+.anat-bar{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:1rem;padding:.65rem .8rem .65rem .7rem;border-radius:20px;width:max-content;max-width:94vw}
+.sp-toggle{display:flex;background:rgba(0,0,0,.35);border-radius:999px;padding:3px}
+.sp-toggle button{border:0;background:none;color:#a3a3a3;font:700 .82rem Manrope,sans-serif;padding:.45rem .85rem;border-radius:999px;cursor:pointer}
+.sp-toggle button.on{background:linear-gradient(135deg,#ff4d5a,#9e0f1b);color:#fff}
+.lay{display:flex;align-items:center;gap:.55rem;margin:0;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a3a3a3}
+.lay svg{width:16px;height:16px;color:var(--coral)}
+.lay input{width:140px;padding:0;height:4px;accent-color:#e11d2e;background:transparent!important;border:0!important;backdrop-filter:none}
+.lay b{font:600 .78rem ui-monospace,monospace;color:var(--coral);min-width:34px;text-align:right;letter-spacing:0}
+.ibs{display:flex;gap:.35rem;border-left:1px solid var(--line);padding-left:.7rem}
+.ib{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#a3a3a3;display:grid;place-items:center;cursor:pointer}
+.ib svg{width:16px;height:16px}.ib.on,.ib:hover{color:var(--coral);border-color:rgba(225,29,46,.45)}
+.story ~ section{z-index:1}
+@media (max-width:900px){
+  .st{align-items:flex-end;padding:90px 4% 96px}
+  .st.right{justify-content:center}.st{justify-content:center}
+  .st-hero{align-items:flex-end}
+  .hero-copy{background:linear-gradient(180deg,transparent,rgba(0,0,0,.92) 22%);padding-top:3rem;border-radius:24px}
+  .hero-copy h1{font-size:clamp(2.1rem,9vw,3rem)}
+  .panel{padding:1.4rem 1.2rem 1.3rem;max-height:56vh;max-height:56svh;overflow:auto;border-radius:22px}
+  .panel p{font-size:.92rem}
+  .anat-bar{bottom:12px;gap:.6rem;padding:.5rem}
+  .lay span{display:none}.lay input{width:90px}
+  .hero-copy .lead,.hint3d,#schedList,.sched-addr{display:none!important}
+  .hero-copy .sched{padding:.65rem 1rem}.hero-copy .sched-now{margin:0}
+  .hero-copy{padding-top:5rem}
+  body.instory .mbar{transform:translateY(140%);opacity:0;pointer-events:none}
+  .stage-fallback{right:50%;transform:translateX(50%);top:12%;width:70vw}
+}
+@media (max-width:420px){.sp-toggle button span{display:none}.lay b{display:none}}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 #extra{grid-template-columns:1fr 2fr}
@@ -470,6 +616,10 @@ footer .langs{background:transparent;border-color:#33504a}
   <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8M3 22h18M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2zM12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></symbol>
   <symbol id="i-skin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5M8 10h.01M12 8h.01M13 12h.01M9 13h.01"/></symbol>
   <symbol id="i-comb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="5" rx="1.5"/><path d="M5 9v9M8.5 9v11M12 9v9M15.5 9v11M19 9v9"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol>
+  <symbol id="i-rot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/></symbol>
  </defs>
 </svg>
 
@@ -498,11 +648,32 @@ footer .langs{background:transparent;border-color:#33504a}
 </header>
 
 <main id="top">
- <!-- HERO -->
- <section class="hero">
-  <svg class="paws" viewBox="0 0 24 24" style="color:var(--teal)"><use href="#i-paw"/></svg>
-  <div class="wrap hero-grid">
-   <div class="reveal">
+ <!-- 3D ANATOMY STORY -->
+ <section class="story" id="anatomy">
+  <div class="stage" id="stage3d">
+   <canvas id="anatCanvas" aria-label="3D anatomy"></canvas>
+   <div class="anat-labels" id="anatLabels"></div>
+   <div class="stage-fallback">
+    <div class="show" id="heroShow" aria-roledescription="carousel"><div class="ph"><svg><use href="#i-paw"/></svg></div></div>
+    <div class="show-dots" id="showDots"></div>
+   </div>
+   <div class="stage-vignette"></div>
+   <div class="anat-bar glass" id="anatBar">
+    <div class="sp-toggle" role="group">
+     <button type="button" data-sp="dog" class="on">🐶 <span data-i="spDog">İt</span></button>
+     <button type="button" data-sp="cat">🐱 <span data-i="spCat">Pişik</span></button>
+    </div>
+    <label class="lay"><svg><use href="#i-layers"/></svg><span data-i="layers">Qatlar</span>
+     <input type="range" id="explodeRange" min="0" max="1" step="0.01" value="0"><b id="explodeVal">0%</b></label>
+    <div class="ibs">
+     <button type="button" class="ib on" id="rotBtn" aria-label="Rotate"><svg><use href="#i-rot"/></svg></button>
+     <button type="button" class="ib" id="resetBtn" aria-label="Reset"><svg><use href="#i-reset"/></svg></button>
+    </div>
+   </div>
+  </div>
+  <div class="story-flow">
+   <div class="st st-hero" data-story="hero">
+    <div class="hero-copy">
     <span class="eyebrow" data-i="heroEyebrow">Baytarlıq klinikası</span>
     <h1 data-i="heroTitle" data-html>Dostlarınızın sağlamlığı — <em>qayğılı əllərdə</em></h1>
     <p class="lead" data-i="heroLead">Pişiklər, itlər və digər ev heyvanları üçün müayinə, peyvənd, müalicə və cərrahiyyə. Hər bir heyvana sevgi və diqqətlə yanaşırıq.</p>
@@ -518,16 +689,15 @@ footer .langs{background:transparent;border-color:#33504a}
      <ul id="schedList"></ul>
      <a class="sched-addr maps" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span id="schedAddr"></span></a>
     </div>
-   </div>
-   <div class="hero-art reveal">
-    <div class="sun"></div>
-    <div class="show" id="heroShow" aria-roledescription="carousel">
-     <div class="ph"><svg><use href="#i-paw"/></svg></div>
+   
+     <div class="hint3d"><svg><use href="#i-hand"/></svg><span data-i="hint3d">Fırladın və aşağı sürüşdürün — anatomiyanı kəşf edin</span></div>
     </div>
-    <div class="show-dots" id="showDots"></div>
-    <div class="float f1"><i><svg><use href="#i-syringe"/></svg></i><span><span data-i="f1t">Peyvənd</span><small data-i="f1s">Pişik və itlər üçün</small></span></div>
-    <div class="float f2"><i><svg><use href="#i-check"/></svg></i><span><span data-i="f2t">Onlayn qəbul</span><small data-i="f2s">Rahat və sürətli</small></span></div>
    </div>
+   <div class="st right" data-story="heart"><div class="glass panel" id="sp-heart"></div></div>
+   <div class="st" data-story="kidney"><div class="glass panel" id="sp-kidney"></div></div>
+   <div class="st right" data-story="digest"><div class="glass panel" id="sp-digest"></div></div>
+   <div class="st" data-story="skeleton"><div class="glass panel" id="sp-skeleton"></div></div>
+   <div class="st right" data-story="skin"><div class="glass panel" id="sp-skin"></div></div>
   </div>
  </section>
 
@@ -753,7 +923,7 @@ const SERVICES = [
 
 // Each category can show a photo instead of the icon: add  img:"/images/products/food.jpg"
 const PRODUCTS = [
-  {ic:"bowl", bg:"linear-gradient(135deg,#f6c667,#ef9b5a)",
+  {ic:"bowl", bg:"linear-gradient(135deg,#ff4d5a,#9e0f1b)",
    az:["Yemlər","Pişik, it və tutuquşular üçün keyfiyyətli quru və yaş yemlər.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
    ru:["Корма","Качественные сухие и влажные корма для кошек, собак и попугаев.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
    en:["Pet food","Quality dry and wet food for cats, dogs and parrots.",["Monge","Vida Nativa","Gourmet Gold","Nature's Protection","RIO"]],
@@ -767,7 +937,7 @@ const PRODUCTS = [
     {n:"Nature's Protection Superior Care Red Coat", p:"d", az:"Kiçik cins, qırmızı tüklü itlər üçün; quzu əti, taxılsız.", ru:"Для мелких пород с рыжей шерстью; ягнёнок, без злаков.", en:"For small breeds with red coats; lamb, grain-free."},
     {img:"rio-daily", n:"RIO Daily Feed", p:"b", az:"Orta və iri tutuquşular (korella, sevgi quşları) üçün gündəlik tam rasion, kalsiumla.", ru:"Полнорационный корм для средних и крупных попугаев (корелла, неразлучники), с кальцием.", en:"Complete daily feed for medium and large parrots (cockatiels, lovebirds), with calcium."}
    ]},
-  {ic:"pill", bg:"linear-gradient(135deg,#1f6f63,#46a592)",
+  {ic:"pill", bg:"linear-gradient(135deg,#3a3a3a,#111111)",
    az:["Müalicəvi pəhriz yemləri","Böyrək, sidik yolları, qaraciyər, həzm və diabet üçün baytarlıq pəhrizləri.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
    ru:["Лечебные диеты","Ветеринарные рационы для почек, мочевыводящих путей, печени, ЖКТ и при диабете.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
    en:["Vet diets","Veterinary diets for kidneys, urinary tract, liver, digestion and diabetes.",["Craftia Galena","Purina Pro Plan VD","Monge VetSolution"]],
@@ -780,7 +950,7 @@ const PRODUCTS = [
     {img:"purina-en", n:"Purina Pro Plan VD EN Gastrointestinal", p:"d", az:"Həzm problemləri olan itlər üçün, asan həzm olunur.", ru:"Для собак с проблемами ЖКТ, легко усваивается.", en:"For dogs with digestive issues, highly digestible."},
     {n:"Monge VetSolution HYPO Monoprotein", p:"d", az:"Allergiya və həssas həzm üçün; ördək və ya quzu, taxılsız.", ru:"При аллергии и чувствительном ЖКТ; утка или ягнёнок, без злаков.", en:"For allergies and sensitive digestion; duck or lamb, grain-free."}
    ]},
-  {ic:"shield", bg:"linear-gradient(135deg,#ef7b5a,#e2486f)",
+  {ic:"shield", bg:"linear-gradient(135deg,#ff4d5a,#9e0f1b)",
    az:["Parazit əleyhinə vasitələr","Qurd, birə, gənə və ürək qurduna qarşı preparatlar.",["NexGard Combo","Endopet","Diroheart"]],
    ru:["Средства от паразитов","Препараты от глистов, блох, клещей и сердечного червя.",["NexGard Combo","Endopet","Diroheart"]],
    en:["Parasite control","Protection against worms, fleas, ticks and heartworm.",["NexGard Combo","Endopet","Diroheart"]],
@@ -789,7 +959,7 @@ const PRODUCTS = [
     {n:"Endopet", p:"cd", az:"Daxili parazitlərə qarşı tabletlər (50 tab.).", ru:"Таблетки от внутренних паразитов (50 таб.).", en:"Dewormer tablets (50 tablets)."},
     {img:"diroheart", n:"Diroheart / Diroheart Plus M", p:"d", az:"Ürək qurdu və bağırsaq parazitlərinə qarşı çeynənən tablet, ayda 1 dəfə.", ru:"Жевательные таблетки от сердечного червя и кишечных паразитов, 1 раз в месяц.", en:"Monthly chewable against heartworm and intestinal worms."}
    ]},
-  {ic:"bone", bg:"linear-gradient(135deg,#b49be0,#7a5fc0)",
+  {ic:"bone", bg:"linear-gradient(135deg,#3a3a3a,#111111)",
    az:["Ləzzətlər","İt, pişik və quşlar üçün dadlı və faydalı mükafatlar.",["8in1","SmartBones","GimCat","RA NOVA"]],
    ru:["Лакомства","Вкусные и полезные угощения для собак, кошек и птиц.",["8in1","SmartBones","GimCat","RA NOVA"]],
    en:["Treats","Tasty, healthy rewards for dogs, cats and birds.",["8in1","SmartBones","GimCat","RA NOVA"]],
@@ -802,7 +972,7 @@ const PRODUCTS = [
     {n:"Quşlar üçün mükafat yemi — meyvəli", p:"b", az:"Dalğalı tutuquşu və ekzotik quşlar üçün meyvəli ləzzət.", ru:"Фруктовое лакомство для волнистых и экзотических попугаев.", en:"Fruit treat for budgies and exotic birds."},
     {n:"Quşlar üçün mükafat yemi — yumurta və bal", p:"b", az:"Bütün quşlar üçün; dəniz qabığı — kalsium mənbəyi.", ru:"Для всех птиц; морская ракушка — источник кальция.", en:"For all birds; with seashell for calcium."}
    ]},
-  {ic:"vit", bg:"linear-gradient(135deg,#7fb77e,#3f8f6b)",
+  {ic:"vit", bg:"linear-gradient(135deg,#ff4d5a,#9e0f1b)",
    az:["Vitaminlər və əlavələr","Ürək, böyrək, oynaqlar, həzm, dəri və immunitet üçün.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
    ru:["Витамины и добавки","Для сердца, почек, суставов, пищеварения, кожи и иммунитета.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
    en:["Vitamins & supplements","For heart, kidneys, joints, digestion, skin and immunity.",["Vet Expert","Canina","GimCat","Zoovital","8in1"]],
@@ -818,7 +988,7 @@ const PRODUCTS = [
     {img:"vetexpert-neuro", n:"Vet Expert Neuro Support", p:"cd", az:"Sinir sistemi və yaşlı heyvanlarda idrak üçün: B vitaminləri, L-triptofan.", ru:"Для нервной системы и когнитивных функций у пожилых: витамины B, L-триптофан.", en:"Nervous system and senior brain support: B vitamins, L-tryptophan."},
     {img:"8in1-excel-deter", n:"8in1 Excel Deter", p:"d", az:"İtlərdə nəcis yeməyin (koprofagiya) qarşısını almağa kömək edir.", ru:"Помогает отучить собак от поедания экскрементов.", en:"Helps stop dogs eating their own stool."}
    ]},
-  {ic:"soap", bg:"linear-gradient(135deg,#8ec5e0,#4d8fb8)",
+  {ic:"soap", bg:"linear-gradient(135deg,#3a3a3a,#111111)",
    az:["Gigiyena və aksesuarlar","Şampunlar, göz baxımı, keramik qablar və daşıyıcılar.",["TRIXIE","Vet Expert"]],
    ru:["Гигиена и аксессуары","Шампуни, уход за глазами, керамические миски и переноски.",["TRIXIE","Vet Expert"]],
    en:["Hygiene & accessories","Shampoos, eye care, ceramic bowls and carriers.",["TRIXIE","Vet Expert"]],
@@ -845,7 +1015,7 @@ const T = {
   v1t:"Qayğı",v1s:"Hər heyvana fərdi yanaşma",v2t:"Peşəkarlıq",v2s:"Dəqiq diaqnoz və müalicə",v3t:"Etibar",v3s:"Açıq və dürüst məsləhət",
   galTitle:"Bizim <em>balaca pasiyentlər</em>",galBtn:"Instagram-da izləyin",
   apTitle:'Qəbula <em style="color:var(--sun)">onlayn</em> yazılın',apLead:"Qəbul yalnız qeydiyyatladır. Xidməti, günü və boş saatı seçin — bir dəqiqəyə rezerv edin. Təcili hallarda zəng edin.",apCall:"Zəng edin və ya yazın",setmore:"Onlayn rezerv",call:"Zəng et",
-  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",pSee:"Məhsullara bax",pAll:"Hamısı",pCat:"Pişik",pDog:"İt",pBird:"Quş",pNote:"Mövcudluq və qiyməti zəng edərək dəqiqləşdirin.",mapOpen:"Xəritədə aç →",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
+  fName:"Adınız",fPhone:"Telefon nömrəniz",fPet:"Heyvanın növü",fPetName:"Heyvanın adı",fService:"Xidmət",fDate:"Tarix",fTime:"Saat",fNote:"Qeyd (şikayət, simptomlar)",fSubmit:"Müraciəti hazırla",closedDay:"Bazar ertəsi və Çərşənbə axşamı klinika bağlıdır. Başqa gün seçin.",bk1:"Nə üçün gəlirsiniz?",bk2:"Gün və saat seçin",bk3:"Əlaqə məlumatları",bkBack:"Geri",bkConfirm:"Rezervi təsdiqlə",bkSending:"Göndərilir…",bkMin:"dəq",bkCall:"Zəng edin",bkCallMsg:"Bu xidmət üçün həkimlə əvvəlcədən danışmaq lazımdır. Zəng edin: ",bkPickDay:"Gün seçin",bkLoading:"Boş saatlar yüklənir…",bkNoSlots:"Bu gün boş saat yoxdur. Başqa gün seçin.",bkTaken:"Bu saat artıq tutulub. Başqa saat seçin.",bkLimit:"Bu nömrə ilə bu gün çox rezerv edilib. Zəng edin.",bkError:"Xəta baş verdi. Yenidən cəhd edin və ya zəng edin.",bkDoneT:"Rezerviniz qəbul edildi!",bkDoneP:"Sizi gözləyirik. Planlar dəyişərsə, zəng edin və ya WhatsApp-a yazın.",bkWaT:"Müraciətiniz hazırdır!",bkWaP:"Göndərmək üçün WhatsApp düyməsini basın. Klinika vaxtı təsdiqləyəcək.",bkNew:"+ Yeni rezerv",sOpen:"İndi açıqdır",sLunch:"Nahar fasiləsi — 15:00-da",sClosed:"İndi bağlıdır",sOpens:"açılır",sToday:"bu gün",sTomorrow:"sabah",sVet:"Həkim",sShop:"Mağaza",sOff:"Bazar ertəsi, çərşənbə axşamı — istirahət",sUntil:"-dək",pSee:"Məhsullara bax",pAll:"Hamısı",pCat:"Pişik",pDog:"İt",pBird:"Quş",pNote:"Mövcudluq və qiyməti zəng edərək dəqiqləşdirin.",mapOpen:"Xəritədə aç →",spDog:"İt",spCat:"Pişik",layers:"Qatlar",hint3d:"Fırladın və aşağı sürüşdürün — anatomiyanı kəşf edin",stSvc:"Xidmətlər",stProd:"Məhsullar",stShow:"Orqanı göstər",fErr:"Zəhmət olmasa adınızı və telefon nömrənizi yazın.",anyTime:"İstənilən vaxt",
   dTitle:"Müraciətiniz hazırdır!",dText:"Göndərmək üçün WhatsApp düyməsini basın. Klinika sizinlə əlaqə saxlayacaq.",dWa:"WhatsApp ilə göndər",dCopy:"Mətni kopyala",dCopied:"Kopyalandı ✓",dBack:"← Formaya qayıt",
   ctTitle:"Bizimlə <em>əlaqə</em>",ctPhone:"Telefon",ctAddr:"Ünvan",ctHours:"İş saatları",copy:"Svetlana-T Baytarlıq Klinikası. Bütün hüquqlar qorunur.",
   msg:{hi:"Salam! Qəbula yazılmaq istəyirəm.",name:"Ad",phone:"Telefon",pet:"Heyvan",petName:"Heyvanın adı",service:"Xidmət",date:"Tarix",time:"Saat",note:"Qeyd"}},
@@ -858,7 +1028,7 @@ const T = {
   v1t:"Забота",v1s:"Индивидуальный подход",v2t:"Профессионализм",v2s:"Точная диагностика и лечение",v3t:"Доверие",v3s:"Честные рекомендации",
   galTitle:"Наши <em>маленькие пациенты</em>",galBtn:"Мы в Instagram",
   apTitle:'Запишитесь <em style="color:var(--sun)">онлайн</em>',apLead:"Приём только по записи. Выберите услугу, день и свободное время — запись за минуту. В срочных случаях звоните.",apCall:"Позвоните или напишите",setmore:"Онлайн-запись",call:"Позвонить",
-  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",pSee:"Смотреть товары",pAll:"Все",pCat:"Кошки",pDog:"Собаки",pBird:"Птицы",pNote:"Наличие и цены уточняйте по телефону.",mapOpen:"Открыть на карте →",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
+  fName:"Ваше имя",fPhone:"Номер телефона",fPet:"Вид животного",fPetName:"Кличка питомца",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (жалобы, симптомы)",fSubmit:"Подготовить заявку",closedDay:"По понедельникам и вторникам клиника не работает. Выберите другой день.",bk1:"С чем вы придёте?",bk2:"Выберите день и время",bk3:"Контактные данные",bkBack:"Назад",bkConfirm:"Подтвердить запись",bkSending:"Отправка…",bkMin:"мин",bkCall:"Позвоните",bkCallMsg:"Для этой услуги нужно заранее поговорить с врачом. Позвоните: ",bkPickDay:"Выберите день",bkLoading:"Загружаем свободное время…",bkNoSlots:"На этот день свободного времени нет. Выберите другой день.",bkTaken:"Это время уже занято. Выберите другое.",bkLimit:"С этого номера сегодня уже много записей. Позвоните нам.",bkError:"Произошла ошибка. Попробуйте ещё раз или позвоните.",bkDoneT:"Вы записаны!",bkDoneP:"Ждём вас. Если планы изменятся — позвоните или напишите в WhatsApp.",bkWaT:"Заявка готова!",bkWaP:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника подтвердит время.",bkNew:"+ Новая запись",sOpen:"Сейчас открыто",sLunch:"Обед — до 15:00",sClosed:"Сейчас закрыто",sOpens:"откроемся",sToday:"сегодня",sTomorrow:"завтра",sVet:"Врач",sShop:"Магазин",sOff:"Пн, Вт — выходные",sUntil:"до",pSee:"Смотреть товары",pAll:"Все",pCat:"Кошки",pDog:"Собаки",pBird:"Птицы",pNote:"Наличие и цены уточняйте по телефону.",mapOpen:"Открыть на карте →",spDog:"Собака",spCat:"Кошка",layers:"Слои",hint3d:"Вращайте и листайте вниз — изучите анатомию",stSvc:"Услуги",stProd:"Товары",stShow:"Показать орган",fErr:"Пожалуйста, укажите имя и номер телефона.",anyTime:"Любое время",
   dTitle:"Заявка готова!",dText:"Нажмите кнопку WhatsApp, чтобы отправить. Клиника свяжется с вами.",dWa:"Отправить в WhatsApp",dCopy:"Скопировать текст",dCopied:"Скопировано ✓",dBack:"← Вернуться к форме",
   ctTitle:"<em>Контакты</em>",ctPhone:"Телефон",ctAddr:"Адрес",ctHours:"Часы работы",copy:"Ветеринарная клиника Svetlana-T. Все права защищены.",
   msg:{hi:"Здравствуйте! Хочу записаться на приём.",name:"Имя",phone:"Телефон",pet:"Животное",petName:"Кличка",service:"Услуга",date:"Дата",time:"Время",note:"Комментарий"}},
@@ -871,7 +1041,7 @@ const T = {
   v1t:"Care",v1s:"A personal approach",v2t:"Expertise",v2s:"Accurate diagnosis & treatment",v3t:"Trust",v3s:"Honest advice",
   galTitle:"Our <em>little patients</em>",galBtn:"Follow on Instagram",
   apTitle:'Book <em style="color:var(--sun)">online</em>',apLead:"Visits are by appointment only. Pick a service, a day and a free time — booking takes a minute. For emergencies, please call.",apCall:"Call or message us",setmore:"Book online",call:"Call now",
-  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",pSee:"See products",pAll:"All",pCat:"Cats",pDog:"Dogs",pBird:"Birds",pNote:"Call to check availability and prices.",mapOpen:"Open in Maps →",fErr:"Please enter your name and phone number.",anyTime:"Any time",
+  fName:"Your name",fPhone:"Phone number",fPet:"Type of pet",fPetName:"Pet's name",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Notes (complaints, symptoms)",fSubmit:"Prepare request",closedDay:"The clinic is closed on Mondays and Tuesdays. Please pick another day.",bk1:"What is the visit for?",bk2:"Pick a day and time",bk3:"Your details",bkBack:"Back",bkConfirm:"Confirm booking",bkSending:"Sending…",bkMin:"min",bkCall:"Call us",bkCallMsg:"This service needs a quick talk with the vet first. Please call: ",bkPickDay:"Pick a day",bkLoading:"Loading free times…",bkNoSlots:"No free times on this day. Please pick another day.",bkTaken:"That time was just taken. Please pick another.",bkLimit:"Too many bookings from this number today. Please call us.",bkError:"Something went wrong. Please try again or call us.",bkDoneT:"You're booked!",bkDoneP:"See you soon. If your plans change, please call or message us on WhatsApp.",bkWaT:"Your request is ready!",bkWaP:"Tap the WhatsApp button to send it. The clinic will confirm the time.",bkNew:"+ New booking",sOpen:"Open now",sLunch:"Lunch break — back at 15:00",sClosed:"Closed now",sOpens:"opens",sToday:"today",sTomorrow:"tomorrow",sVet:"Vet",sShop:"Shop",sOff:"Closed Mon & Tue",sUntil:"until",pSee:"See products",pAll:"All",pCat:"Cats",pDog:"Dogs",pBird:"Birds",pNote:"Call to check availability and prices.",mapOpen:"Open in Maps →",spDog:"Dog",spCat:"Cat",layers:"Layers",hint3d:"Drag to rotate, scroll to explore the anatomy",stSvc:"Services",stProd:"Products",stShow:"Show organ",fErr:"Please enter your name and phone number.",anyTime:"Any time",
   dTitle:"Your request is ready!",dText:"Tap the WhatsApp button to send it. The clinic will get back to you.",dWa:"Send via WhatsApp",dCopy:"Copy text",dCopied:"Copied ✓",dBack:"← Back to form",
   ctTitle:"Get in <em>touch</em>",ctPhone:"Phone",ctAddr:"Address",ctHours:"Opening hours",copy:"Svetlana-T Veterinary Clinic. All rights reserved.",
   msg:{hi:"Hello! I'd like to book an appointment.",name:"Name",phone:"Phone",pet:"Pet",petName:"Pet's name",service:"Service",date:"Date",time:"Time",note:"Notes"}}
@@ -931,6 +1101,7 @@ function render(){
 
   bkRender();
 
+  if(window.renderStory) window.renderStory();
   const addr = CONFIG.address[lang], hrs = CONFIG.hours[lang];
   $("#addrTxt").textContent = addr; $("#schedAddr").textContent = addr; $("#hoursTxt").textContent = hrs;
   $("#addrCard").style.display = addr ? "" : "none";
@@ -1189,6 +1360,81 @@ $$("#pm .tel").forEach(a => a.href = "tel:+" + CONFIG.phoneIntl);
 $$("#pm .phone-txt").forEach(e => e.textContent = CONFIG.phoneDisplay);
 $$("#pm .ig").forEach(a => { a.href = CONFIG.instagram; a.target = "_blank"; a.rel = "noopener"; });
 
+
+// ================= 3D anatomy story =================
+const ORG = {
+  az:{brain:"Beyin",heart:"Ürək",lungs:"Ağciyərlər",liver:"Qaraciyər",stomach:"Mədə",intestines:"Bağırsaqlar",kidneys:"Böyrəklər",bladder:"Sidik kisəsi",teeth:"Dişlər"},
+  ru:{brain:"Мозг",heart:"Сердце",lungs:"Лёгкие",liver:"Печень",stomach:"Желудок",intestines:"Кишечник",kidneys:"Почки",bladder:"Мочевой пузырь",teeth:"Зубы"},
+  en:{brain:"Brain",heart:"Heart",lungs:"Lungs",liver:"Liver",stomach:"Stomach",intestines:"Intestines",kidneys:"Kidneys",bladder:"Bladder",teeth:"Teeth"}
+};
+const ORG_STORY = { heart:"heart", lungs:"heart", kidneys:"kidney", bladder:"kidney", liver:"digest", stomach:"digest", intestines:"digest", brain:"skeleton", teeth:"skin" };
+const STORIES = {
+  heart: { svcs:["consult","lab","usg"], prods:["Vet Expert CardioOne","GimCat Nutri Taurine Bites","Canina 100% somon yağı"],
+    az:["Ürək və tənəffüs","Hər döyüntü","önəmlidir","Ürək xəstəlikləri çox vaxt səssiz başlayır — xüsusən yaşlı pişik və itlərdə. Dinləmə, UZİ və analizlərlə problemi erkən aşkar edir, müalicəni vaxtında başlayırıq."],
+    ru:["Сердце и дыхание","Каждый удар","важен","Болезни сердца часто начинаются незаметно — особенно у пожилых кошек и собак. Аускультация, УЗИ и анализы помогают выявить проблему рано и вовремя начать лечение."],
+    en:["Heart & lungs","Every heartbeat","matters","Heart disease often starts silently — especially in older cats and dogs. Listening, ultrasound and blood tests let us catch it early and start treatment in time."] },
+  kidney: { svcs:["usg","lab","consult"], prods:["Craftia Galena PC Renal Care","Purina Pro Plan VD Urinary","Vet Expert RenalVet","Vet Expert UrinoVet Cat Dilution","Craftia Galena Urinary Care"],
+    az:["Böyrəklər və sidik yolları","Pişiklərin","ən həssas nöqtəsi","Böyrək çatışmazlığı və sidik daşları pişiklərdə ən çox rast gəlinən problemlərdəndir. UZİ və analizlə vaxtında diaqnoz, düzgün pəhriz və əlavələrlə uzunmüddətli nəzarət."],
+    ru:["Почки и мочевыводящие пути","Самое уязвимое","место кошек","Почечная недостаточность и мочекаменная болезнь — одни из самых частых проблем у кошек. Своевременная диагностика на УЗИ и анализах, контроль правильной диетой и добавками."],
+    en:["Kidneys & urinary tract","A cat's most","sensitive spot","Kidney disease and urinary stones are among the most common problems in cats. Early diagnosis with ultrasound and lab tests, then long-term control with the right diet and supplements."] },
+  digest: { svcs:["consult","parasite","drip","lab"], prods:["Purina Pro Plan VD EN Gastrointestinal","Purina Pro Plan VD HP Hepatic","Zoovital Gastrovital","Diroheart / Diroheart Plus M","NexGard Combo","Endopet"],
+    az:["Həzm sistemi","Mədə, bağırsaq","və qaraciyər","Qusma, ishal, iştahsızlıq və parazitlər — səbəbini müayinə və analizlə tapır, müalicə, sistem və düzgün qidalanma ilə sağlamlığı bərpa edirik."],
+    ru:["Пищеварение","Желудок, кишечник","и печень","Рвота, диарея, отказ от еды и паразиты — находим причину с помощью осмотра и анализов, восстанавливаем здоровье лечением, капельницами и правильным питанием."],
+    en:["Digestion","Stomach, gut","and liver","Vomiting, diarrhoea, poor appetite and parasites — we find the cause with an exam and tests, then restore health with treatment, IV fluids and the right food."] },
+  skeleton: { svcs:["surgery","steril","consult"], prods:["Vet Expert ArthroVet Complex","Vet Expert VetoMune","Vet Expert Neuro Support"],
+    az:["Skelet, oynaqlar və sinirlər","Hərəkət —","həyatdır","Axsama, oynaq ağrıları, travmalar və yaşla gələn dəyişikliklər. Sterilizasiya və cərrahi əməliyyatlar təhlükəsiz anesteziya və diqqətli bərpa ilə."],
+    ru:["Скелет, суставы и нервы","Движение —","это жизнь","Хромота, боли в суставах, травмы и возрастные изменения. Стерилизация и операции — с безопасной анестезией и внимательным восстановлением."],
+    en:["Skeleton, joints & nerves","Movement","is life","Limping, joint pain, injuries and age-related changes. Spaying, neutering and surgery with safe anaesthesia and careful recovery."] },
+  skin: { svcs:["skin","micro","dental","groom"], prods:["Vet Expert Anti Seborrhoeic Shampoo","Canina 100% somon yağı","TRIXIE şampun — uzun tüklü itlər","TRIXIE Eye-Care"],
+    az:["Dəri, yun və dişlər","Sağlamlığın","görünən tərəfi","Qaşınma, tük tökülməsi, qulaq gənəsi və diş daşı. Mikroskop və Vud lampası ilə diaqnoz, ultrasəs skaleri ilə diş təmizliyi, gigiyenik qulluq."],
+    ru:["Кожа, шерсть и зубы","Здоровье, которое","видно","Зуд, выпадение шерсти, ушной клещ и зубной камень. Диагностика под микроскопом и лампой Вуда, ультразвуковая чистка зубов, гигиенический уход."],
+    en:["Skin, coat & teeth","The health you","can see","Itching, hair loss, ear mites and tartar. Diagnosis with a microscope and Wood's lamp, ultrasonic dental cleaning and grooming."] }
+};
+window.anatLabel = k => ORG[lang][k] || k;
+window.onAnatomyLabel = k => { const st = document.querySelector(`.st[data-story="${ORG_STORY[k]}"]`); st && st.scrollIntoView({behavior:"smooth", block:"center"}); };
+const findProd = name => { for(const c of PRODUCTS) for(const x of c.items) if(x.n === name) return x; return null; };
+window.renderStory = function(){
+  const t = T[lang];
+  Object.entries(STORIES).forEach(([k, S]) => {
+    const el = $("#sp-" + k); if(!el) return;
+    const [tag, h1, h2, p] = S[lang];
+    const svcs = S.svcs.map(id => SERVICES.find(s => s.id === id)).filter(Boolean).map(s => `<a class="setmore" href="${CONFIG.booking}" target="_blank" rel="noopener">${s[lang][0]}</a>`).join("");
+    const prods = S.prods.map(findProd).filter(Boolean).map(x => x.img
+      ? `<button type="button" class="st-prod" data-img="/images/products/${x.img}.jpg" data-name="${esc(x.n)}"><img src="/images/products/${x.img}-t.jpg" alt="" loading="lazy"><span>${esc(x.n)}</span></button>`
+      : `<button type="button" class="st-prod noimg" data-name="${esc(x.n)}"><b>${[...x.p].map(k => ({c:"🐱",d:"🐶",b:"🦜"})[k]).join("")}</b><span>${esc(x.n)}</span></button>`).join("");
+    el.innerHTML = `<div class="st-tag"><i></i>${tag}</div><h2>${h1} <em>${h2}</em></h2><p>${p}</p>
+      <div class="st-sub">${t.stSvc}</div><div class="st-svcs">${svcs}</div>
+      <div class="st-sub">${t.stProd}</div><div class="st-prods">${prods}</div>
+      <div class="st-btns"><a class="btn btn-primary setmore" href="${CONFIG.booking}" target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg><span>${t.ctaBook}</span></a></div>`;
+  });
+  window.Anatomy && Anatomy.refreshLabels();
+  if(CONFIG.bookingApi) $$(".story .setmore").forEach(a => { a.href = "#appointment"; a.removeAttribute("target"); });
+};
+renderStory();
+$(".story-flow").addEventListener("click", e => {
+  const b = e.target.closest(".st-prod"); if(!b) return;
+  if(b.dataset.img) openImg(b.dataset.img, b.dataset.name);
+  else { const i = PRODUCTS.findIndex(c => c.items.some(x => x.n === b.dataset.name)); if(i >= 0) openPm(i); }
+});
+// scroll → story state
+const stObs = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add("in"); window.Anatomy && Anatomy.setStory(e.target.dataset.story); }
+}), { rootMargin: "-48% 0px -48% 0px" });
+$$(".st").forEach(el => stObs.observe(el));
+$$(".st").forEach(el => new IntersectionObserver(([e]) => { if(e.isIntersecting) el.classList.add("in"); }, { threshold: .2 }).observe(el));
+// control bar
+const rng = $("#explodeRange"), rv = $("#explodeVal");
+rng.addEventListener("input", () => { rv.textContent = Math.round(rng.value * 100) + "%"; window.Anatomy && Anatomy.setExplode(+rng.value); });
+window.onAnatomyExplode = v => { rng.value = v; rv.textContent = Math.round(v * 100) + "%"; };
+$$("#anatBar [data-sp]").forEach(b => b.addEventListener("click", () => {
+  $$("#anatBar [data-sp]").forEach(x => x.classList.toggle("on", x === b)); window.Anatomy && Anatomy.setSpecies(b.dataset.sp);
+}));
+$("#rotBtn").addEventListener("click", () => { if(window.Anatomy) $("#rotBtn").classList.toggle("on", Anatomy.toggleRotate()); });
+$("#resetBtn").addEventListener("click", () => { window.Anatomy && Anatomy.reset(); $("#rotBtn").classList.add("on"); });
+window.onAnatomyReady = () => { Anatomy.refreshLabels(); };
+// phones: hide the bottom call bar while the 3D story fills the screen (story panels carry their own Book button)
+new IntersectionObserver(([e]) => document.body.classList.toggle("instory", e.isIntersecting), { rootMargin: "0px 0px -55% 0px" }).observe($("#anatomy"));
+
 // sticky call bar: only once the hero buttons have scrolled away
 (() => {
   const bar = $("#mbar"), cta = $("#heroCta");
@@ -1204,5 +1450,8 @@ $$("#links a").forEach(a => a.addEventListener("click", () => $("#links").classL
 const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add("in"); io.unobserve(x.target); } }), {threshold:.12}) : null;
 $$(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="/anatomy/anatomy.js?v=9"></script>
 </body>
 </html>

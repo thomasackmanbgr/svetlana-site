@@ -3,8 +3,8 @@
  "short_name": "Svetlana-T",
  "start_url": "/",
  "display": "browser",
- "background_color": "#fbf7f1",
- "theme_color": "#1f6f63",
+ "background_color": "#000000",
+ "theme_color": "#e11d2e",
  "icons": [
   {
    "src": "/favicon-192.png",

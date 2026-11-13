@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Builds the 3D-anatomy preview /v2/index.html from /index.html.
-Run:  python3 make_v2.py   (after any change to index.html, until the preview becomes the main site)"""
+"""Builds the live site /index.html (3D anatomy, red/black/white theme) from src/base.html.
+Edit src/base.html (texts, services, products, CONFIG), then run:  python3 make_v2.py && python3 build.py"""
 import pathlib, re
 
 ROOT = pathlib.Path(__file__).parent
-s = (ROOT / "index.html").read_text(encoding="utf-8")
+s = (ROOT / "src" / "base.html").read_text(encoding="utf-8")
 
 def rep(old, new, count=1):
     global s
@@ -12,8 +12,7 @@ def rep(old, new, count=1):
     s = s.replace(old, new, count)
 
 # ---------- head ----------
-rep('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">')
-rep('<meta name="theme-color" content="#1f6f63">', '<meta name="theme-color" content="#070606">')
+rep('<meta name="theme-color" content="#1f6f63">', '<meta name="theme-color" content="#000000">')
 
 # ---------- hero -> 3D story ----------
 a = s.index(' <!-- HERO -->'); b = s.index(' <!-- SERVICES -->')
@@ -311,15 +310,38 @@ rep('  const addr = CONFIG.address[lang]', '  if(window.renderStory) window.rend
 # libraries + engine (after the main script)
 rep('</body>', '''<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="/anatomy/anatomy.js?v=8"></script>
+<script src="/anatomy/anatomy.js?v=9"></script>
 </body>''')
 
-# preview: switch language in place (the /ru/ and /en/ addresses still serve the current design)
-rep('if(location.protocol.startsWith("http") && l !== (PATH_LANG || "az")){', 'if(false){')
-i = s.index('try{ const s = localStorage.getItem("vetLang"); if(!PATH_LANG')
-j = s.index('}catch(e){}', i)
-s = s[:i] + 'try{ const s = localStorage.getItem("vetLang"); if(T[s]) lang = s; ' + s[j:]
+# ---------- palette: red / black / white ----------
+PALETTE = [
+  ("#fff2ef", "#ffffff"), ("#f4c4b7", "#ff4d5a"), ("#e5a495", "#e11d2e"), ("#cf8a7a", "#b8141f"),
+  ("#ab6557", "#9e0f1b"), ("#b87163", "#9e0f1b"),
+  ("rgba(229,164,149", "rgba(225,29,46"), ("rgba(171,101,87", "rgba(158,15,27"), ("rgba(92,193,173", "rgba(255,255,255"),
+  ("#5cc1ad", "#e11d2e"), ("#3f9c8a", "#b8141f"),
+  ("color:#140b09", "color:#fff"), ("color:#120a08", "color:#fff"), ("color:#1a0f0c", "color:#fff"),
+  ("#f3ece6", "#ffffff"), ("#d6cbc3", "#d9d9d9"), ("#c9beb6", "#c8c8c8"), ("#c4b9b1", "#c4c4c4"),
+  ("#9b908a", "#9a9a9a"), ("#a59a93", "#a3a3a3"), ("#8f847e", "#8c8c8c"),
+  ("#070606", "#000000"), ("#0a0908", "#050505"), ("#0b0a0a", "#0a0a0a"), ("#050404", "#000000"),
+  ("#2a1f1d", "#2a2a2a"), ("#2a2321", "#262626"), ("#1a1514", "#161616"),
+  ("rgba(17,15,14", "rgba(14,14,14"), ("rgba(10,9,9", "rgba(8,8,8"), ("rgba(7,6,6", "rgba(0,0,0"),
+  ("#0c0b0b", "#0a0a0a"), ("#0f0d0c", "#0d0d0d"), ("#141211", "#121212"),
+]
+a = s.index("/* ===================== DARK LUXURY THEME"); b = s.index("</style>", a)
+theme = s[a:b]
+for o, n in PALETTE: theme = theme.replace(o, n)
+s = s[:a] + theme + s[b:]
+# --sun is used for accent text on black: a lighter red reads better
+s = s.replace("--sun:#ff4d5a", "--sun:#ff6b75", 1)
+# product category tiles + leftover photo backdrops: red / charcoal instead of the old rainbow
+CAT_BG = ["linear-gradient(135deg,#ff4d5a,#9e0f1b)", "linear-gradient(135deg,#3a3a3a,#111111)"]
+k = [0]
+def _cat(m):
+    k[0] += 1
+    return 'bg:"' + CAT_BG[(k[0] - 1) % 2] + '"'
+s = re.sub(r'bg:"linear-gradient\(135deg,#[0-9a-fA-F]{6},#[0-9a-fA-F]{6}\)"', _cat, s)
+s = s.replace("linear-gradient(150deg,var(--teal) 0%,#2b8a7b 60%,#46a592 100%)", "linear-gradient(150deg,#e11d2e 0%,#9e0f1b 60%,#1a1a1a 100%)")
+s = s.replace("linear-gradient(160deg,#f7d9c9,#ef7b5a)", "linear-gradient(160deg,#2a2a2a,#9e0f1b)")
 
-out = ROOT / "v2"; out.mkdir(exist_ok=True)
-(out / "index.html").write_text(s, encoding="utf-8")
-print("built /v2/index.html", len(s)//1024, "KB")
+(ROOT / "index.html").write_text(s, encoding="utf-8")
+print("built /index.html", len(s)//1024, "KB")

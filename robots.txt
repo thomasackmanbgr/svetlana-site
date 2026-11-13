@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /src/
+Disallow: /v2/
 
 Sitemap: https://svetlanatbaytarliq.com/sitemap.xml

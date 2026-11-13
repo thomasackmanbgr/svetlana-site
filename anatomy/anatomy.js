@@ -45,12 +45,12 @@
 
   scene.add(new THREE.HemisphereLight(0xfff4ee, 0x2a1a16, 0.65));
   const key = new THREE.DirectionalLight(0xffeee2, 1.8); key.position.set(4, 7, 6); scene.add(key);
-  const fill = new THREE.DirectionalLight(0xe5a495, 0.9); fill.position.set(-6, 1, -3); scene.add(fill);
-  const rim = new THREE.DirectionalLight(0x8fe0d0, 0.8); rim.position.set(-2, 6, -7); scene.add(rim);
+  const fill = new THREE.DirectionalLight(0xff4d5a, 0.8); fill.position.set(-6, 1, -3); scene.add(fill);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.7); rim.position.set(-2, 6, -7); scene.add(rim);
   const front = new THREE.DirectionalLight(0xffffff, 0.55); front.position.set(0, 1.5, 9); scene.add(front);
 
   const discMat = new THREE.ShaderMaterial({
-    transparent: true, depthWrite: false, uniforms: { c: { value: new THREE.Color(0xe5a495) } },
+    transparent: true, depthWrite: false, uniforms: { c: { value: new THREE.Color(0xe11d2e) } },
     vertexShader: "varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }",
     fragmentShader: "uniform vec3 c; varying vec2 vUv; void main(){ float d=distance(vUv,vec2(.5)); float a=smoothstep(.5,.0,d)*.35; float ring=smoothstep(.012,.0,abs(d-.42))*.35; gl_FragColor=vec4(c,a*.6+ring); }"
   });
@@ -59,7 +59,7 @@
   const pg = new THREE.BufferGeometry(), pn = 160, pp = new Float32Array(pn * 3);
   for (let i = 0; i < pn; i++) { pp[i * 3] = (Math.random() - 0.5) * 12; pp[i * 3 + 1] = Math.random() * 6; pp[i * 3 + 2] = (Math.random() - 0.5) * 8; }
   pg.setAttribute("position", new THREE.BufferAttribute(pp, 3));
-  const dust = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xf4c4b7, size: 0.025, transparent: true, opacity: 0.5, depthWrite: false }));
+  const dust = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xffffff, size: 0.025, transparent: true, opacity: 0.5, depthWrite: false }));
   scene.add(dust);
 
   /* ======================= materials ======================= */
@@ -159,7 +159,7 @@
   /* ======================= species landmarks ======================= */
   const SPECIES = {
     dog: {
-      skin: 0xf4c4b7,
+      skin: 0xff3b4a,
       body: [[V(2.56, 2.04), .05, .06], [V(2.3, 2.12), .14, .14], [V(1.95, 2.3), .26, .23], [V(1.6, 2.22), .24, .19], [V(1.3, 1.98), .27, .2],
              [V(0.85, 1.52), .5, .35], [V(0.2, 1.46), .45, .37], [V(-0.5, 1.6), .3, .31], [V(-1.05, 1.62), .34, .29], [V(-1.4, 1.65), .09, .08]],
       spine: [V(1.55, 2.17), V(1.32, 2.0), V(1.06, 1.84), V(0.55, 1.83), V(-0.25, 1.8), V(-0.95, 1.79), V(-1.22, 1.76), V(-1.36, 1.73)],
@@ -176,7 +176,7 @@
       larynx: V(1.72, 2.0), anus: V(-1.38, 1.62), bone: 0.045
     },
     cat: {
-      skin: 0x9fe3d4,
+      skin: 0xffffff,
       body: [[V(1.98, 1.4), .035, .045], [V(1.88, 1.45), .08, .1], [V(1.66, 1.53), .19, .19], [V(1.45, 1.5), .19, .17], [V(1.2, 1.32), .19, .15],
              [V(0.72, 1.04), .32, .24], [V(0.12, 0.99), .3, .25], [V(-0.5, 1.07), .27, .23], [V(-0.95, 1.12), .27, .22], [V(-1.2, 1.15), .07, .06]],
       spine: [V(1.47, 1.46), V(1.3, 1.32), V(1.08, 1.19), V(0.6, 1.15), V(-0.15, 1.15), V(-0.82, 1.21), V(-1.04, 1.18), V(-1.18, 1.16)],
